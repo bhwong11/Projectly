@@ -32,11 +32,19 @@ app.use(express.urlencoded({extended:true}));
 app.use(function (req, res, next) {
   res.locals.user = req.session.currentUser;
   next();
-})
+});
+
+const authRequired = function (req, res, next) {
+  if(req.session.currentUser){
+    return next();
+  }
+  return res.redirect("/login");
+}
 
 /* SECTION: Connect to controllers & routes */
+
+app.use("/boards", authRequired, boards);
 app.use("/", auth);
-app.use("/", boards);
 
 app.get("/*", (req, res, next) => {
   res.send("Error 404: File not found");
