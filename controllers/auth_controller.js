@@ -4,8 +4,8 @@ const bcrypt = require('bcryptjs');
 const {User} = require('../models');
 
 router.get('/register',(req,res,next)=>{
-    return res.send('register page')
-    //res.render('auth/register');
+    //return res.send('register page')
+    res.render('auth/register');
 })
 
 router.post('/register',async (req,res,next)=>{
@@ -40,18 +40,20 @@ router.get('/login',(req,res,next)=>{
    return res.render('auth/login')
 })
 
-router.post('/login',async(req,res,next)=>{
-    try{
-        //check if user exist
-        const foundUser = await User.findOne({username: req.body.username});
-        if(foundUser){
-            console.log(`user ${foundUser.username} already exist`)
-            
-        }
-    }catch(error){
+// router.post('/login',async(req,res,next)=>{
+//     try{
+//         //check if user exist
+//         const foundUser = await User.findOne({username: req.body.username});
+//         if(!foundUser){
+//             console.log(`user does not exist`)
+//             return res.redirect('/register')
+//         }
+//         //check password
+//         const matchPassword = await
+//     }catch(error){
 
-    }
-})
+//     }
+// })
 
 
 module.exports = router;
