@@ -27,6 +27,7 @@ app.use(
 
 /* SECTION: Middleware */
 app.set("view engine", "ejs")
+app.use(express.urlencoded({extended:true}))
 
 /* SECTION: Connect to controllers & routes */
 app.use("/", auth);
