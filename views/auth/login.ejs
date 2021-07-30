@@ -1,13 +1,16 @@
 <%- include("../partials/header.ejs") %>
 <body>
     <div class="form-container">
-        <form method="" action="">
+        <form method="POST" action="/login">
 
             <label for="username-field">User name</label>
             <input type="text" name="username" id="username-field" placeholder="Johnny Appleseed">
 
             <label for="password-field">Password</label>
             <input type="password" name="password" id="password-field">
+
+            <button type="submit">Login</button> 
+
         </form>
     </div>
 </body>
