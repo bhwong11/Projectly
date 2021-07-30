@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 const connectionString = process.env.MONGO_URI || 'mongodb://localhost:27017/projectly'
 
 mongoose.connect(connectionString,{
@@ -8,7 +9,7 @@ mongoose.connect(connectionString,{
     useFindAndModify: false,
 })
 
-mongoose.connection.on("connect",()=>{
+mongoose.connection.on("connected",()=>{
     console.log("....connected")
 })
 
