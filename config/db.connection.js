@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const connectionString = process.env.MONGO_URI
+require('dotenv').config();
+const connectionString = process.env.MONGO_URI || 'mongodb://localhost:27017/projectly'
 
 mongoose.connect(connectionString,{
     useNewUrlParser: true,
@@ -8,7 +9,7 @@ mongoose.connect(connectionString,{
     useFindAndModify: false,
 })
 
-mongoose.connection.on("connect",()=>{
+mongoose.connection.on("connected",()=>{
     console.log("....connected")
 })
 
@@ -19,4 +20,3 @@ mongoose.connection.on('error',(error)=>{
 mongoose.connection.on("disconnected",()=>{
     console.log("....disconnected")
 })
-
