@@ -12,7 +12,6 @@ router.post('/register',async (req,res,next)=>{
     try{
         //if user exist
         const foundUser = await User.exists({$or:[{email:req.body.email},{username:req.body.username}]})
-        console.log(foundUser)
         if(foundUser){
             console.log('User already exist')
             return res.redirect('/login');
@@ -25,7 +24,6 @@ router.post('/register',async (req,res,next)=>{
         req.body.password = hash;
             //create user with hashed password
         const createdUser = await User.create(req.body);
-        console.log(createdUser)
 
         //return to login
         return res.redirect('/login')
@@ -33,8 +31,7 @@ router.post('/register',async (req,res,next)=>{
         //res.send(createdUser)
 
     }catch(error){
-        console.log('ERROR!')
-        console.log(error.message)
+
         return res.send(error)
     }
 })
@@ -52,8 +49,23 @@ router.post('/login',async(req,res,next)=>{
             return res.redirect('/register')
         }
         //check password
-        const matchPassword = await bcrypt.compare(req.body.password,foundUser.password)
+        const matchedPassword = await bcrypt.compare(req.body.password,foundUser.password)
+        if(!matchedPassword){
+            return res.send('invalid password')
+        }
+
+        req.session.currentUser = {
+            id: foundUser._id,
+            username: foundUser.username,
+            email: foundUser.email,
+        }
+        console.log(req.session.currentUser)
+
+        res.render('screens/userWorkspace')
+
     }catch(error){
+        console.log(error.message);
+        return res.send(error)
 
     }
 })
