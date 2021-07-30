@@ -4,7 +4,8 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
 /* SECTION: Internal modules */
-const { auth } = require("./controllers/index");
+const { auth, boards } = require("./controllers/index");
+
 
 /* SECTION: Instanced modules */
 const app = express();
@@ -35,6 +36,7 @@ app.use(function (req, res, next) {
 
 /* SECTION: Connect to controllers & routes */
 app.use("/", auth);
+app.use("/", boards);
 
 app.get("/*", (req, res, next) => {
   res.send("Error 404: File not found");
