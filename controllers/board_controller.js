@@ -2,8 +2,10 @@
 const express = require("express");
 const router = express.Router();
 
+
 /* SECTION: internal modules */
 const { Board } = require("../models/index");
+
 
 /* SECTION: Routes */
 
@@ -32,6 +34,7 @@ router.get("/boards/:id/edit", (req, res, next) => {
 /* NOTE: /boards/:id POST Functional: Edits the board content in our database */
 
 /* NOTE: /boards/:id DELETE Functional: deletes a board from our database */
+
 
 /* SECTION: Export routes */
 module.exports = router;
