@@ -70,5 +70,15 @@ router.post('/login',async(req,res,next)=>{
     }
 })
 
+router.get('logout',async(req,res,next)=>{
+    try{
+        await req.session.destroy();
+        return res.redirect('/login')
+    }catch{
+        console.log(error.message);
+        return res.send(error)
+    }
+})
+
 
 module.exports = router;
