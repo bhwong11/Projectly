@@ -5,5 +5,5 @@ require("../config/db.connection");
 module.exports = {
     User: require("./User"),
     Task: require("./Task"),
-    Board: require("./Board")
+    Board: require("./Board"),
 }
