@@ -44,7 +44,7 @@ const authRequired = function (req, res, next) {
 /* SECTION: Connect to controllers & routes */
 
 app.use("/boards", authRequired, boards);
-app.user("/tasks",authRequired,tasks)
+app.use("/tasks",authRequired,tasks)
 app.use("/", auth);
 
 app.get("/*", (req, res, next) => {
