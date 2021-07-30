@@ -1,9 +1,10 @@
 /* SECTION: External modules */
 const express = require("express");
-const session = require("express-sessions");
-const MongoStore = require("connect-mongo")
+const session = require("express-session");
+const MongoStore = require("connect-mongo");
 
 /* SECTION: Internal modules */
+const { auth } = require("./controllers/index");
 
 /* SECTION: Instanced modules */
 const app = express();
@@ -25,8 +26,14 @@ app.use(
 );
 
 /* SECTION: Middleware */
+app.set("view engine", "ejs")
 
 /* SECTION: Connect to controllers & routes */
+app.use("/", auth);
+
+app.get("/*", (req, res, next) => {
+  res.send("Error 404: File not found");
+});
 
 /* SECTION: Server bind */
 app.listen(PORT, () => {
