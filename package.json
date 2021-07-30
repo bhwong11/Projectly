@@ -1,0 +1,24 @@
+{
+  "name": "projectly",
+  "version": "1.0.0",
+  "description": "A project management tool that is not at all inspired by to trello.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leocucinell/Projectly.git"
+  },
+  "keywords": [
+    "super",
+    "cool"
+  ],
+  "author": "Leo & Bryant",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leocucinell/Projectly/issues"
+  },
+  "homepage": "https://github.com/leocucinell/Projectly#readme"
+}
