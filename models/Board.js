@@ -6,6 +6,10 @@ const boardSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, "Please enter a board name"]
+    },
+    userId: {
+        type: mongoose.Types.ObjectId,
+        required: [true, "you need to be signed in as a user in order to create a board"]
     }
 }, {timestamps: true});
 

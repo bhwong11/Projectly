@@ -12,11 +12,24 @@ const { Board } = require("../models/index");
 /* NOTE: /boards GET Presentational: Our main workspace page */
 router.get("/", (req, res, next) => {
     res.send("Hello from the boards (main workspace) page!");
+    try{
+        //grab all the boards from the DB with the user ID of the current user
+        const boards = await Board.find({userId: req.session.currentUser.id});
+        //create the context containing the boards
+        const context = {boards}
+        //send the boards to the view
+        res.send("../views/screens/userWorkspace.ejs", context);
+    } catch(error) {
+        console.log(error);
+        req.error = error;
+        res.send(error);
+    }
 });
 
 /* NOTE: /boards/new GET Presentational: Creating a new board */
 router.get("/new", (req, res, next) => {
-    res.send("This is a form to show a form to create a new board");
+    // res.send("This is a form to show a form to create a new board");
+    res.send("creating a new board page")
 });
 
 /* NOTE: /boards POST Functional: Posting a new board to our database */
