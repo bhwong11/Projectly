@@ -10,24 +10,35 @@ const { Board } = require("../models/index");
 /* SECTION: Routes */
 
 /* NOTE: /boards GET Presentational: Our main workspace page */
-router.get("/boards", (req, res, next) => {
+router.get("/", (req, res, next) => {
     res.send("Hello from the boards (main workspace) page!");
 });
 
 /* NOTE: /boards/new GET Presentational: Creating a new board */
-router.get("/boards/new", (req, res, next) => {
+router.get("/new", (req, res, next) => {
     res.send("This is a form to show a form to create a new board");
 });
 
 /* NOTE: /boards POST Functional: Posting a new board to our database */
+router.post("/", (req, res, next) => {
+    try {
+        //create a new board
+        const createdBoard = await Board.create(req.body);
+        //return to boards page
+        return res.redirect("/boards");
+    } catch(error) {
+        console.log(error);
+        return res.send(error);
+    }
+});
 
 /* NOTE: /boards/:id GET Presentational: Shows the board page containing all the tasks */
-router.get("/boards/:id", (req, res, next) => {
+router.get("/:id", (req, res, next) => {
     res.send(`This page displays the list of tasks in a board, id: ${req.params.id}`);
 });
 
 /* NOTE: /boards/:id/edit GET Functional: A form to edit a board name */
-router.get("/boards/:id/edit", (req, res, next) => {
+router.get("/:id/edit", (req, res, next) => {
     res.send(`This page displays the form to edit a board with id ${req.params.id}`);
 });
 
