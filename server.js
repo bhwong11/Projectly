@@ -4,7 +4,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
 /* SECTION: Internal modules */
-const { auth, boards } = require("./controllers/index");
+const { auth, boards, tasks } = require("./controllers/index");
 
 
 /* SECTION: Instanced modules */
@@ -44,6 +44,7 @@ const authRequired = function (req, res, next) {
 /* SECTION: Connect to controllers & routes */
 
 app.use("/boards", authRequired, boards);
+app.user("/tasks",authRequired,tasks)
 app.use("/", auth);
 
 app.get("/*", (req, res, next) => {
