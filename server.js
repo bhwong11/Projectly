@@ -26,8 +26,12 @@ app.use(
 );
 
 /* SECTION: Middleware */
-app.set("view engine", "ejs")
-app.use(express.urlencoded({extended:true}))
+app.set("view engine", "ejs");
+app.use(express.urlencoded({extended:true}));
+app.use(function (req, res, next) {
+  res.locals.user = req.session.currentUser;
+  next();
+})
 
 /* SECTION: Connect to controllers & routes */
 app.use("/", auth);
