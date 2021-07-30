@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const {Task}= require('../models');
 
-/* SECTION: Export model */
+/* SECTION: create route */
 router.post('/',async (req,res,next)=>{
     try{
     const newTask = await Task.create(req.body)
@@ -15,6 +15,8 @@ router.post('/',async (req,res,next)=>{
         return next();
     }
 });
+
+/* SECTION: show route */
 
 router.get('/:id',async (req,res,next)=>{
     try{
@@ -30,6 +32,7 @@ router.get('/:id',async (req,res,next)=>{
     }
 })
 
+/* SECTION: edit show route */
 router.get('/:id/edit',async(req,res,next)=>{
     try{
         const foundTask = Task.findById(req.params.id)
@@ -44,6 +47,8 @@ router.get('/:id/edit',async(req,res,next)=>{
         return next();
     }
 })
+
+/* SECTION: edit put route */
 
 router.put('/:id',async(req,res,next)=>{
     try{
@@ -66,6 +71,8 @@ router.put('/:id',async(req,res,next)=>{
     
 })
 
+/* SECTION: delete route */
+
 router.delete('/:id',async(req,res,next)=>{
     try{
         const deletedTask = await Task.findByIdAndDelete(req.params.id)
@@ -76,7 +83,7 @@ router.delete('/:id',async(req,res,next)=>{
         console.log(error);
         return next();
     }
-})
+});
 
 
 module.exports = router;
