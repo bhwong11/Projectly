@@ -20,6 +20,17 @@ router.get("/new", (req, res, next) => {
 });
 
 /* NOTE: /boards POST Functional: Posting a new board to our database */
+router.post("/", (req, res, next) => {
+    try {
+        //create a new board
+        const createdBoard = await Board.create(req.body);
+        //return to boards page
+        return res.redirect("/boards");
+    } catch(error) {
+        console.log(error);
+        return res.send(error);
+    }
+});
 
 /* NOTE: /boards/:id GET Presentational: Shows the board page containing all the tasks */
 router.get("/:id", (req, res, next) => {
