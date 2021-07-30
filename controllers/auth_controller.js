@@ -12,7 +12,7 @@ router.post('/register',async (req,res,next)=>{
     try{
         //if user exist
         const foundUser = await User.exists({$or:[{email:req.body.email},{username:req.body.username}]})
-        if(!foundUser){
+        if(foundUser){
             console.log('User already exist')
             return res.redirect('/login');
         }
@@ -28,7 +28,8 @@ router.post('/register',async (req,res,next)=>{
 
         //return to login
         return res.redirect('/login')
-        res.send(createdUser)
+        //test route below
+        //res.send(createdUser)
 
     }catch(error){
         return res.send(error)
@@ -39,7 +40,18 @@ router.get('/login',(req,res,next)=>{
    return res.render('auth/login')
 })
 
+router.post('/login',async(req,res,next)=>{
+    try{
+        //check if user exist
+        const foundUser = await User.findOne({username: req.body.username});
+        if(foundUser){
+            console.log(`user ${foundUser.username} already exist`)
+            
+        }
+    }catch(error){
 
+    }
+})
 
 
 module.exports = router;
