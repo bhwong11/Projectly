@@ -12,7 +12,7 @@
     <% if(boards){ %>
         <% for(let ii = 0; ii < boards.length; ii++) { %>
             <% const board = boards[ii] %>
-            <p><%= board.name %></p>
+            <%- include("../partials/board.ejs", {name: board.name, id: board._id}) %>
         <% } %>
     <% } else { %>
         <h5>no boards found!</h5>
