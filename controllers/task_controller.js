@@ -49,14 +49,15 @@ router.post('/',async (req,res,next)=>{
 
 /* NOTE: / GET Presentational: Edit page for specefic task*/
 router.get('/:id/edit',async(req,res,next)=>{
-    res.send('hit edit route')
+    console.log('🚼','hit edit route')
     try{
-        const foundTask = Task.findById(req.params.id)
+        const foundTask = await Task.findById(req.params.id)
         const context = 
         {
             task:foundTask,
         };
-        return res.send(context);
+        console.log('▷',context)
+        return res.render('screens/task_screens/edit',context);
     }catch(error){
         req.error = error;
         console.log(error);
@@ -92,6 +93,7 @@ router.put('/:id',async(req,res,next)=>{
 router.get('/:id',async (req,res,next)=>{
     try{
         const foundTask = await Task.findById(req.params.id).populate('Board')
+        console.log(foundTask)
         const context = {
             task: foundTask,
         }
