@@ -10,15 +10,16 @@ const { Board } = require("../models/index");
 /* SECTION: Routes */
 
 /* NOTE: /boards GET Presentational: Our main workspace page */
-router.get("/", (req, res, next) => {
-    res.send("Hello from the boards (main workspace) page!");
+router.get("/", async (req, res, next) => {
+    console.log("~~~ Inside the main board page ~~~");
     try{
         //grab all the boards from the DB with the user ID of the current user
         const boards = await Board.find({userId: req.session.currentUser.id});
+        console.log(boards);
         //create the context containing the boards
         const context = { boards }
         //send the boards to the view
-        res.send("../views/screens/userWorkspace.ejs", context);
+        return res.render("../views/screens/userWorkspace", context);
     } catch(error) {
         console.log(error);
         req.error = error;
@@ -32,7 +33,7 @@ router.get("/new", (req, res, next) => {
 });
 
 /* NOTE: /boards POST Functional: Posting a new board to our database */
-router.post("/", (req, res, next) => {
+router.post("/", async (req, res, next) => {
     try {
         //make a new board object
         const board = {

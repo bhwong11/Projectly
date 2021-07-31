@@ -59,9 +59,9 @@ router.post('/login',async(req,res,next)=>{
             username: foundUser.username,
             email: foundUser.email,
         }
-        console.log(req.session.currentUser)
+        //console.log(req.session.currentUser)
 
-        res.render('screens/userWorkspace')
+        return res.redirect('/boards');
 
     }catch(error){
         console.log(error.message);

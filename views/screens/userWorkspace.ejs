@@ -5,5 +5,13 @@
     <% } else { %>
         <h1>Hello Workspace</h1>
     <% } %>
+
+    <h2>Boards</h2>
+    <% if(boards){ %>
+        <% for(let ii = 0; ii < boards.length; ii++) { %>
+            <% const board = boards[ii] %>
+            <p><%= board.name %></p>
+        <% } %>
+    <% } %>
 </body>
 </html>
