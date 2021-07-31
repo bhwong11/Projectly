@@ -1,0 +1,15 @@
+<%-include('../../partials/header.ejs')%>
+<body>
+    <h1>Task: <%=task.name%>!</h1>
+        <h3><%=task.name%></h3>
+        <p><%=task.content%></p>
+        <p><%=task.dueDate%></p>
+        <p><%=task.board%></p>
+        <a href="/tasks/<%=task.id%>/edit">Edit</a>
+        <form action="/tasks/<%=task.id%>?_method=DELETE" method="POST">
+            <button>Delete</button>
+        </form>
+
+    
+</body>
+</html>

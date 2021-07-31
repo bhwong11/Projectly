@@ -47,23 +47,9 @@ router.post('/',async (req,res,next)=>{
     }
 });
 
-/* NOTE: / GET Presentational: show route for specefic task */
-router.get('/:id',async (req,res,next)=>{
-    try{
-        const foundTask = await Task.findById(req.params.id);
-        const context = {
-            task: foundTask,
-        }
-        return res.send(context)
-    }catch(error){
-        req.error = error;
-        console.log(error);
-        return next();
-    }
-})
-
 /* NOTE: / GET Presentational: Edit page for specefic task*/
 router.get('/:id/edit',async(req,res,next)=>{
+    res.send('hit edit route')
     try{
         const foundTask = Task.findById(req.params.id)
         const context = 
@@ -99,6 +85,22 @@ router.put('/:id',async(req,res,next)=>{
         return next();
     }
     
+})
+
+
+/* NOTE: / GET Presentational: show route for specefic task */
+router.get('/:id',async (req,res,next)=>{
+    try{
+        const foundTask = await Task.findById(req.params.id).populate('Board')
+        const context = {
+            task: foundTask,
+        }
+        return res.render('screens/task_screens/show',context)
+    }catch(error){
+        req.error = error;
+        console.log(error);
+        return next();
+    }
 })
 
 

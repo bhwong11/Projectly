@@ -2,6 +2,7 @@
 const express = require("express");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const methodOverride = require('method-override')
 
 /* SECTION: Internal modules */
 const tasks  = require("./controllers/task_controller");
@@ -30,6 +31,7 @@ app.use(
 /* SECTION: Middleware */
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended:true}));
+app.use(methodOverride("_method"))
 app.use(function (req, res, next) {
   res.locals.user = req.session.currentUser;
   next();
