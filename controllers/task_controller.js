@@ -37,9 +37,10 @@ router.post('/',async (req,res,next)=>{
     // res.send('hit post route')
     try{
     const newTask = await Task.create(req.body)
-    console.log(newTask)
+    //console.log(newTask)
     //replace this with redirect to board page
-    return res.send(newTask)
+    return res.redirect('screens/boards_screen/index')
+    //return res.send(newTask)
     }catch(error){
         req.error = error;
         console.log(error);
@@ -76,7 +77,8 @@ router.put('/:id',async(req,res,next)=>{
             new:true,
         })
         console.log(updatedTask);
-        return res.send(updatedTask)
+        return res.redirect(`screens/task_screens/${updatedTask.id}`)
+        //return res.send(updatedTask)
         //return res.redirect(`/tasks/updatedTask._id`)
     }catch(error){
         req.error = error;
@@ -91,8 +93,6 @@ router.put('/:id',async(req,res,next)=>{
 router.get('/:id',async (req,res,next)=>{
     try{
         const foundTask = await Task.findById(req.params.id).populate('Board')
-        const allTask = await Board.find({}).populate('Board')
-        return res.send(allTask)
 
         console.log(foundTask)
         const context = {
@@ -112,8 +112,8 @@ router.get('/:id',async (req,res,next)=>{
 router.delete('/:id',async(req,res,next)=>{
     try{
         const deletedTask = await Task.findByIdAndDelete(req.params.id)
-        return res.send(deletedTask)
-        //return res.redirect('/boards')
+        //return res.send(deletedTask)
+        return res.redirect('/boards')
     }catch(error){
         req.error = error;
         console.log(error);
