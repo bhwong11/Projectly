@@ -62,7 +62,26 @@ router.get("/:id/edit", (req, res, next) => {
     res.send(`This page displays the form to edit a board with id ${req.params.id}`);
 });
 
-/* NOTE: /boards/:id POST Functional: Edits the board content in our database */
+/* NOTE: /boards/:id PUT Functional: Edits the board content in our database */
+router.put("/:id", async (req, res, next) => {
+    try{
+        const updatedBoard = await Board.findByIdAndUpdate(
+            req.params.id, 
+            {
+                $set: req.body,
+            }, 
+            {
+                new: true,
+            }
+        );
+        return res.redirect(`/boards/${updatedBoard.id}`)
+    } catch(error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+    
+});
 
 /* NOTE: /boards/:id DELETE Functional: deletes a board from our database */
 
