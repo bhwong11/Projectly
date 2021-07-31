@@ -59,9 +59,15 @@ router.post('/login',async(req,res,next)=>{
             username: foundUser.username,
             email: foundUser.email,
         }
+<<<<<<< HEAD
+        //console.log(req.session.currentUser)
+
+        return res.redirect('/boards');
+=======
         console.log(req.session.currentUser)
         console.log('logged in')
         return res.redirect('/boards')
+>>>>>>> 0d14d9d81c1ec9472f7c7a2f63c24f578e7281ed
 
     }catch(error){
         console.log(error.message);

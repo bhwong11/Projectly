@@ -10,15 +10,14 @@ const { Board } = require("../models/index");
 /* SECTION: Routes */
 
 /* NOTE: /boards GET Presentational: Our main workspace page */
-router.get("/", (req, res, next) => {
-    res.send("Hello from the boards (main workspace) page!");
+router.get("/", async (req, res, next) => {
     try{
         //grab all the boards from the DB with the user ID of the current user
         const boards = await Board.find({userId: req.session.currentUser.id});
         //create the context containing the boards
-        const context = {boards}
+        const context = { boards }
         //send the boards to the view
-        res.send("../views/screens/userWorkspace.ejs", context);
+        return res.render("../views/screens/userWorkspace", context);
     } catch(error) {
         console.log(error);
         req.error = error;
@@ -28,20 +27,28 @@ router.get("/", (req, res, next) => {
 
 /* NOTE: /boards/new GET Presentational: Creating a new board */
 router.get("/new", (req, res, next) => {
-    // res.send("This is a form to show a form to create a new board");
-    res.send("creating a new board page")
+    res.render("screens/boards_screens/newBoard.ejs")
 });
 
 /* NOTE: /boards POST Functional: Posting a new board to our database */
-router.post("/", (req, res, next) => {
+router.post("/", async (req, res, next) => {
     try {
-        //create a new board
-        const createdBoard = await Board.create(req.body);
+        //make a new board object
+        const board = {
+            ...req.body,
+            userId: req.session.currentUser.id,
+        }
+
+        //create a new board from the board object
+        const createdBoard = await Board.create(board);
+
         //return to boards page
         return res.redirect("/boards");
+
     } catch(error) {
         console.log(error);
-        return res.send(error);
+        req.error = error;
+        return next();
     }
 });
 
