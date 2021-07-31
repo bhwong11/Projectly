@@ -1,0 +1,19 @@
+<%-include('../../partials/header.ejs')%>
+<body>
+    <h1>Edit Task!</h1>
+    <form action="/tasks/<%=task.id%>?_method=PUT" method="POST">
+        <label for="task-name">enter name</label>
+        <input type="text" id="task-name" name = "name" placeholder="task name"
+        value ="<%=task.name%>">
+        <label for="task-content">task</label>
+        <textarea name="content" id="task-content" cols="30" rows="10"><%=task.content%></textarea>
+        <label for="task-dueDate">due date</label>
+        <input type="date" id="task-dueDate" name="dueDate"
+        value ="<%=task.dueDate%>">
+        <input type="hidden" name="board" value ="<%=task.board%>">
+
+        <button>submit</button>
+    </form>
+    
+</body>
+</html>

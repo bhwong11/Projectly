@@ -2,9 +2,11 @@
 const express = require("express");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const methodOverride = require('method-override')
 
 /* SECTION: Internal modules */
-const { auth, boards, tasks } = require("./controllers/index");
+const tasks  = require("./controllers/task_controller");
+const auth  = require("./controllers/auth_controller");
 
 
 /* SECTION: Instanced modules */
@@ -29,6 +31,7 @@ app.use(
 /* SECTION: Middleware */
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended:true}));
+app.use(methodOverride("_method"))
 app.use(function (req, res, next) {
   res.locals.user = req.session.currentUser;
   next();
@@ -43,7 +46,7 @@ const authRequired = function (req, res, next) {
 
 /* SECTION: Connect to controllers & routes */
 
-app.use("/boards", authRequired, boards);
+//app.use("/boards", authRequired, boards);
 app.use("/tasks",authRequired,tasks)
 app.use("/", auth);
 
