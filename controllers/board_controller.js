@@ -28,28 +28,28 @@ router.get("/", (req, res, next) => {
 
 /* NOTE: /boards/new GET Presentational: Creating a new board */
 router.get("/new", (req, res, next) => {
-    // res.send("This is a form to show a form to create a new board");
-    res.send("creating a new board page")
+    res.send("creating a new board page");
 });
 
 /* NOTE: /boards POST Functional: Posting a new board to our database */
 router.post("/", (req, res, next) => {
     try {
-
-
         //make a new board object
         const board = {
             ...req.body,
-            user: req.session.currentUser.id,
+            userId: req.session.currentUser.id,
         }
 
-        //create a new board
+        //create a new board from the board object
         const createdBoard = await Board.create(board);
+
         //return to boards page
         return res.redirect("/boards");
+
     } catch(error) {
         console.log(error);
-        return res.send(error);
+        req.error = error;
+        return next();
     }
 });
 
