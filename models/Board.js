@@ -9,7 +9,7 @@ const boardSchema = new mongoose.Schema({
     },
     userId: {
         type: mongoose.Types.ObjectId,
-        required: [true, "you need to be signed in as a user in order to create a board"]
+        ref: "User"
     }
 }, {timestamps: true});
 

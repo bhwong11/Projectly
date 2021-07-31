@@ -16,7 +16,7 @@ router.get("/", (req, res, next) => {
         //grab all the boards from the DB with the user ID of the current user
         const boards = await Board.find({userId: req.session.currentUser.id});
         //create the context containing the boards
-        const context = {boards}
+        const context = { boards }
         //send the boards to the view
         res.send("../views/screens/userWorkspace.ejs", context);
     } catch(error) {
@@ -35,8 +35,16 @@ router.get("/new", (req, res, next) => {
 /* NOTE: /boards POST Functional: Posting a new board to our database */
 router.post("/", (req, res, next) => {
     try {
+
+
+        //make a new board object
+        const board = {
+            ...req.body,
+            user: req.session.currentUser.id,
+        }
+
         //create a new board
-        const createdBoard = await Board.create(req.body);
+        const createdBoard = await Board.create(board);
         //return to boards page
         return res.redirect("/boards");
     } catch(error) {
