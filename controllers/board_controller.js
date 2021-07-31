@@ -27,7 +27,7 @@ router.get("/", async (req, res, next) => {
 
 /* NOTE: /boards/new GET Presentational: Creating a new board */
 router.get("/new", (req, res, next) => {
-    res.send("creating a new board page");
+    res.render("screens/boards_screens/newBoard.ejs")
 });
 
 /* NOTE: /boards POST Functional: Posting a new board to our database */
