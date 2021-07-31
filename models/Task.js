@@ -12,7 +12,7 @@ const taskSchema = new mongoose.Schema({
         required: [true,'Please Enter Task Information'],
     },
     dueDate:{
-        type:String,
+        type:Date,
         require:[true,'Please Enter Due Date For Task']
     },
     board:{

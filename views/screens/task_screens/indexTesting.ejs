@@ -1,0 +1,11 @@
+<%-include('../../partials/header.ejs')%>
+<body>
+    <h1>All Task!</h1>
+    <%for(let task of tasks){%>
+        <h3><%=task.name%></h3>
+        <p><%=task.content%></p>
+        <p><%=task.dueDate%></p>
+        <%}%>
+    
+</body>
+</html>

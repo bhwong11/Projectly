@@ -1,9 +1,40 @@
 const express = require('express');
 const router = express.Router();
-const {Task}= require('../models');
+const {Task, Board}= require('../models');
 
-/* SECTION: create route */
+/* SECTION: routes */
+/* Test NOTE: / Get: create new task */
+router.get('/new',async (req,res,next)=>{
+    try{
+        const allBoards = await Board.find({})
+        const context = {
+            boards: allBoards,
+        }
+        return res.render('screens/task_screens/newTesting',context)
+    }catch(error){
+        return res.send(error.message)
+    }
+})
+
+/* Test NOTE: / Get: create new task */
+router.get('/',async (req,res,next)=>{
+    try{
+        const allTasks = await Task.find({})
+        const context ={
+            tasks: allTasks
+        }
+        //return res.send('all task')
+        return res.render('screens/task_screens/indexTesting',context)
+    }catch(error){
+        return res.send(error.message)
+    }
+})
+
+
+/* NOTE: / POST Functional: create new task */
 router.post('/',async (req,res,next)=>{
+    // console.log(('hit post route'))
+    // res.send('hit post route')
     try{
     const newTask = await Task.create(req.body)
     console.log(newTask)
@@ -16,8 +47,7 @@ router.post('/',async (req,res,next)=>{
     }
 });
 
-/* SECTION: show route */
-
+/* NOTE: / GET Presentational: show route for specefic task */
 router.get('/:id',async (req,res,next)=>{
     try{
         const foundTask = await Task.findById(req.params.id);
@@ -32,7 +62,7 @@ router.get('/:id',async (req,res,next)=>{
     }
 })
 
-/* SECTION: edit show route */
+/* NOTE: / GET Presentational: Edit page for specefic task*/
 router.get('/:id/edit',async(req,res,next)=>{
     try{
         const foundTask = Task.findById(req.params.id)
@@ -48,7 +78,7 @@ router.get('/:id/edit',async(req,res,next)=>{
     }
 })
 
-/* SECTION: edit put route */
+/* NOTE: / PUT Functional: Edit Specefic task*/
 
 router.put('/:id',async(req,res,next)=>{
     try{
@@ -71,7 +101,8 @@ router.put('/:id',async(req,res,next)=>{
     
 })
 
-/* SECTION: delete route */
+
+/* NOTE: / Delete Functional: delete Specefic task*/
 
 router.delete('/:id',async(req,res,next)=>{
     try{
