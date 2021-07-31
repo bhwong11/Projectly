@@ -14,7 +14,7 @@ router.post('/register',async (req,res,next)=>{
         const foundUser = await User.exists({$or:[{email:req.body.email},{username:req.body.username}]})
         if(foundUser){
             console.log('User already exist')
-            return res.redirect('/login');
+            return res.send('user already exist');
         }
 
         //if user does not exist
@@ -60,8 +60,8 @@ router.post('/login',async(req,res,next)=>{
             email: foundUser.email,
         }
         console.log(req.session.currentUser)
-
-        res.render('screens/userWorkspace')
+        console.log('logged in')
+        return res.redirect('/boards')
 
     }catch(error){
         console.log(error.message);
