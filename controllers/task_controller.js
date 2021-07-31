@@ -39,7 +39,7 @@ router.post('/',async (req,res,next)=>{
     const newTask = await Task.create(req.body)
     //console.log(newTask)
     //replace this with redirect to board page
-    return res.redirect('screens/boards_screen/index')
+    return res.redirect(`/boards/${newTask.board}`)
     //return res.send(newTask)
     }catch(error){
         req.error = error;
@@ -77,12 +77,12 @@ router.put('/:id',async(req,res,next)=>{
             new:true,
         })
         console.log(updatedTask);
-        return res.redirect(`screens/task_screens/${updatedTask.id}`)
+        return res.redirect(`/tasks/${updatedTask.id}`)
         //return res.send(updatedTask)
         //return res.redirect(`/tasks/updatedTask._id`)
     }catch(error){
         req.error = error;
-        console.log(error);
+        console.log(error.message);
         return next();
     }
     
@@ -111,9 +111,10 @@ router.get('/:id',async (req,res,next)=>{
 
 router.delete('/:id',async(req,res,next)=>{
     try{
+        const task = await Task.findById(req.params.id)
         const deletedTask = await Task.findByIdAndDelete(req.params.id)
         //return res.send(deletedTask)
-        return res.redirect('/boards')
+        return res.redirect(`/boards/${task.board}`)
     }catch(error){
         req.error = error;
         console.log(error);
