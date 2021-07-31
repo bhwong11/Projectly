@@ -13,7 +13,7 @@ const taskSchema = new mongoose.Schema({
     },
     dueDate:{
         type:Date,
-        require:[true,'Please Enter Due Date For Task']
+        required:[true,'Please Enter Due Date For Task']
     },
     board:{
         type: mongoose.Types.ObjectId,
