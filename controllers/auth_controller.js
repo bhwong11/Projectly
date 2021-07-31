@@ -31,8 +31,8 @@ router.post('/register',async (req,res,next)=>{
         //res.send(createdUser)
 
     }catch(error){
-
-        return res.send(error)
+        console.log(error.message)
+        return res.send(error.message)
     }
 })
 
@@ -65,7 +65,7 @@ router.post('/login',async(req,res,next)=>{
 
     }catch(error){
         console.log(error.message);
-        return res.send(error)
+        return res.send(error.message)
 
     }
 })
@@ -76,7 +76,7 @@ router.get('logout',async(req,res,next)=>{
         return res.redirect('/login')
     }catch{
         console.log(error.message);
-        return res.send(error)
+        return res.send(error.message)
     }
 })
 
