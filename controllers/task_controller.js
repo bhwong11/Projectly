@@ -91,7 +91,7 @@ router.put('/:id',async(req,res,next)=>{
 router.get('/:id',async (req,res,next)=>{
     try{
         const foundTask = await Task.findById(req.params.id).populate('Board')
-        const allTask = await Board.find({}).populate('User')
+        const allTask = await Board.find({}).populate('Board')
         return res.send(allTask)
 
         console.log(foundTask)
