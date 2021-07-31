@@ -11,11 +11,9 @@ const { Board } = require("../models/index");
 
 /* NOTE: /boards GET Presentational: Our main workspace page */
 router.get("/", async (req, res, next) => {
-    console.log("~~~ Inside the main board page ~~~");
     try{
         //grab all the boards from the DB with the user ID of the current user
         const boards = await Board.find({userId: req.session.currentUser.id});
-        console.log(boards);
         //create the context containing the boards
         const context = { boards }
         //send the boards to the view
