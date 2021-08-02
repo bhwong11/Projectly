@@ -60,10 +60,10 @@ router.get("/:id", async (req, res, next) => {
 
         const context = {
             board: foundBoard,
-            task: foundTasks
+            tasks: foundTasks
         }
 
-        return res.render("screens/board_screens/index", context);
+        return res.render("screens/boards_screens/index", context);
     } catch(error) {
         console.log(error);
         req.error = error;
@@ -72,8 +72,20 @@ router.get("/:id", async (req, res, next) => {
 });
 
 /* NOTE: /boards/:id/edit GET Functional: A form to edit a board name */
-router.get("/:id/edit", (req, res, next) => {
-    res.send(`This page displays the form to edit a board with id ${req.params.id}`);
+router.get("/:id/edit", async (req, res, next) => {
+    try {
+        const foundBoard = await Board.findById(req.params.id);
+
+        const context = {
+            board: foundBoard,
+        }
+
+        return res.render("screens/boards_screens/editBoard", context);
+    } catch(error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
 });
 
 /* NOTE: /boards/:id PUT Functional: Edits the board content in our database */
