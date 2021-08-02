@@ -45,9 +45,12 @@ const authRequired = function (req, res, next) {
 }
 
 const checkAuth = function (req, res, next) {
-  if(req.session.currentUser){
-    return res.redirect("/boards")
+  if(req.path != "/logout"){
+    if(req.session.currentUser){
+      return res.redirect("/boards")
+    }
   }
+  
   return next();
 }
 
