@@ -14,26 +14,24 @@
     body{
         max-height: 90vh;
         font-size: 16px;
+    }
+    .form-container{
         display: flex;
         justify-content: center;
         align-items: center;
     }
-    .form-container{
+    form{
+        display: grid;
+        padding: 3vh 7vw;
         margin: 5vh 5vw;
-        margin-top: 15vh;
         background-color: var(--beige);
         border-radius: 10px;
         overflow: hidden;
     }
-    form{
-        display: grid;
-        margin: 5vh 10vw;
-        padding: 1vh 3vw;
-    }
     form *{
         padding: 1vh;
     }
-    h1{
+    form h1{
         color:var(--primary)
     }
     label{
@@ -56,6 +54,7 @@
         color: var(--beige);
     }
 </style>
+<%-include('../../partials/navbar.ejs')%>
 <body>
     <div class = "form-container">
     <form action="/tasks" method="POST">
