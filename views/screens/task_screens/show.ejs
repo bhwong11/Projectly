@@ -20,7 +20,7 @@
         justify-content: center;
         align-items: center;
     }
-    form{
+    .task-container{
         display: grid;
         padding: 3vh 7vw;
         margin: 5vh 5vw;
@@ -38,6 +38,9 @@
         font-size: 1.5rem;
         color: var(--primary);
     }
+    .card-label{
+        color: var(--primary)
+    }
     input{
         border-radius: 5px;
     }
@@ -47,24 +50,39 @@
     select{
         border-radius: 5px;
     }
+    .button-container{
+        display: flex;
+        justify-content: space-evenly;
+    }
     button{
         margin-top: 2vh;
         border-radius: 10px;
+        padding: 1vh;
         background-color: var(--orange);
         color: var(--beige);
     }
 </style>
+<%-include('../../partials/navbar.ejs')%>
 <body>
-    <h1>Task: <%=task.name%>!</h1>
-        <h3><%=task.name%></h3>
+    <div class = "task-container">
+        <h3 class="card-label">Task:</h3>
+    <h3><%=task.name%></h3>
+        <h3 class="card-label">task information:</h3>
         <p><%=task.content%></p>
-        <p><%=task.dueDate%></p>
-        <p>board:<%=task.board%></p>
-        <a href="/boards/<%=task.board%>">back to board</a>
-        <a href="/tasks/<%=task.id%>/edit">Edit</a>
+        <h3 class="card-label">due date:</h3>
+        <p><%=task.dueDate.toLocaleString().split(',')[0]%></p>
+        <h3 class="card-label">created date: </h3>
+        <p><%=task.createdTime.toLocaleString().split(',')[0]%></p>
+        <h3 class="card-label">board:</h3>
+        <p><%=task.board.name%></p>
+        <div class="button-container">
+        <a href="/boards/<%=task.board.id%>"><button>back to board</button></a>
+        <a href="/tasks/<%=task.id%>/edit"><button>Edit</button></a>
         <form action="/tasks/<%=task.id%>?_method=DELETE" method="POST">
             <button>Delete</button>
         </form>
+    </div>
+    </div>
 
     
 </body>

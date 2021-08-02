@@ -92,21 +92,16 @@ router.put('/:id',async(req,res,next)=>{
 /* NOTE: / GET Presentational: show route for specefic task */
 router.get('/:id',async (req,res,next)=>{
     try{
-        const foundTask = await Task.find({}).populate('board')
-        return res.send(foundTask)
-        // const foundTask = await Task.findById(req.params.id).populate('Board')
-        // console.log('☞',foundTask[0].board)
-        // const foundBoard = await Board.findById(foundTask[0].board)
-        // console.log('☞',foundBoard)
+        const foundTask = await Task.findById(req.params.id).populate('board')
 
-        // console.log(foundTask)
-        // const context = {
-        //     task: foundTask[0],
-        // }
-        // return res.render('screens/task_screens/show',context)
+        console.log(foundTask)
+        const context = {
+            task: foundTask,
+        }
+        return res.render('screens/task_screens/show',context)
     }catch(error){
         req.error = error;
-        console.log(error);
+        console.log(error.message);
         return next();
     }
 })
