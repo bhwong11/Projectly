@@ -4,95 +4,47 @@
   box-sizing: border-box;
 }
 
-.task-card {
+.task-card-indivual {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 5vh 10vw;
-  background-color: var(--beige);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.task_screen.task-new-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 5vh 10vw;
-  background-color: var(--beige);
-  border-radius: 10px;
-  overflow: hidden;
-}
-.task_screen.task-new-container form {
-  display: grid;
   padding: 3vh 7vw;
+  background-color: #F7F3E9;
+  border-radius: 10px;
+  overflow: hidden;
 }
-.task_screen.task-new-container form * {
+.task-card-indivual form {
+  display: grid;
+}
+.task-card-indivual form * {
   padding: 1vh;
 }
-.task_screen.task-new-container form h1 {
+.task-card-indivual form h1 {
   color: #5EAAA8;
 }
-.task_screen.task-new-container form label {
+.task-card-indivual form label {
   font-size: 1.5rem;
   color: #5EAAA8;
 }
-.task_screen.task-new-container form input {
+.task-card-indivual form input {
   border-radius: 5px;
 }
-.task_screen.task-new-container form textarea {
+.task-card-indivual form textarea {
   border-radius: 5px;
 }
-.task_screen.task-new-container form select {
+.task-card-indivual form select {
   border-radius: 5px;
 }
-.task_screen.task-new-container form button {
+.task-card-indivual form button {
   margin-top: 2vh;
   border-radius: 10px;
   background-color: #F05945;
   color: #F7F3E9;
 }
 
-.task_screen.task-show-container {
+.task-show-container {
   display: grid;
-  padding: 3vh 7vw;
-  margin: 5vh 5vw;
-  background-color: var(--beige);
-  border-radius: 10px;
-  overflow: hidden;
-}
-.task_screen.task-show-container form * {
-  padding: 1vh;
-}
-.task_screen.task-show-container form h1 {
-  color: var(--primary);
-}
-.task_screen.task-show-container form label {
-  font-size: 1.5rem;
-  color: var(--primary);
-}
-.task_screen.task-show-container form .card-label {
-  color: var(--primary);
-}
-.task_screen.task-show-container form input {
-  border-radius: 5px;
-}
-.task_screen.task-show-container form textarea {
-  border-radius: 5px;
-}
-.task_screen.task-show-container form select {
-  border-radius: 5px;
-}
-.task_screen.task-show-container form .button-container {
-  display: flex;
-  justify-content: space-evenly;
-}
-.task_screen.task-show-container form button {
-  margin-top: 2vh;
-  border-radius: 10px;
-  padding: 1vh;
-  background-color: var(--orange);
-  color: var(--beige);
 }
 
 /*# sourceMappingURL=main.css.map */

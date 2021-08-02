@@ -71,7 +71,6 @@ router.put('/:id',async(req,res,next)=>{
         {
             new:true,
         })
-        console.log(updatedTask);
         return res.redirect(`/tasks/${updatedTask.id}`)
         //return res.send(updatedTask)
         //return res.redirect(`/tasks/updatedTask._id`)
@@ -89,7 +88,6 @@ router.get('/:id',async (req,res,next)=>{
     try{
         const foundTask = await Task.findById(req.params.id).populate('board')
 
-        console.log(foundTask)
         const context = {
             task: foundTask,
         }
