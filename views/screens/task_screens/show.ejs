@@ -73,6 +73,8 @@
         <p><%=task.dueDate.toLocaleString().split(',')[0]%></p>
         <h3 class="card-label">created date: </h3>
         <p><%=task.createdTime.toLocaleString().split(',')[0]%></p>
+        <h3 class="card-label">time until due:</h3>
+        <p class = "time-until-due-date">days: <%=Math.floor((task.dueDate-new Date())/(1000*60*60*24))%> hours: <%=Math.floor((task.dueDate-(new Date()/(1000*60*60)))%24)%> minutes: <%=Math.floor((task.dueDate-(new Date()/(1000*60)))%60)%></p>
         <h3 class="card-label">board:</h3>
         <p><%=task.board.name%></p>
         <div class="button-container">
@@ -83,7 +85,12 @@
         </form>
     </div>
     </div>
+<!-- <script>
 
+    console.log($('.time-until-due-date'))
+    $('.time-until-due-date').text('<%=task.dueDate%>')
+    console.log('☞','<%=task.dueDate%>')
+</script> -->
     
 </body>
 </html>
