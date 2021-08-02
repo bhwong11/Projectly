@@ -91,8 +91,10 @@
         untilDueDate:Date.parse($('.dueDateValue').text())-new Date(),
         timer:null,
         reduceTime(){
+            if(taskTimer.untilDueDate<=0){
+                taskTimer.untilDueDate = 0;
+            }
             taskTimer.untilDueDate-=1000;
-            console.log(taskTimer.untilDueDate)
         },
         changeTimeDue(){
             $('.time-until-due-date').text(`days: ${Math.floor(taskTimer.untilDueDate/(1000*60*60*24))} hours: ${Math.floor(((taskTimer.untilDueDate/(1000))%(60*60*24))/(60*60))} minutes: ${Math.floor(((taskTimer.untilDueDate/(1000))%(60*60))/(60))}
@@ -108,11 +110,6 @@
 
     }
     taskTimer.startTimer();
-    console.log('▷',taskTimer.untilDueDate)
-    console.log('☞',taskTimer.dueDate)
-    console.log(Date.parse($('.dueDateValue').text()))
-    // $('.time-until-due-date').text('<%=task.dueDate%>')
-    console.log('☞','<%=task.dueDate%>')
 </script>
     
 </body>
