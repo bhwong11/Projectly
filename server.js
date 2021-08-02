@@ -52,6 +52,9 @@ const checkAuth = function (req, res, next) {
 }
 
 /* SECTION: Connect to controllers & routes */
+app.get("/", (req, res, next) => {
+  return res.redirect("/login");
+});
 
 app.use("/boards", authRequired, boards);
 app.use("/tasks",authRequired,tasks)
