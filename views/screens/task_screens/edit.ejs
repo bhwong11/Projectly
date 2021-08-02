@@ -1,59 +1,6 @@
 <%-include('../../partials/header.ejs')%>
-<!-- <style>
-    *{
-        margin:0;
-        padding:0;
-        box-sizing: border-box;
-    }
-    :root{
-        --primary: #5EAAA8;
-        --secondary: #A3D2CA;
-        --beige: #F7F3E9;
-        --orange: #F05945;
-    }
-    body{
-        max-height: 90vh;
-        font-size: 16px;
-    }
-    .task-edit-container{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    form{
-        display: grid;
-        padding: 3vh 7vw;
-        margin: 5vh 5vw;
-        background-color: var(--beige);
-        border-radius: 10px;
-        overflow: hidden;
-    }
-    form *{
-        padding: 1vh;
-    }
-    form h1{
-        color:var(--primary)
-    }
-    label{
-        font-size: 1.5rem;
-        color: var(--primary);
-    }
-    input{
-        border-radius: 5px;
-    }
-    textarea{
-        border-radius: 5px;
-    }
-    select{
-        border-radius: 5px;
-    }
-    button{
-        margin-top: 2vh;
-        border-radius: 10px;
-        background-color: var(--orange);
-        color: var(--beige);
-    }
-</style> -->
+<%-include('../../partials/navbar.ejs')%>
+
 <body>
     <div class = "task_screen task-card-indivual task-edit-container">
     <form action="/tasks/<%=task.id%>?_method=PUT" method="POST">
