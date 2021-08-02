@@ -1,0 +1,33 @@
+<%-include('../../partials/header')%>
+<body>
+    <div class = "to-do">
+        <%for(let task of tasks){%>
+            <%if(task.category==='to-do')%>
+            <div class = "to-do-item">
+                <%=task.name%>
+                <%=task.id%>
+                <!-- make task id display hidden -->
+            </div>
+            <%}%>
+    </div>
+    <div class = "doing">
+        <%for(let task of tasks){%>
+            <%if(task.category==='doing')%>
+            <div class = "to-do-item">
+                <%=task.name%>
+            </div>
+            <%}%>
+
+    </div>
+    <div class = "done">
+        <%for(let task of tasks){%>
+            <%if(task.category==='done')%>
+            <div class = "to-do-item">
+                <%=task.name%>
+            </div>
+            <%}%>
+
+    </div>
+    
+</body>
+</html>

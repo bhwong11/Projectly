@@ -1,3 +1,56 @@
+
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+    }
+    :root{
+        --primary: #5EAAA8;
+        --secondary: #A3D2CA;
+        --beige: #F7F3E9;
+        --orange: #F05945;
+    }
+    nav{
+        display: flex;
+        padding: 1vh 0;
+        background-color: var(--secondary);
+    }
+    a{
+        text-decoration: none;
+    }
+    .nav-item{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .nav-username{
+        width: 80vw;
+        color: var(--beige);
+    }
+    .logout-button{
+        padding: 5px;
+        background-color: var(--orange);
+        color: var(--beige);
+        border-radius: 10px;
+    }
+    
+</style>
+<nav>
+<%if(user){%>
+<div class = "nav-item nav-username">
+    <h3><%=user.username%>'s workspace</h3>
+</div>
+<div class="nav-item nav-logout">
+    
+    <a href="/logout"><div class ="logout-button">logout</div></a>
+
+</div>
+<%}else{%>
+    <h1>Not logged in</h1>
+    <%}%>
+</nav>
+=======
 <div class="nav-bar___container">
     <a href="/boards">Home</a>
     <a href="/login">logout</a> <!-- Remember to end the session... wrap in form? -->

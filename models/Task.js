@@ -15,6 +15,10 @@ const taskSchema = new mongoose.Schema({
         type:Date,
         required:[true,'Please Enter Due Date For Task']
     },
+    createdTime:{
+        type:Date,
+        default: Date.now(),
+    },
     board:{
         type: mongoose.Types.ObjectId,
         ref:"Board",
