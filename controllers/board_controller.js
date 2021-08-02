@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 /* SECTION: internal modules */
-const { Board } = require("../models/index");
+const { Board, Task } = require("../models/index");
 
 
 /* SECTION: Routes */
@@ -54,6 +54,7 @@ router.post("/", async (req, res, next) => {
 
 /* NOTE: /boards/:id GET Presentational: Shows the board page containing all the tasks */
 router.get("/:id", (req, res, next) => {
+    //work on this monday
     res.send(`This page displays the list of tasks in a board, id: ${req.params.id}`);
 });
 
@@ -62,10 +63,42 @@ router.get("/:id/edit", (req, res, next) => {
     res.send(`This page displays the form to edit a board with id ${req.params.id}`);
 });
 
-/* NOTE: /boards/:id POST Functional: Edits the board content in our database */
+/* NOTE: /boards/:id PUT Functional: Edits the board content in our database */
+router.put("/:id", async (req, res, next) => {
+    try{
+        const updatedBoard = await Board.findByIdAndUpdate(
+            req.params.id, 
+            {
+                $set: req.body,
+            }, 
+            {
+                new: true,
+            }
+        );
+        return res.redirect(`/boards/${updatedBoard.id}`)
+    } catch(error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+    
+});
 
 /* NOTE: /boards/:id DELETE Functional: deletes a board from our database */
+router.delete("/:id", async (req, res, next) => {
+    try {
+        //find and delete the board and associated tasks
+        const deletedBoard = await Board.findByIdAndDelete(req.params.id);
+        const deletedTasks = await Task.deleteMany({ board: req.params.id });
 
+        //redirect the user back to their main workspace
+        return res.redirect("/boards");
+    } catch(error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+})
 
 /* SECTION: Export routes */
 module.exports = router;
