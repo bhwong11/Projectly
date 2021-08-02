@@ -1,5 +1,6 @@
 /* SECTION: External modules */
 const express = require("express");
+const methodOverride = require("method-override");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
@@ -13,7 +14,7 @@ const app = express();
 /* SECTION: Configure App  */
 const PORT = 4000;
 
-//we can now view the session with req.session
+//NOTE: we can now view the session with req.session
 app.use(
     session({
       store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
@@ -29,6 +30,7 @@ app.use(
 /* SECTION: Middleware */
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended:true}));
+app.use(methodOverride("_method"));
 app.use(function (req, res, next) {
   res.locals.user = req.session.currentUser;
   next();

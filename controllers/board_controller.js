@@ -53,9 +53,22 @@ router.post("/", async (req, res, next) => {
 });
 
 /* NOTE: /boards/:id GET Presentational: Shows the board page containing all the tasks */
-router.get("/:id", (req, res, next) => {
-    //work on this monday
-    res.send(`This page displays the list of tasks in a board, id: ${req.params.id}`);
+router.get("/:id", async (req, res, next) => {
+    try {
+        const foundBoard = await Board.findById(req.params.id);
+        const foundTasks = await Task.find({ board: req.params.id });
+
+        const context = {
+            board: foundBoard,
+            task: foundTasks
+        }
+
+        return res.render("screens/board_screens/index", context);
+    } catch(error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
 });
 
 /* NOTE: /boards/:id/edit GET Functional: A form to edit a board name */
