@@ -3,7 +3,7 @@
 
 <form method="POST" action="/boards?_method=PUT" >
     <label for="board-name">Board name:</label>
-    <input type="text" name="name" id="board-name">
+    <input type="text" name="name" id="board-name" value="<%= board.name %>">
 
     <button type="submit">create board</button>
 </form>
