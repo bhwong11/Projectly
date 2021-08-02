@@ -1,0 +1,45 @@
+<%- include("../../partials/header.ejs") %>
+<%- include("../../partials/navbar.ejs") %>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+    }
+    :root{
+        --primary: #5EAAA8;
+        --secondary: #A3D2CA;
+        --beige: #F7F3E9;
+        --orange: #F05945;
+    }
+    .task-card{
+        padding: 2vh;
+        background-color: var(--primary);
+    }
+    form{
+        display: grid;
+    }
+</style>
+<body>
+    <h1><%=board.name%></h1>
+    <a href="//<%=board.name%>">edit board</a>
+    <%for(let task of tasks){%>
+        <div class = "task-card">
+            <a href="/tasks/<%=task.id%>">
+            <h3><%=task.name%></h3>
+        </a>
+        </div>
+        <%}%>
+        <div class = "form-container">
+            <form action="/tasks" method="POST">
+                <h1>New Task!</h1>
+                <label for="task-name">enter name</label>
+                <input type="text" id="task-name" name = "name" placeholder="task name">
+                <label for="task-content">task</label>
+                <textarea name="content" id="task-content" cols="30" rows="10" placeholder="enter task information"></textarea>
+                <label for="task-dueDate">due date</label>
+                <input type="date" id="task-dueDate" name="dueDate">
+                <input type="hidden" name ="board" value = "board.id">        
+                <button>submit</button>
+
+</body>
