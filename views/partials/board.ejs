@@ -9,7 +9,40 @@
 
     the board will display the name, along with a button to view the board
 -->
-
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+    }
+    :root{
+        --primary: #5EAAA8;
+        --secondary: #A3D2CA;
+        --beige: #F7F3E9;
+        --orange: #F05945;
+    }
+    .board-container{
+        background-color: var(--beige);
+        border: 1px solid black;
+        padding: 5px 7px;
+        margin: 5px 2vw;
+    }
+    .board-container h3 {
+        color: var(--primary);
+    }
+    .board-container form {
+        margin: 10px 0 5px 0;
+    }
+    .board-container form button {
+        padding: 5px 7px;
+        border: 1px solid;
+        border-radius: 3px;
+    }
+    .board-container form button:hover{
+        cursor: pointer;
+        background-color: var(--secondary);
+    }
+</style>
 <div class="board-container">
     <h3><%= name %></h3>
 

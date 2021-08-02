@@ -1,24 +1,46 @@
 <%- include("../partials/header.ejs") %>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+    }
+    :root{
+        --primary: #5EAAA8;
+        --secondary: #A3D2CA;
+        --beige: #F7F3E9;
+        --orange: #F05945;
+    }
+    main{
+        margin-top: 10px;
+    }
+    main h3 {
+        color: var(--primary);
+    }
+    .new-board___container {
+        margin: 15px 2vw;
+    }
+</style>
 <body>
     <!-- Navbar -->
     <%- include("../partials/navbar.ejs") %>
-    <% if(user.username) { %>
-        <h1><%= user.username %></h1>
-    <% } else { %>
-        <h1>Hello Workspace</h1>
-    <% } %>
 
-    <h2>Boards</h2>
-    <% if(boards){ %>
-        <% for(let ii = 0; ii < boards.length; ii++) { %>
-            <% const board = boards[ii] %>
-            <%- include("../partials/board.ejs", {name: board.name, id: board._id}) %>
+    <main>
+        <% if(boards){ %>
+            <% for(let ii = 0; ii < boards.length; ii++) { %>
+                <% const board = boards[ii] %>
+                <%- include("../partials/board.ejs", {name: board.name, id: board._id}) %>
+            <% } %>
+        <% } else { %>
+            <h5>Create a board to get started!</h5>
         <% } %>
-    <% } else { %>
-        <h5>no boards found!</h5>
-    <% } %>
-
-    <h3>Make a new board?</h3>
-    <a href="/boards/new" >new board</a>
+    
+        <div class="new-board___container">
+            <hr>
+            <h3>Make a new board?</h3>
+            <a href="/boards/new" >new board</a>
+        </div>
+    </main>
+    
 </body>
 </html>
