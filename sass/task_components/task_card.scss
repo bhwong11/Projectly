@@ -1,0 +1,101 @@
+@use "../varibles" as *;
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+.task-card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5vh 10vw;
+    background-color: var(--beige);
+    border-radius: 10px;
+    overflow: hidden;
+}
+.task_screen.task-new-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5vh 10vw;
+    background-color: var(--beige);
+    border-radius: 10px;
+    overflow: hidden;
+
+    form{
+        display: grid;
+        padding: 3vh 7vw;
+
+        *{
+            padding: 1vh;
+        }
+        h1{
+            color:$primary;
+        }
+        label{
+            font-size: 1.5rem;
+            color: $primary;
+        }
+        input{
+            border-radius: 5px;
+        }
+        textarea{
+            border-radius: 5px;
+        }
+        select{
+            border-radius: 5px;
+        }
+        button{
+            margin-top: 2vh;
+            border-radius: 10px;
+            background-color: $orange;
+            color: $beige;
+        }
+    }
+}
+.task_screen.task-show-container{
+    display: grid;
+    padding: 3vh 7vw;
+    margin: 5vh 5vw;
+    background-color: var(--beige);
+    border-radius: 10px;
+    overflow: hidden;
+    form{
+        *{
+            padding: 1vh;
+        }
+        h1{
+            color:var(--primary)
+        }
+        label{
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        .card-label{
+            color: var(--primary)
+        }
+        input{
+            border-radius: 5px;
+        }
+        textarea{
+            border-radius: 5px;
+        }
+        select{
+            border-radius: 5px;
+        }
+        .button-container{
+            display: flex;
+            justify-content: space-evenly;
+        }
+        button{
+            margin-top: 2vh;
+            border-radius: 10px;
+            padding: 1vh;
+            background-color: var(--orange);
+            color: var(--beige);
+        }
+    }
+
+
+}
+
