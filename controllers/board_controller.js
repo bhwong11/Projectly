@@ -60,10 +60,10 @@ router.get("/:id", async (req, res, next) => {
 
         const context = {
             board: foundBoard,
-            task: foundTasks
+            tasks: foundTasks
         }
 
-        return res.render("screens/board_screens/index", context);
+        return res.render("screens/boards_screens/index", context);
     } catch(error) {
         console.log(error);
         req.error = error;

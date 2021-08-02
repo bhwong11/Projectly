@@ -22,7 +22,7 @@
 </style>
 <body>
     <h1><%=board.name%></h1>
-    <a href="//<%=board.name%>">edit board</a>
+    <a href="/boards/<%=board.id%>/edit">edit board</a>
     <%for(let task of tasks){%>
         <div class = "task-card">
             <a href="/tasks/<%=task.id%>">
@@ -39,7 +39,7 @@
                 <textarea name="content" id="task-content" cols="30" rows="10" placeholder="enter task information"></textarea>
                 <label for="task-dueDate">due date</label>
                 <input type="date" id="task-dueDate" name="dueDate">
-                <input type="hidden" name ="board" value = "board.id">        
+                <input type="hidden" name ="board" value = "<%=board.id%>">        
                 <button>submit</button>
 
 </body>
