@@ -44,11 +44,18 @@ const authRequired = function (req, res, next) {
   return res.redirect("/login");
 }
 
+const checkAuth = function (req, res, next) {
+  if(req.session.currentUser){
+    return res.redirect("/boards")
+  }
+  return next();
+}
+
 /* SECTION: Connect to controllers & routes */
 
 app.use("/boards", authRequired, boards);
 app.use("/tasks",authRequired,tasks)
-app.use("/", auth);
+app.use("/",checkAuth,  auth);
 
 app.get("/*", (req, res, next) => {
   res.send("Error 404: File not found");
