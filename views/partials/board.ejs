@@ -1,0 +1,19 @@
+<!--  
+    This is the file for the board containers displayed on the main_workspace page
+
+    the board container will recieve:
+        {
+            name,
+            id
+        }
+
+    the board will display the name, along with a button to view the board
+-->
+
+<div class="board-container">
+    <h3><%= name %></h3>
+
+    <form action="/boards/<%= id %>" method="GET">
+        <button>View board</button>
+    </form>
+</div>

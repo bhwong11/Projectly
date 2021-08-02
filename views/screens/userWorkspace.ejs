@@ -1,9 +1,24 @@
 <%- include("../partials/header.ejs") %>
 <body>
+    <!-- Navbar -->
+    <%- include("../partials/navbar.ejs") %>
     <% if(user.username) { %>
         <h1><%= user.username %></h1>
     <% } else { %>
         <h1>Hello Workspace</h1>
     <% } %>
+
+    <h2>Boards</h2>
+    <% if(boards){ %>
+        <% for(let ii = 0; ii < boards.length; ii++) { %>
+            <% const board = boards[ii] %>
+            <%- include("../partials/board.ejs", {name: board.name, id: board._id}) %>
+        <% } %>
+    <% } else { %>
+        <h5>no boards found!</h5>
+    <% } %>
+
+    <h3>Make a new board?</h3>
+    <a href="/boards/new" >new board</a>
 </body>
 </html>
