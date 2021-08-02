@@ -7,3 +7,6 @@
 
     <button type="submit">create board</button>
 </form>
+<form method="POST" action="/boards/<%= board._id %>?_method=DELETE">
+    <button type="submit">delete board</button>
+</form>
