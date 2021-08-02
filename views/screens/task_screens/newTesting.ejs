@@ -1,11 +1,69 @@
 <%-include('../../partials/header.ejs')%>
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+    }
+    :root{
+        --primary: #5EAAA8;
+        --secondary: #A3D2CA;
+        --beige: #F7F3E9;
+        --orange: #F05945;
+    }
+    body{
+        max-height: 90vh;
+        font-size: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .form-container{
+        margin: 5vh 5vw;
+        margin-top: 15vh;
+        background-color: var(--beige);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    form{
+        display: grid;
+        margin: 5vh 10vw;
+        padding: 1vh 3vw;
+    }
+    form *{
+        padding: 1vh;
+    }
+    h1{
+        color:var(--primary)
+    }
+    label{
+        font-size: 1.5rem;
+        color: var(--primary);
+    }
+    input{
+        border-radius: 5px;
+    }
+    textarea{
+        border-radius: 5px;
+    }
+    select{
+        border-radius: 5px;
+    }
+    button{
+        margin-top: 2vh;
+        border-radius: 10px;
+        background-color: var(--orange);
+        color: var(--beige);
+    }
+</style>
 <body>
-    <h1>New Task!</h1>
+    <div class = "form-container">
     <form action="/tasks" method="POST">
+        <h1>New Task!</h1>
         <label for="task-name">enter name</label>
         <input type="text" id="task-name" name = "name" placeholder="task name">
         <label for="task-content">task</label>
-        <textarea name="content" id="task-content" cols="30" rows="10"></textarea>
+        <textarea name="content" id="task-content" cols="30" rows="10" placeholder="enter task information"></textarea>
         <label for="task-dueDate">due date</label>
         <input type="date" id="task-dueDate" name="dueDate">
         <label for="task-board">enter board</label>
@@ -19,6 +77,7 @@
 
         <button>submit</button>
     </form>
+</div>
     
 </body>
 </html>
