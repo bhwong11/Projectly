@@ -57,11 +57,18 @@
         outline: none;
     }
     .form-container form button {
+        padding: 5px;
         margin-top: 2vh;
         border: 1px solid black;
         border-radius: 5px;
         background-color: var(--orange);
         color: var(--beige)
+    }
+    .form-container form a {
+        margin-top: 3px;
+        font-size: 0.9rem;
+        color: var(--primary);
+        text-decoration: none;
     }
 </style>
 <body>
@@ -78,6 +85,7 @@
             <input type="password" name="password" id="password-field">
 
             <button type="submit">Login</button> 
+            <a href="/register">Make an account?</a>
 
         </form>
     </div>
