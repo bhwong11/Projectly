@@ -13,6 +13,7 @@
   background-color: #F7F3E9;
   border-radius: 10px;
   overflow: hidden;
+  box-shadow: 8px 5px 6px rgba(0, 0, 0, 0.5);
 }
 .task-card-indivual form {
   display: grid;
@@ -45,6 +46,44 @@
 
 .task-show-container {
   display: grid;
+}
+.task-show-container .card-label {
+  color: #5EAAA8;
+}
+.task-show-container .button-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+.task-show-container .button-container button {
+  margin-top: 2vh;
+  border-radius: 10px;
+  padding: 1vh;
+  background-color: var(--orange);
+  color: var(--beige);
+}
+
+nav {
+  display: flex;
+  padding: 1vh 0;
+  background-color: #A3D2CA;
+}
+nav .nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+nav .nav-item a {
+  text-decoration: none;
+}
+nav .nav-item a .logout-button {
+  padding: 5px;
+  background-color: #F05945;
+  color: #F7F3E9;
+  border-radius: 10px;
+}
+nav .nav-username {
+  width: 80vw;
+  color: var(--beige);
 }
 
 /*# sourceMappingURL=main.css.map */

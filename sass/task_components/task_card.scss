@@ -13,6 +13,7 @@
     background-color: $beige;
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: 8px 5px 6px rgba(0, 0, 0, 0.5);
     form{
         display: grid;
 
@@ -52,7 +53,15 @@
     .button-container{
         display: flex;
         justify-content: space-evenly;
+        button{
+            margin-top: 2vh;
+            border-radius: 10px;
+            padding: 1vh;
+            background-color: var(--orange);
+            color: var(--beige);
+        }
     }
+    
 }
 
 

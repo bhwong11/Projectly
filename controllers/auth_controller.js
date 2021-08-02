@@ -73,7 +73,6 @@ router.post('/login',async(req,res,next)=>{
 router.get('/logout',async(req,res,next)=>{
     try{
         await req.session.destroy();
-        return res.send('loggouted')
         return res.redirect('/login')
     }catch(error){
         console.log(error.message);
