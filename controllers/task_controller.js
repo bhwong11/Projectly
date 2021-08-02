@@ -33,14 +33,12 @@ router.get('/',async (req,res,next)=>{
 
 /* NOTE: / POST Functional: create new task */
 router.post('/',async (req,res,next)=>{
-    // console.log(('hit post route'))
-    // res.send('hit post route')
+    console.log(req.body)
     try{
     const newTask = await Task.create(req.body)
     //console.log(newTask)
     //replace this with redirect to board page
     return res.redirect(`/boards/${newTask.board}`)
-    //return res.send(newTask)
     }catch(error){
         req.error = error;
         console.log(error);
