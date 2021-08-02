@@ -12,22 +12,65 @@
         --beige: #F7F3E9;
         --orange: #F05945;
     }
+    .title-container {
+        margin: 10px 2vw;
+    }
+    body h1 {
+        color: var(--primary);
+    }
+    #edit-board___button{
+        color: var(--primary);
+        text-decoration: underline;
+    }
     .task-card{
-        padding: 2vh;
-        background-color: var(--primary);
+        background-color: var(--beige);
+        padding: 30px 7px;
+        margin: 4vh 2vw;
+        border-radius: 3px;
+        box-shadow: 8px 5px 6px rgba(0, 0, 0, 0.5);
+    }
+    .task-card h3 {
+        color: var(--primary);
+    }
+    .form-container {
+        margin: 4vh 2vw;
+        background-color: var(--beige);
+        padding: 10px;
+        border-radius: 3px;
+        box-shadow: 8px 5px 6px rgba(0, 0, 0, 0.5);
     }
     form{
-        display: grid;
+        display: flex;
+        flex-direction: column;
+    }
+    form label {
+        font-size: 1.2rem;
+    }
+    form input {
+        padding: 5px;
+        margin-bottom: 1vh;
+    }
+    form button {
+        padding: 5px 7px;
+        border: 1px solid;
+        border-radius: 3px; 
+        background-color: var(--secondary);
+    }
+    #back-boards___button {
+        margin: 4vh 2vw;
     }
 </style>
 <body>
-    <h1><%=board.name%></h1>
-    <a href="/boards/<%=board.id%>/edit">edit board</a>
+    <div class="title-container">
+        <h1><%=board.name%></h1>
+        <a id="edit-board___button" href="/boards/<%=board.id%>/edit">edit board name?</a>
+    </div>
+    
     <%for(let task of tasks){%>
         <div class = "task-card">
             <a href="/tasks/<%=task.id%>">
             <h3><%=task.name%></h3>
-        </a>
+            </a>
         </div>
     <%}%>
 
@@ -45,5 +88,5 @@
         </form>
     </div>
     
-    <a href="/boards">Back to boards</a>
+    <a id="back-boards___button" href="/boards">Back to boards</a>
 </body>
