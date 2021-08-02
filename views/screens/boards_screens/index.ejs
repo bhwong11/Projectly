@@ -29,9 +29,35 @@
         border-radius: 3px;
         box-shadow: 8px 5px 6px rgba(0, 0, 0, 0.5);
     }
+    .task-card h3 {
+        color: var(--primary);
+    }
+    .form-container {
+        margin: 4vh 2vw;
+        background-color: var(--beige);
+        padding: 10px;
+        border-radius: 3px;
+        box-shadow: 8px 5px 6px rgba(0, 0, 0, 0.5);
+    }
     form{
         display: flex;
         flex-direction: column;
+    }
+    form label {
+        font-size: 1.2rem;
+    }
+    form input {
+        padding: 5px;
+        margin-bottom: 1vh;
+    }
+    form button {
+        padding: 5px 7px;
+        border: 1px solid;
+        border-radius: 3px; 
+        background-color: var(--secondary);
+    }
+    #back-boards___button {
+        margin: 4vh 2vw;
     }
 </style>
 <body>
@@ -62,5 +88,5 @@
         </form>
     </div>
     
-    <a href="/boards">Back to boards</a>
+    <a id="back-boards___button" href="/boards">Back to boards</a>
 </body>
