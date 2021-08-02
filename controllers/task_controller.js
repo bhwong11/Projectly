@@ -10,7 +10,7 @@ router.get('/new',async (req,res,next)=>{
         const context = {
             boards: allBoards,
         }
-        return res.render('screens/task_screens/newTesting',context)
+        return res.render('screens/task_screens/new',context)
     }catch(error){
         return res.send(error.message)
     }

@@ -15,18 +15,18 @@
         max-height: 90vh;
         font-size: 16px;
     }
-    .form-container{
+    .task-new-container{
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: 5vh 10vw;
+        background-color: var(--beige);
+        border-radius: 10px;
+        overflow: hidden;
     }
     form{
         display: grid;
         padding: 3vh 7vw;
-        margin: 5vh 5vw;
-        background-color: var(--beige);
-        border-radius: 10px;
-        overflow: hidden;
     }
     form *{
         padding: 1vh;
@@ -56,12 +56,12 @@
 </style>
 <%-include('../../partials/navbar.ejs')%>
 <body>
-    <div class = "form-container">
+    <div class = "task_screen task-card task-new-container">
     <form action="/tasks" method="POST">
-        <h1>New Task!</h1>
+        <h1>New Task</h1>
         <label for="task-name">enter name</label>
         <input type="text" id="task-name" name = "name" placeholder="task name">
-        <label for="task-content">task</label>
+        <label for="task-content">task information</label>
         <textarea name="content" id="task-content" cols="30" rows="10" placeholder="enter task information"></textarea>
         <label for="task-dueDate">due date</label>
         <input type="date" id="task-dueDate" name="dueDate">

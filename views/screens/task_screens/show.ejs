@@ -15,12 +15,7 @@
         max-height: 90vh;
         font-size: 16px;
     }
-    .form-container{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .task-container{
+    .task-show-container{
         display: grid;
         padding: 3vh 7vw;
         margin: 5vh 5vw;
@@ -64,7 +59,7 @@
 </style>
 <%-include('../../partials/navbar.ejs')%>
 <body>
-    <div class = "task-container">
+    <div class = "task_screen task-card task-show-container">
         <h3 class="card-label">Task:</h3>
     <h3><%=task.name%></h3>
         <h3 class="card-label">task information:</h3>
