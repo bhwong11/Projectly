@@ -92,6 +92,7 @@ router.put('/:id',async(req,res,next)=>{
         })
         if(req.query.type){
             if(req.query.type==='change'){
+                console.log(updatedTask)
                 return res.redirect(`/tasks/bords/${updatedTask.board}`)
             }
         }

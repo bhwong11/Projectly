@@ -67,9 +67,16 @@ $( function() {
     console.log('▶︎',doneCount)
     $( "#draggable" ).draggable();
     //find number of task by .column[0].children.length+.column[1].children.length+.column[2].children.length
+    let draggedItemId = null
     for(let i=0;i<(toDoCount+doingCount+doneCount);i++){
-    $( `#task-item-${i}` ).draggable();
-    }
+    $( `#task-item-${i}` ).draggable({
+  drag: function( event, ui ) {
+      draggedItemId = `#task-item-${i}`
+  }
+});
+    
+    console.log('✡︎',`/tasks/${$(`${draggedItemId} p`).text()}?_method=PUT&type=change`);
+    
     $( ".to-do" ).droppable({
       drop: function( event, ui ) {
         console.log($( this ).attr('class'))
@@ -78,10 +85,9 @@ $( function() {
             //create form
             const form = document.createElement('form');
             //set action and method -need to find a way to be unquie on every task
+
             form.method = 'POST';
-            form.action = `/tasks/${$(`#task-item-0 p`).text()}?_method=PUT&type=change`;
-            console.log('✡︎',$(`#task-item-0 p`).text())
-            console.log(form.action)
+            form.action = `/tasks/${$(`${draggedItemId} p`).text()}?_method=PUT&type=change`;
             //make type change field
             const hiddenField = document.createElement('input')
             hiddenField.type = 'hidden';
@@ -90,12 +96,14 @@ $( function() {
             //append form to page
             form.appendChild(hiddenField);
             document.body.appendChild(form);
+            console.log(form)
             //submit form
             form.submit();
         }
 
       }
     });
+
     $( ".doing" ).droppable({
       drop: function( event, ui ) {
         console.log($( this ).attr('class'))
@@ -105,9 +113,8 @@ $( function() {
             const form = document.createElement('form');
             //set action and method -need to find a way to be unquie on every task
             form.method = 'POST';
-            form.action = `/tasks/${$(`#task-item-0 p`).text()}?_method=PUT&type=change`;
+            form.action = `/tasks/${$(`${draggedItemId} p`).text()}?_method=PUT&type=change`;
             console.log($(`#task-item-0 p`).text())
-            console.log(form.action)
             //make type change field
             const hiddenField = document.createElement('input')
             hiddenField.type = 'hidden';
@@ -130,8 +137,7 @@ $( function() {
             const form = document.createElement('form');
             //set action and method -need to find a way to be unquie on every task
             form.method = 'POST';
-            form.action = `/tasks/${$(`#task-item-0 p`).text()}?_method=PUT&type=change`;
-            console.log($(`#task-item-0 p`).text())
+            form.action = `/tasks/${$(`${draggedItemId} p`).text()}?_method=PUT&type=change`;
             console.log(form.action)
             //make type change field
             const hiddenField = document.createElement('input')
@@ -146,6 +152,7 @@ $( function() {
         }
       }
     });
+}
   } );
     console.log($('.to-do-item')[0])
 </script>
