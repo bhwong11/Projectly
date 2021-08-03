@@ -212,7 +212,7 @@ nav .nav-username {
 }
 
 .main-section___newboard {
-  margin: 10vh auto auto 25vw;
+  margin: 10vh auto auto 15vw;
   display: flex;
 }
 
@@ -220,6 +220,9 @@ nav .nav-username {
   display: flex;
   flex-direction: column;
   width: 50vw;
+  background-color: #F7F3E9;
+  padding: 15px;
+  border-radius: 5px;
 }
 .board-form___newboard label {
   color: #5EAAA8;
