@@ -1,6 +1,6 @@
 <%- include("../../partials/header.ejs") %>
 
-<style>
+<!-- <style>
     *{
         margin:0;
         padding:0;
@@ -12,7 +12,7 @@
         --beige: #F7F3E9;
         --orange: #F05945;
     }
-    main {
+    .main-section___editboard {
         margin-top: 10px;
         display: flex;
         flex-direction: column;
@@ -21,55 +21,55 @@
     form{
         width: 90vw;
     }
-    .edit-form{
+    .edit-form___editboard{
         display: flex;
         flex-direction: column;
     }
-    .edit-form label {
+    .edit-form___editboard label {
         color: var(--primary);
         font-size: 1.2rem;
     }
-    .edit-form input {
+    .edit-form___editboard input {
         padding: 5px;
         margin: 0 0 10px 0;
     }
-    .edit-form button {
+    .edit-form___editboard button {
         background-color: var(--secondary);
         color: var(--beige);
         padding: 5px 7px;
         border: 1px solid;
         border-radius: 3px;
     }
-    .edit-form button:hover {
+    .edit-form___editboard button:hover {
         cursor: pointer;
     }
-    .delete-form{
+    .delete-form___editboard{
         display: flex;
         flex-direction: column;
         margin-top: 10px;
     }
-    .delete-form button {
+    .delete-form___editboard button {
         background-color: var(--orange);
         color: var(--beige);
         padding: 5px 7px;
         border: 1px solid;
         border-radius: 3px;
     }
-    .delete-form button:hover {
+    .delete-form___editboard button:hover {
         cursor: pointer;
     }
-</style>
+</style> -->
 
 <%- include("../../partials/navbar.ejs") %>
-<main>
-    <form class="edit-form" method="POST" action="/boards/<%= board._id %>?_method=PUT" >
+<main class="main-section___editboard">
+    <form class="edit-form___editboard" method="POST" action="/boards/<%= board._id %>?_method=PUT" >
         <label for="board-name">Board name:</label>
         <input type="text" name="name" id="board-name" value="<%= board.name %>">
 
         <button class="edit-board___button" type="submit">edit board</button>
     </form>
     
-    <form class="delete-form" method="POST" action="/boards/<%= board._id %>?_method=DELETE">
+    <form class="delete-form___editboard" method="POST" action="/boards/<%= board._id %>?_method=DELETE">
         <hr>
         <button type="submit">delete board</button>
     </form>
