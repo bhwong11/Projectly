@@ -1,0 +1,59 @@
+@use "../varibles" as *;
+
+.main-section___workspace{
+    margin: 50px 10vw 0 10vw;
+    width: 75vw;
+
+    h3 {
+        color: $primary;
+    }
+}
+
+.new-board___workspace {
+    margin: 15px 2vw;
+
+    hr{
+        width: 75vw;
+    }
+    button {
+        background-color: $secondary;
+        color: $beige;
+        padding: 5px 7px;
+        border: 1px solid;
+        border-radius: 3px;
+    }
+    button:hover {
+        cursor: pointer;
+    }
+    button:focus {
+        background-color: $primary;
+    }
+}
+
+.board-container___partial{
+    background-color: $beige;
+    padding: 5px 10%;
+    margin: 8px 2vw;
+    border-radius: 3px;
+    box-shadow: 8px 5px 6px rgba(0, 0, 0, 0.5);
+    width: 100%;
+
+    h3 {
+        color: $primary;
+    }
+    form {
+        margin: 10px 0 5px 0;
+        button {
+            padding: 5px 7px;
+            border: 1px solid;
+            border-radius: 3px;
+        }
+        button:hover{
+            cursor: pointer;
+            background-color: var(--secondary);
+        }
+        button:focus {
+            background-color: var(--primary);
+        }
+    }
+}
