@@ -3,50 +3,9 @@
         and pas that along in the req.body when posting to the /boards route
 -->
 <%- include("../../partials/header.ejs") %>
-
-<style>
-    *{
-        margin:0;
-        padding:0;
-        box-sizing: border-box;
-    }
-    :root{
-        --primary: #5EAAA8;
-        --secondary: #A3D2CA;
-        --beige: #F7F3E9;
-        --orange: #F05945;
-    }
-    main{
-        margin-top: 10px;
-        display: flex;
-        justify-content: center;
-    }
-    main form{
-        display: flex;
-        flex-direction: column;
-        width: 50vw;
-    }
-    form label {
-        color: var(--primary);
-        font-size: 1.2rem;
-    }
-    form input {
-        padding: 5px;
-        margin: 0 0 10px 0;
-    }
-    form button {
-        background-color: var(--orange);
-        color: var(--beige);
-        padding: 5px 7px;
-        border: 1px solid;
-        border-radius: 3px;
-    }
-
-</style>
-
 <%- include("../../partials/navbar.ejs") %>
-<main>
-    <form method="POST" action="/boards" >
+<main class="main-section___newboard">
+    <form class="board-form___newboard" method="POST" action="/boards" >
         <label for="board-name">Board name:</label>
         <input type="text" name="name" id="board-name">
 
