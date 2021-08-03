@@ -69,7 +69,7 @@ app.get("/*", (req, res, next) => {
   const context = {
     error: req.error,
   }
-  return res.render("404");
+  return res.render("404",context);
 });
 
 /* SECTION: Server bind */

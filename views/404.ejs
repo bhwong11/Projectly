@@ -1,7 +1,35 @@
-<%-include('../../partials/header')%>
-<%-include('../../partials/navbar')%>
-
+<%-include('./partials/header')%>
+<%-include('./partials/navbar')%>
+<style>
+    :root{
+        --primary: #5EAAA8;
+        --secondary: #A3D2CA;
+        --beige: #F7F3E9;
+        --orange: #F05945;
+    }
+    .error-content{
+        display: flex;
+        justify-content: center;
+        width: 100vw;
+    }
+    .error-text{
+        border-radius: 10px;
+        padding: 5vh;
+        margin: 7vh;
+        background-color: var(--beige);
+    }
+    h5{
+        text-align: center;
+    }
+</style>
 <body>
-    <%=error.message%>
+    <div class = "error-content">
+    <div class="error-text">
+    <h1>404 Error!</h1>
+    <%if(error){%>
+        <h5><%=error.message%></h5>
+        <%}%>
+    </div>
+    </div>
 </body>
 </html>

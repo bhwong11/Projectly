@@ -29,7 +29,9 @@ router.get('/',async (req,res,next)=>{
         //return res.send('all task')
         return res.render('screens/task_screens/indexTesting',context)
     }catch(error){
-        return res.send(error.message)
+        console.log(error)
+        req.error = error;
+        return next()
     }
 })
 
