@@ -23,7 +23,7 @@ nav .nav-item a .logout-button {
 }
 nav .nav-username {
   width: 80vw;
-  color: var(--beige);
+  color: #F7F3E9;
 }
 
 * {
