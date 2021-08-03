@@ -19,9 +19,11 @@ router.get('/new',async (req,res,next)=>{
 /* Test NOTE: / Get: create new task */
 router.get('/',async (req,res,next)=>{
     try{
-        const allTasks = await Task.find({})
+        const allTasks = await Task.find({}).populate('board')
+        const allTasksUser = allTasks.filter((task)=>{
+            return task.board.userId.toString()===req.session.currentUser.id})
         const context ={
-            tasks: allTasks
+            tasks: allTasksUser
         }
         //return res.send('all task')
         return res.render('screens/task_screens/indexTesting',context)
@@ -42,6 +44,23 @@ router.post('/',async (req,res,next)=>{
         return next();
     }
 });
+
+/* NOTE: / Boards page test*/
+router.get('/bords/:id',async (req,res,next)=>{
+    //res.send('hello')
+    try{
+    //console.log('hit route')
+    const board = await Board.findById(req.params.id)
+    const tasks = await Task.find({board:board.id}).populate('board')
+    const context = {
+        tasks,
+    }
+    return res.render('screens/task_screens/boardsTesting',context)
+    }catch(error){
+        res.send(error.message)
+    }
+
+})
 
 /* NOTE: / GET Presentational: Edit page for specefic task*/
 router.get('/:id/edit',async(req,res,next)=>{
@@ -71,6 +90,12 @@ router.put('/:id',async(req,res,next)=>{
         {
             new:true,
         })
+        if(req.query.type){
+            if(req.query.type==='change'){
+                console.log(updatedTask)
+                return res.redirect(`/tasks/bords/${updatedTask.board}`)
+            }
+        }
         return res.redirect(`/tasks/${updatedTask.id}`)
         //return res.send(updatedTask)
         //return res.redirect(`/tasks/updatedTask._id`)
@@ -114,6 +139,7 @@ router.delete('/:id',async(req,res,next)=>{
         return next();
     }
 });
+
 
 
 module.exports = router;

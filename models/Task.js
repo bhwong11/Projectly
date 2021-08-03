@@ -19,6 +19,10 @@ const taskSchema = new mongoose.Schema({
         type:Date,
         default: Date.now(),
     },
+    category:{
+        type: String,
+        default: 'to-do',
+    },
     board:{
         type: mongoose.Types.ObjectId,
         ref:"Board",
