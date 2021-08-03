@@ -51,7 +51,6 @@ router.get('/bords/:id',async (req,res,next)=>{
     try{
     //console.log('hit route')
     const board = await Board.findById(req.params.id)
-    console.log(board)
     const tasks = await Task.find({board:board.id}).populate('board')
     const context = {
         tasks,
@@ -83,7 +82,6 @@ router.get('/:id/edit',async(req,res,next)=>{
 
 router.put('/:id',async(req,res,next)=>{
     try{
-        console.log('✩',req.query)
         const updatedTask = await Task.findByIdAndUpdate(
         req.params.id,
         {
