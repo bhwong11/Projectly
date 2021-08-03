@@ -19,6 +19,7 @@ router.get('/new',async (req,res,next)=>{
 /* Test NOTE: / Get: create new task */
 router.get('/',async (req,res,next)=>{
     try{
+        throw new Error('Whoops!')
         const allTasks = await Task.find({}).populate('board')
         const allTasksUser = allTasks.filter((task)=>{
             return task.board.userId.toString()===req.session.currentUser.id})
@@ -97,8 +98,6 @@ router.put('/:id',async(req,res,next)=>{
             }
         }
         return res.redirect(`/tasks/${updatedTask.id}`)
-        //return res.send(updatedTask)
-        //return res.redirect(`/tasks/updatedTask._id`)
     }catch(error){
         req.error = error;
         console.log(error.message);
