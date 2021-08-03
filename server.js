@@ -46,9 +46,11 @@ const authRequired = function (req, res, next) {
 
 const checkAuth = function (req, res, next) {
   if(req.path != "/logout"){
+    if(req.path==='/login' || req.path==='/register'){
     if(req.session.currentUser){
       return res.redirect("/boards")
     }
+  }
   }
   
   return next();
@@ -64,7 +66,10 @@ app.use("/tasks",authRequired,tasks)
 app.use("/",checkAuth,  auth);
 
 app.get("/*", (req, res, next) => {
-  res.send("Error 404: File not found");
+  const context = {
+    error: req.error,
+  }
+  return res.render("404",context);
 });
 
 /* SECTION: Server bind */

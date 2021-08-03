@@ -7,28 +7,42 @@ const {Task, Board}= require('../models');
 router.get('/new',async (req,res,next)=>{
     try{
         const allBoards = await Board.find({userId:req.session.currentUser.id})
+        // if(req.session.error){
+        //     if(req.session.errorCount>0){
+        //         req.session.errorCount = 0;
+        //         req.session.error = null;
+        //     }
+        //     req.session.errorCount=1;
+        // }
         const context = {
             boards: allBoards,
+            error: req.session.error || null,
         }
+        req.session.error = null;
         return res.render('screens/task_screens/new',context)
     }catch(error){
-        return res.send(error.message)
+        req.error = error;
+        console.log(error)
+        return next();
     }
 })
 
 /* Test NOTE: / Get: create new task */
 router.get('/',async (req,res,next)=>{
     try{
+        //throw new Error('Whoops!')
         const allTasks = await Task.find({}).populate('board')
         const allTasksUser = allTasks.filter((task)=>{
             return task.board.userId.toString()===req.session.currentUser.id})
         const context ={
-            tasks: allTasksUser
+            tasks: allTasksUser,
         }
         //return res.send('all task')
         return res.render('screens/task_screens/indexTesting',context)
     }catch(error){
-        return res.send(error.message)
+        console.log(error)
+        req.error = error
+        return next()
     }
 })
 
@@ -39,9 +53,8 @@ router.post('/',async (req,res,next)=>{
     const newTask = await Task.create(req.body)
     return res.redirect(`/boards/${newTask.board}`)
     }catch(error){
-        req.error = error;
-        console.log(error);
-        return next();
+        req.session.error = error
+        return res.redirect('/tasks/new')
     }
 });
 
@@ -92,13 +105,10 @@ router.put('/:id',async(req,res,next)=>{
         })
         if(req.query.type){
             if(req.query.type==='change'){
-                console.log(updatedTask)
                 return res.redirect(`/tasks/bords/${updatedTask.board}`)
             }
         }
         return res.redirect(`/tasks/${updatedTask.id}`)
-        //return res.send(updatedTask)
-        //return res.redirect(`/tasks/updatedTask._id`)
     }catch(error){
         req.error = error;
         console.log(error.message);
