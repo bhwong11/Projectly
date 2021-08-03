@@ -7,13 +7,6 @@ const {Task, Board}= require('../models');
 router.get('/new',async (req,res,next)=>{
     try{
         const allBoards = await Board.find({userId:req.session.currentUser.id})
-        // if(req.session.error){
-        //     if(req.session.errorCount>0){
-        //         req.session.errorCount = 0;
-        //         req.session.error = null;
-        //     }
-        //     req.session.errorCount=1;
-        // }
         const context = {
             boards: allBoards,
             error: req.session.error || null,
@@ -50,6 +43,7 @@ router.get('/',async (req,res,next)=>{
 /* NOTE: / POST Functional: create new task */
 router.post('/',async (req,res,next)=>{
     try{
+    console.log(req.body.dueDate)
     const newTask = await Task.create(req.body)
     return res.redirect(`/boards/${newTask.board}`)
     }catch(error){
