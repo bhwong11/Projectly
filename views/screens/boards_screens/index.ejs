@@ -1,80 +1,23 @@
 <%- include("../../partials/header.ejs") %>
 <%- include("../../partials/navbar.ejs") %>
-<style>
-    *{
-        margin:0;
-        padding:0;
-        box-sizing: border-box;
-    }
-    :root{
-        --primary: #5EAAA8;
-        --secondary: #A3D2CA;
-        --beige: #F7F3E9;
-        --orange: #F05945;
-    }
-    .title-container {
-        margin: 10px 2vw;
-    }
-    body h1 {
-        color: var(--primary);
-    }
-    #edit-board___button{
-        color: var(--primary);
-        text-decoration: underline;
-    }
-    .task-card{
-        background-color: var(--beige);
-        padding: 30px 7px;
-        margin: 4vh 2vw;
-        border-radius: 3px;
-        box-shadow: 8px 5px 6px rgba(0, 0, 0, 0.5);
-    }
-    .task-card h3 {
-        color: var(--primary);
-    }
-    .form-container {
-        margin: 4vh 2vw;
-        background-color: var(--beige);
-        padding: 10px;
-        border-radius: 3px;
-        box-shadow: 8px 5px 6px rgba(0, 0, 0, 0.5);
-    }
-    form{
-        display: flex;
-        flex-direction: column;
-    }
-    form label {
-        font-size: 1.2rem;
-    }
-    form input {
-        padding: 5px;
-        margin-bottom: 1vh;
-    }
-    form button {
-        padding: 5px 7px;
-        border: 1px solid;
-        border-radius: 3px; 
-        background-color: var(--secondary);
-    }
-    #back-boards___button {
-        margin: 4vh 2vw;
-    }
-</style>
-<body>
-    <div class="title-container">
+
+<body class="board-tasks___index">
+    <div class="content-wrapper___index">
+    <div class="title-container___index">
         <h1><%=board.name%></h1>
-        <a id="edit-board___button" href="/boards/<%=board.id%>/edit">edit board name?</a>
+        <a id="edit-button___index" href="/boards/<%=board.id%>/edit">edit board name?</a>
+        <a id="back-button___index" href="/boards">Back to boards?</a>
     </div>
     
     <%for(let task of tasks){%>
-        <div class = "task-card">
+        <div class = "task-card___index">
             <a href="/tasks/<%=task.id%>">
             <h3><%=task.name%></h3>
             </a>
         </div>
     <%}%>
 
-    <div class = "form-container">
+    <div class = "form-container___index">
         <form action="/tasks" method="POST">
             <h1>New Task!</h1>
             <label for="task-name">enter name</label>
@@ -87,6 +30,5 @@
             <button>submit</button>
         </form>
     </div>
-    
-    <a id="back-boards___button" href="/boards">Back to boards</a>
+</div>
 </body>

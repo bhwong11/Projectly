@@ -1,0 +1,71 @@
+@use "../varibles" as *;
+
+.content-wrapper___index {
+    padding-bottom: 15px;
+}
+
+.board-tasks___index {
+    max-height: 90vh;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    margin: 80px 5vw 10px 5vw;
+}
+
+.title-container___index {
+    margin: 10px 2vw;
+
+    h1 {
+        color: $primary;
+    }
+    #edit-button___index{
+        color: $primary;
+        text-decoration: underline;
+    }
+}
+
+.task-card___index{
+    background-color: $beige;
+    padding: 30px 7px;
+    margin: 4vh 0 0 0;
+    border-radius: 3px;
+    box-shadow: 8px 5px 6px rgba(0, 0, 0, 0.5);
+
+    h3 {
+        color: $primary;
+        text-decoration: none;
+    }
+}
+
+.form-container___index {
+    margin: 4vh 0 2vh 0;
+    background-color: $beige;
+    padding: 10px;
+    border-radius: 3px;
+    box-shadow: 8px 5px 6px rgba(0, 0, 0, 0.5);
+
+    form{
+        display: flex;
+        flex-direction: column;
+
+        label {
+            font-size: 1.2rem;
+        }
+        input {
+            padding: 5px;
+            margin-bottom: 1vh;
+        }
+        button {
+            padding: 5px 7px;
+            border: 1px solid;
+            border-radius: 3px; 
+            background-color: $secondary;
+        }
+    }
+}
+
+#back-button___index {
+    margin: 4vh 2vw;
+    color: $primary;
+    text-decoration: underline;
+}
