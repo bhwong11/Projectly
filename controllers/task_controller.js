@@ -4,7 +4,22 @@ const {Task, Board}= require('../models');
 
 /* SECTION: routes */
 /* Test NOTE: / Get: create new task */
+const formFieldRedirect = (req,res,next)=>{
+    for(let key in res.body){
+        if(!res.body[key]){
+            req.session.error = `Please enter a ${key}`
+            if(req.path.includes('new')){
+                return res.redirect('/tasks/new')
+            }else{
+                return res.redirect(`/tasks/${req.path}`)
+            }
+            
+        }
+    }
+    next()
+}
 router.get('/new',async (req,res,next)=>{
+    console.log(req.path)
     try{
         const allBoards = await Board.find({userId:req.session.currentUser.id})
         const context = {
@@ -41,22 +56,21 @@ router.get('/',async (req,res,next)=>{
 
 
 /* NOTE: / POST Functional: create new task */
-router.post('/',async (req,res,next)=>{
+router.post('/',formFieldRedirect,async (req,res,next)=>{
     try{
     console.log(req.body.dueDate)
     const newTask = await Task.create(req.body)
     return res.redirect(`/boards/${newTask.board}`)
     }catch(error){
-        req.session.error = error
-        return res.redirect('/tasks/new')
+        console.log(error)
+        req.error = error
+        return next()
     }
 });
 
 /* NOTE: / Boards page test*/
 router.get('/bords/:id',async (req,res,next)=>{
-    //res.send('hello')
     try{
-    //console.log('hit route')
     const board = await Board.findById(req.params.id)
     const tasks = await Task.find({board:board.id}).populate('board')
     const context = {
@@ -76,7 +90,9 @@ router.get('/:id/edit',async(req,res,next)=>{
         const context = 
         {
             task:foundTask,
+            error: req.session.error || null,
         };
+        req.session.error = null;
         return res.render('screens/task_screens/edit',context);
     }catch(error){
         req.error = error;
@@ -105,7 +121,7 @@ router.put('/:id',async(req,res,next)=>{
         return res.redirect(`/tasks/${updatedTask.id}`)
     }catch(error){
         req.error = error;
-        console.log(error.message);
+        console.log(error)
         return next();
     }
     
@@ -135,7 +151,6 @@ router.delete('/:id',async(req,res,next)=>{
     try{
         const task = await Task.findById(req.params.id)
         const deletedTask = await Task.findByIdAndDelete(req.params.id)
-        //return res.send(deletedTask)
         return res.redirect(`/boards/${task.board}`)
     }catch(error){
         req.error = error;
