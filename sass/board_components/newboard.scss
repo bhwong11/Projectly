@@ -1,0 +1,29 @@
+@use "../varibles" as *;
+
+.main-section___newboard {
+    margin: 10vh auto auto 25vw;
+    display: flex;
+    justify-content: center;
+}
+
+.board-form___newboard {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+
+    label {
+        color: $primary;
+        font-size: 1.2rem;
+    }
+    input {
+        padding: 5px;
+        margin: 0 0 10px 0;
+    }
+    button {
+        background-color: $orange;
+        color: $beige;
+        padding: 5px 7px;
+        border: 1px solid;
+        border-radius: 3px;
+    }
+}

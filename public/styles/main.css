@@ -145,6 +145,99 @@ nav .nav-username {
   background-color: var(--primary);
 }
 
+.content-wrapper___index {
+  padding-bottom: 15px;
+}
+
+.board-tasks___index {
+  max-height: 90vh;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  margin: 80px 5vw 10px 5vw;
+}
+
+.title-container___index {
+  margin: 10px 2vw;
+}
+.title-container___index h1 {
+  color: #5EAAA8;
+}
+.title-container___index #edit-button___index {
+  color: #5EAAA8;
+  text-decoration: underline;
+}
+
+.task-card___index {
+  background-color: #F7F3E9;
+  padding: 30px 7px;
+  margin: 4vh 0 0 0;
+  border-radius: 3px;
+  box-shadow: 8px 5px 6px rgba(0, 0, 0, 0.5);
+}
+.task-card___index h3 {
+  color: #5EAAA8;
+  text-decoration: none;
+}
+
+.form-container___index {
+  margin: 4vh 0 2vh 0;
+  background-color: #F7F3E9;
+  padding: 10px;
+  border-radius: 3px;
+  box-shadow: 8px 5px 6px rgba(0, 0, 0, 0.5);
+}
+.form-container___index form {
+  display: flex;
+  flex-direction: column;
+}
+.form-container___index form label {
+  font-size: 1.2rem;
+}
+.form-container___index form input {
+  padding: 5px;
+  margin-bottom: 1vh;
+}
+.form-container___index form button {
+  padding: 5px 7px;
+  border: 1px solid;
+  border-radius: 3px;
+  background-color: #A3D2CA;
+}
+
+#back-button___index {
+  margin: 4vh 2vw;
+  color: #5EAAA8;
+  text-decoration: underline;
+}
+
+.main-section___newboard {
+  margin: 10vh auto auto 25vw;
+  display: flex;
+  justify-content: center;
+}
+
+.board-form___newboard {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+}
+.board-form___newboard label {
+  color: #5EAAA8;
+  font-size: 1.2rem;
+}
+.board-form___newboard input {
+  padding: 5px;
+  margin: 0 0 10px 0;
+}
+.board-form___newboard button {
+  background-color: #F05945;
+  color: #F7F3E9;
+  padding: 5px 7px;
+  border: 1px solid;
+  border-radius: 3px;
+}
+
 * {
   margin: 0;
   padding: 0;
