@@ -6,7 +6,10 @@
         <p><%=task.content%></p>
         <p><%=task.dueDate%></p>
         <a href="/tasks/<%=task.id%>">link to task</a>
+        <p><%=task.board%></p>
+        <a href="/tasks/bords/<%=task.board.id%>">link to board</a>
         <%}%>
+        
 
     
 </body>

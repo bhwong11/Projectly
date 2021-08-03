@@ -1,33 +1,154 @@
 <%-include('../../partials/header')%>
+<%-include('../../partials/navbar')%>
+<style>
+    .column-container{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .column{
+        background-color: aqua;
+        min-width: 100px;
+        margin: 10px;
+    }
+</style>
+
 <body>
-    <div class = "to-do">
+    <div id ="draggable" class="column ui-widget-content">
+        hello
+    </div>
+    <div class="column-container">
+    
+    <div class = "column to-do">
         <%for(let task of tasks){%>
-            <%if(task.category==='to-do')%>
-            <div class = "to-do-item">
+            <%if(task.category==='to-do'){%>
+            <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item">
                 <%=task.name%>
-                <%=task.id%>
+                <p><%=task.id%></p>
                 <!-- make task id display hidden -->
             </div>
             <%}%>
+            <%}%>
     </div>
-    <div class = "doing">
+    <div class = "column doing">
         <%for(let task of tasks){%>
-            <%if(task.category==='doing')%>
-            <div class = "to-do-item">
+            <%if(task.category==='doing'){%>
+            <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item">
                 <%=task.name%>
+                <p><%=task.id%></p>
+                <!-- make task id display hidden -->
             </div>
+            <%}%>
             <%}%>
 
     </div>
-    <div class = "done">
+    <div class = "column done">
         <%for(let task of tasks){%>
-            <%if(task.category==='done')%>
-            <div class = "to-do-item">
+            <%if(task.category==='done'){%>
+            <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item">
                 <%=task.name%>
+                <p><%=task.id%></p>
+                <!-- make task id display hidden -->
             </div>
+            <%}%>
             <%}%>
 
     </div>
+</div>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+$( function() {
+    let toDoCount = document.querySelector('.to-do').childElementCount
+    let doingCount = document.querySelector('.doing').childElementCount
+    let doneCount = document.querySelector('.done').childElementCount
+    console.log('▶︎',toDoCount)
+    console.log('▶︎',doingCount)
+    console.log('▶︎',doneCount)
+    $( "#draggable" ).draggable();
+    //find number of task by .column[0].children.length+.column[1].children.length+.column[2].children.length
+    for(let i=0;i<(toDoCount+doingCount+doneCount);i++){
+    $( `#task-item-${i}` ).draggable();
+    }
+    $( ".to-do" ).droppable({
+      drop: function( event, ui ) {
+        console.log($( this ).attr('class'))
+        if($( this ).attr('class').split(' ')[1]==='to-do'){
+            console.log('to-do')
+            //create form
+            const form = document.createElement('form');
+            //set action and method -need to find a way to be unquie on every task
+            form.method = 'POST';
+            form.action = `/tasks/${$(`#task-item-${i} p`).text()}?_method=PUT&type=change`;
+            console.log($(`#task-item-${i} p`).text())
+            console.log(form.action)
+            //make type change field
+            const hiddenField = document.createElement('input')
+            hiddenField.type = 'hidden';
+            hiddenField.name = 'category'
+            hiddenField.value = 'to-do'
+            //append form to page
+            form.appendChild(hiddenField);
+            document.body.appendChild(form);
+            //submit form
+            form.submit();
+        }
+
+      }
+    });
+    $( ".doing" ).droppable({
+      drop: function( event, ui ) {
+        console.log($( this ).attr('class'))
+        if($( this ).attr('class').split(' ')[1]==='doing'){
+            console.log('doing')
+            //create form
+            const form = document.createElement('form');
+            //set action and method -need to find a way to be unquie on every task
+            form.method = 'POST';
+            form.action = `/tasks/${$(`#task-item-${i} p`).text()}?_method=PUT&type=change`;
+            console.log($(`#task-item-${i} p`).text())
+            console.log(form.action)
+            //make type change field
+            const hiddenField = document.createElement('input')
+            hiddenField.type = 'hidden';
+            hiddenField.name = 'category'
+            hiddenField.value = 'doing'
+            //append form to page
+            form.appendChild(hiddenField);
+            document.body.appendChild(form);
+            //submit form
+            form.submit();
+        }
+      }
+    });
+    $( ".done" ).droppable({
+        drop: function( event, ui ) {
+        console.log($( this ).attr('class'))
+        if($( this ).attr('class').split(' ')[1]==='done'){
+            console.log('done')
+            //create form
+            const form = document.createElement('form');
+            //set action and method -need to find a way to be unquie on every task
+            form.method = 'POST';
+            form.action = `/tasks/${$(`#task-item-${i} p`).text()}?_method=PUT&type=change`;
+            console.log($(`#task-item-${i} p`).text())
+            console.log(form.action)
+            //make type change field
+            const hiddenField = document.createElement('input')
+            hiddenField.type = 'hidden';
+            hiddenField.name = 'category'
+            hiddenField.value = 'done'
+            //append form to page
+            form.appendChild(hiddenField);
+            document.body.appendChild(form);
+            //submit form
+            form.submit();
+        }
+      }
+    });
+  } );
+    console.log($('.to-do-item')[0])
+</script>
     
 </body>
 </html>

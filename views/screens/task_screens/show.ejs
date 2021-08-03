@@ -28,9 +28,6 @@
         untilDueDate:Date.parse($('.dueDateValue').text())-new Date(),
         timer:null,
         reduceTime(){
-            if(taskTimer.untilDueDate<=0){
-                taskTimer.untilDueDate = 0;
-            }
             taskTimer.untilDueDate-=1000;
         },
         changeTimeDue(){
@@ -39,6 +36,11 @@
         },
         timerHandler(){
             taskTimer.reduceTime();
+            if(taskTimer.untilDueDate<=0){
+                taskTimer.untilDueDate = 0;
+                clearInterval(taskTimer.timer)
+
+            }
             taskTimer.changeTimeDue();
         },
         startTimer(){
