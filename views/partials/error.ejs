@@ -1,0 +1,22 @@
+<style>
+    :root{
+        --primary: #5EAAA8;
+        --secondary: #A3D2CA;
+        --beige: #F7F3E9;
+        --orange: #F05945;
+    }
+    .error-message{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 50px;
+        height: 10vh;
+        color: var(--beige);
+        background-color: var(--orange);
+    }
+</style>
+<%if(error){%>
+    <div class="error-message">
+        <%=error%>
+    </div>
+<%}%>
