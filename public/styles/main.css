@@ -113,6 +113,7 @@ nav .nav-username {
 }
 .new-board___workspace button:hover {
   cursor: pointer;
+  background-color: #5EAAA8;
 }
 .new-board___workspace button:focus {
   background-color: #5EAAA8;
@@ -143,6 +144,10 @@ nav .nav-username {
 }
 .board-container___partial form button:focus {
   background-color: var(--primary);
+}
+
+.board-container___partial:hover {
+  transform: translateY(-5px) translateX(-5px);
 }
 
 .content-wrapper___index {
@@ -399,7 +404,7 @@ nav .nav-username {
     display: block;
   }
 }
-/* body {
+.main-body___register {
   max-height: 90vh;
   font-size: 16px;
   display: flex;
