@@ -4,14 +4,15 @@ const {Task, Board}= require('../models');
 
 /* SECTION: routes */
 /* Test NOTE: / Get: create new task */
-const formFieldRedirect = (req,res,next)=>{
-    for(let key in res.body){
-        if(!res.body[key]){
+const formFieldRedirect = function(req,res,next){
+    console.log('⏢',req.route)
+    for(let key in req.body){
+        if(!req.body[key]){
             req.session.error = `Please enter a ${key}`
-            if(req.path.includes('new')){
+            if(req.route.path==='/'){
                 return res.redirect('/tasks/new')
             }else{
-                return res.redirect(`/tasks/${req.path}`)
+                return res.redirect(`/tasks/${req.params.id}/edit`)
             }
             
         }
@@ -19,7 +20,6 @@ const formFieldRedirect = (req,res,next)=>{
     next()
 }
 router.get('/new',async (req,res,next)=>{
-    console.log(req.path)
     try{
         const allBoards = await Board.find({userId:req.session.currentUser.id})
         const context = {
@@ -58,7 +58,6 @@ router.get('/',async (req,res,next)=>{
 /* NOTE: / POST Functional: create new task */
 router.post('/',formFieldRedirect,async (req,res,next)=>{
     try{
-    console.log(req.body.dueDate)
     const newTask = await Task.create(req.body)
     return res.redirect(`/boards/${newTask.board}`)
     }catch(error){
@@ -103,7 +102,7 @@ router.get('/:id/edit',async(req,res,next)=>{
 
 /* NOTE: / PUT Functional: Edit Specefic task*/
 
-router.put('/:id',async(req,res,next)=>{
+router.put('/:id',formFieldRedirect,async(req,res,next)=>{
     try{
         const updatedTask = await Task.findByIdAndUpdate(
         req.params.id,

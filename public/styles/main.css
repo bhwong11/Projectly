@@ -36,7 +36,7 @@ nav .nav-username {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 5vh 10vw;
+  margin: 10vh 10vw;
   padding: 3vh 7vw;
   background-color: #F7F3E9;
   border-radius: 10px;
@@ -91,7 +91,7 @@ nav .nav-username {
 }
 
 .main-section___workspace {
-  margin: 50px 10vw 0 10vw;
+  margin: 90px 10vw 0 10vw;
   width: 75vw;
 }
 .main-section___workspace h3 {
@@ -171,7 +171,7 @@ nav .nav-username {
 .task-card___index {
   background-color: #F7F3E9;
   padding: 30px 7px;
-  margin: 4vh 0 0 0;
+  margin: 2vh 0 0 0;
   border-radius: 3px;
   box-shadow: 8px 5px 6px rgba(0, 0, 0, 0.5);
 }
@@ -212,15 +212,17 @@ nav .nav-username {
 }
 
 .main-section___newboard {
-  margin: 10vh auto auto 25vw;
+  margin: 10vh auto auto 15vw;
   display: flex;
-  justify-content: center;
 }
 
 .board-form___newboard {
   display: flex;
   flex-direction: column;
   width: 50vw;
+  background-color: #F7F3E9;
+  padding: 15px;
+  border-radius: 5px;
 }
 .board-form___newboard label {
   color: #5EAAA8;

@@ -1,15 +1,17 @@
 @use "../varibles" as *;
 
 .main-section___newboard {
-    margin: 10vh auto auto 25vw;
+    margin: 10vh auto auto 15vw;
     display: flex;
-    justify-content: center;
 }
 
 .board-form___newboard {
     display: flex;
     flex-direction: column;
     width: 50vw;
+    background-color: $beige;
+    padding: 15px;
+    border-radius: 5px;
 
     label {
         color: $primary;
