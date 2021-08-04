@@ -12,6 +12,7 @@
     background-color: $beige;
     padding: 15px;
     border-radius: 5px;
+    margin-left: 21px;
 
     label {
         color: $primary;
@@ -20,6 +21,7 @@
     input {
         padding: 5px;
         margin: 0 0 10px 0;
+        width: 30vw;
     }
     button {
         background-color: $orange;
