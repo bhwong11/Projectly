@@ -16,8 +16,6 @@ Specefic Board view example:<br/>
 Task View Example:
 <img src="https://projectly-assets-bucket.s3.us-west-2.amazonaws.com/Screen+Shot+2021-08-04+at+9.25.34+AM.png" class="d-block w-100" alt="app screenshot">
 
-Specefic Board View Example:<br/>
-
 ===Tools used===<br />
 NEM STACK, RESTful routing, and CRUD functionality<br />
 Runtime Enviroment: Node<br />
