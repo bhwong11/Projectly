@@ -1,8 +1,23 @@
 <%-include('../../partials/header.ejs')%>
 <%-include('../../partials/navbar.ejs')%>
 <style>
+    :root{
+        --primary: #5EAAA8;
+        --secondary: #A3D2CA;
+        --beige: #F7F3E9;
+        --orange: #F05945;
+    }
+    .button-container{
+        width: 120%;
+    }
     button{
-        border: 5px solid black;
+        border: 2px black solid;
+    }
+    button:hover{
+        border: 2px white solid;
+        background-color: var(--beige);
+        background-color: white;
+        color: var(--orange);
     }
 </style>
 <body>

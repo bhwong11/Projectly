@@ -399,12 +399,12 @@ nav .nav-username {
     display: block;
   }
 }
-body {
+/* body {
   max-height: 90vh;
   font-size: 16px;
   display: flex;
   flex-direction: row;
-}
+} */
 
 .image-container___register {
   height: 100vh;
