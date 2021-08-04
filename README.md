@@ -36,3 +36,29 @@ Dom Manpilation: JQuery<br />
 Bryant Wong: Task Model, Task Controller, Task Views, 404 Error View, Auth Controller(inital creation), Error Redirection Middleware on each routes page, Styling on Tasks Views<br />
 
 Leo Cucinell:
+
+===Wireframe===
+
+login/Register page<br/>
+<img src="https://i.imgur.com/g7RvmHD.png">
+
+Workspace/All boards page<br/>
+<img src="https://i.imgur.com/D2prF37.png">
+
+Board Creation page<br/>
+<img src="https://i.imgur.com/vpvl7Qp.png">
+
+Specefic Board page<br/>
+<img src="https://i.imgur.com/MPBmTvb.png">
+
+Specefic Task page<br/>
+<img src="https://i.imgur.com/PkhyO09.png">
+
+Edit Task page<br/>
+<img src="https://i.imgur.com/6RIpL5N.png">
+
+Task Edit page<br/>
+<img src="https://i.imgur.com/s9uhW4L.png">
+
+===Inital Entity Relantionship Diagram===
+<img src="https://i.imgur.com/UyTFdJM.png">
