@@ -39,6 +39,10 @@ $orange: #F05945;
     justify-content: center;
     align-items: center;
 
+    h3{
+        display: none;
+    }
+
     form {
         border-radius: 10px;
         padding: 3vh 7vw;
@@ -80,11 +84,34 @@ $orange: #F05945;
     }
 }
 
-$layout-breakpoint: 600px;
-@media (min-width: $layout-breakpoint) {
-    form-container___login{
+@media (max-width: 600px){
+
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $secondary;
+    }
+
+    .image-container___login {
+        display: none;
+    }
+
+    .form-container___login {
+        flex-direction: column;
+        margin-top: 10px;
+        padding: 5px;
+
         form {
-            background-color: red;
+            margin: 0 5vw;
         }
+
+        h3 {
+            color: black;
+        }
+    }
+
+    #form-title___login {
+        display: block;
     }
 }
