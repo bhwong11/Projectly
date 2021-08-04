@@ -5,7 +5,6 @@ const {Task, Board}= require('../models');
 /* SECTION: routes */
 /* Test NOTE: / Get: create new task */
 const formFieldRedirect = function(req,res,next){
-    console.log('⏢',req.route)
     for(let key in req.body){
         if(!req.body[key]){
             req.session.error = `Please enter a ${key}`
@@ -94,6 +93,7 @@ router.get('/:id/edit',async(req,res,next)=>{
         req.session.error = null;
         return res.render('screens/task_screens/edit',context);
     }catch(error){
+        error.message = `Could not find task id: ${req.params.id}`
         req.error = error;
         console.log(error);
         return next();
@@ -137,6 +137,7 @@ router.get('/:id',async (req,res,next)=>{
         }
         return res.render('screens/task_screens/show',context)
     }catch(error){
+        error.message = `Could not find task id: ${req.params.id}`
         req.error = error;
         console.log(error.message);
         return next();
