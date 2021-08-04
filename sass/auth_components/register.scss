@@ -1,39 +1,26 @@
-$primary: #5EAAA8;
-$secondary: #A3D2CA;
-$beige: #F7F3E9;
-$orange: #F05945;
+@use "../varibles" as *;
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing: border-box;
-}
-
-.all-container___login {
+body {
     max-height: 90vh;
     font-size: 16px;
     display: flex;
     flex-direction: row;
 }
 
-.image-container___login {
+.image-container {
     height: 100vh;
     overflow: hidden;
     background-color: $secondary;
     width: 50vw;
+
+    img {
+        height: 100vh;
+        width: 50vw;
+        object-fit: contain;
+    }
 }
 
-.carousel {
-    margin-top: 23vh;
-    padding: 1vh 1vw;
-    
-}
-
-.carousel-inner {
-    border-radius: 10px;
-}
-
-.form-container___login {
+.form-container {
     width: 50vw;
     display: flex;
     justify-content: center;
@@ -68,23 +55,11 @@ $orange: #F05945;
             background-color: $orange;
             color: $beige;
         }
-        button:hover{
-            cursor: pointer;
-        }
         a {
             margin-top: 3px;
             font-size: 0.9rem;
             color: $primary;
             text-decoration: none;
-        }
-    }
-}
-
-$layout-breakpoint: 600px;
-@media (min-width: $layout-breakpoint) {
-    form-container___login{
-        form {
-            background-color: red;
         }
     }
 }
