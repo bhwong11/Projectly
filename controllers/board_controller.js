@@ -11,12 +11,13 @@ const { Board, Task } = require("../models/index");
 const formFieldRedirect = (req,res,next)=>{
     for(let key in req.body){
         if(!req.body[key]){
-            req.session.error = `Please enter board ${key}`
-            if(req.session.url==='/new'){
+            req.session.error = `Please enter a ${key}`
+            console.log(req.session.url)
+            if(req.session.url==='/boards/new'){
                 return res.redirect('/boards/new')
-            }else if(req.session.url==='/'){
+            }else if(req.session.url==='/boards'){
                 return res.redirect('/boards')
-            }else if(req.session.url===`/${req.params.id}/edit`){
+            }else if(req.session.url===`/boards/${req.params.id}/edit`){
                 return res.redirect(`/boards/${req.params.id}/edit`)
             }
             

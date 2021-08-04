@@ -433,4 +433,10 @@ body {
   text-decoration: none;
 }
 
+@media (min-width: 600px) {
+  form-container___login form {
+    background-color: red;
+  }
+}
+
 /*# sourceMappingURL=main.css.map */
