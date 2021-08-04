@@ -10,6 +10,12 @@
         min-width: 100px;
         margin: 10px;
     }
+    .hidden___bords{
+        display: none;
+    }
+    .to-do-item{
+        background-color: beige;
+    }
 </style>
 
 <body>
@@ -23,7 +29,7 @@
             <%if(task.category==='to-do'){%>
             <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item">
                 <%=task.name%>
-                <p><%=task.id%></p>
+                <p class='hidden___bords'><%=task.id%></p>
                 <!-- make task id display hidden -->
             </div>
             <%}%>
@@ -34,7 +40,7 @@
             <%if(task.category==='doing'){%>
             <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item">
                 <%=task.name%>
-                <p><%=task.id%></p>
+                <p class='hidden___bords'><%=task.id%></p>
                 <!-- make task id display hidden -->
             </div>
             <%}%>
@@ -46,7 +52,7 @@
             <%if(task.category==='done'){%>
             <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item">
                 <%=task.name%>
-                <p><%=task.id%></p>
+                <p class='hidden___bords'><%=task.id%></p>
                 <!-- make task id display hidden -->
             </div>
             <%}%>

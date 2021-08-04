@@ -5,13 +5,13 @@ const {Task, Board}= require('../models');
 /* SECTION: routes */
 /* Test NOTE: / Get: create new task */
 const formFieldRedirect = (req,res,next)=>{
-    for(let key in res.body){
-        if(!res.body[key]){
+    for(let key in req.body){
+        if(!req.body[key]){
             req.session.error = `Please enter a ${key}`
-            if(req.path.includes('new')){
+            if(req.route.path==='/'){
                 return res.redirect('/tasks/new')
             }else{
-                return res.redirect(`/tasks/${req.path}`)
+                return res.redirect(`/tasks/${req.params.id}/edit`)
             }
             
         }
@@ -19,7 +19,6 @@ const formFieldRedirect = (req,res,next)=>{
     next()
 }
 router.get('/new',async (req,res,next)=>{
-    console.log(req.path)
     try{
         const allBoards = await Board.find({userId:req.session.currentUser.id})
         const context = {
@@ -38,14 +37,12 @@ router.get('/new',async (req,res,next)=>{
 /* Test NOTE: / Get: create new task */
 router.get('/',async (req,res,next)=>{
     try{
-        //throw new Error('Whoops!')
         const allTasks = await Task.find({}).populate('board')
         const allTasksUser = allTasks.filter((task)=>{
             return task.board.userId.toString()===req.session.currentUser.id})
         const context ={
             tasks: allTasksUser,
         }
-        //return res.send('all task')
         return res.render('screens/task_screens/indexTesting',context)
     }catch(error){
         console.log(error)
@@ -58,7 +55,6 @@ router.get('/',async (req,res,next)=>{
 /* NOTE: / POST Functional: create new task */
 router.post('/',formFieldRedirect,async (req,res,next)=>{
     try{
-    console.log(req.body.dueDate)
     const newTask = await Task.create(req.body)
     return res.redirect(`/boards/${newTask.board}`)
     }catch(error){
@@ -87,6 +83,9 @@ router.get('/bords/:id',async (req,res,next)=>{
 router.get('/:id/edit',async(req,res,next)=>{
     try{
         const foundTask = await Task.findById(req.params.id)
+        if(!foundTask){
+            throw new Error({errorName:'No Task Found'})
+        }
         const context = 
         {
             task:foundTask,
@@ -95,6 +94,7 @@ router.get('/:id/edit',async(req,res,next)=>{
         req.session.error = null;
         return res.render('screens/task_screens/edit',context);
     }catch(error){
+        error.message = `Could not find task id: ${req.params.id}`
         req.error = error;
         console.log(error);
         return next();
@@ -103,7 +103,7 @@ router.get('/:id/edit',async(req,res,next)=>{
 
 /* NOTE: / PUT Functional: Edit Specefic task*/
 
-router.put('/:id',async(req,res,next)=>{
+router.put('/:id',formFieldRedirect,async(req,res,next)=>{
     try{
         const updatedTask = await Task.findByIdAndUpdate(
         req.params.id,
@@ -132,12 +132,16 @@ router.put('/:id',async(req,res,next)=>{
 router.get('/:id',async (req,res,next)=>{
     try{
         const foundTask = await Task.findById(req.params.id).populate('board')
-
+        if(!foundTask){
+            throw new Error()
+        }
         const context = {
             task: foundTask,
         }
         return res.render('screens/task_screens/show',context)
     }catch(error){
+        console.log(error.errorName)
+        error.message = `Could not find task id: ${req.params.id}`
         req.error = error;
         console.log(error.message);
         return next();

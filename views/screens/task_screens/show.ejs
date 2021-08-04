@@ -8,7 +8,8 @@
         <p><%=task.content%></p>
         <h3 class="card-label">due date:</h3>
         <p class='dueDateValue'><%const dueDate = new Date(task.dueDate.getTime()+(60 * 60 * 24 * 1000))%>
-            <%=dueDate.toLocaleString().split(',')[0]%></p>
+            <%=dueDate.toLocaleString().split(',')[0]%>
+        </p>
         <h3 class="card-label">created date: </h3>
         <p><%=task.createdTime.toLocaleString().split(',')[0]%></p>
         <h3 class="card-label">time until due:</h3>
