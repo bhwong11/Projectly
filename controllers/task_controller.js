@@ -41,10 +41,16 @@ router.get('/new',async (req,res,next)=>{
 router.get('/',async (req,res,next)=>{
     try{
         const allTasks = await Task.find({}).populate('board')
-        const allTasksUser = allTasks.filter((task)=>{
+        let allTasksUser = allTasks.filter((task)=>{
             return task.board.userId.toString()===req.session.currentUser.id})
+        if(req.query.q){
+            allTasksUser = allTasksUser.filter((task)=>{
+                return task.name.includes(req.query.q)
+            })
+        }
         const context ={
             tasks: allTasksUser,
+            search: req.query.q || '',
         }
         req.session.url = req.path;
         return res.render('screens/task_screens/indexTesting',context)
