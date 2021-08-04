@@ -40,10 +40,13 @@
             taskTimer.reduceTime();
             if(taskTimer.untilDueDate<=0){
                 taskTimer.untilDueDate = 0;
+                $('.time-until-due-date').text('PAST DUE')
                 clearInterval(taskTimer.timer)
 
+            }else{
+                taskTimer.changeTimeDue()
             }
-            taskTimer.changeTimeDue();
+            ;
         },
         startTimer(){
             taskTimer.timer = setInterval(taskTimer.timerHandler,1000)
