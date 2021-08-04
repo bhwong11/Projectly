@@ -52,13 +52,13 @@ Specefic Board page<br/>
 <img src="https://i.imgur.com/MPBmTvb.png" height="400">
 
 Specefic Task page<br/>
-<img src="https://i.imgur.com/PkhyO09.png">
+<img src="https://i.imgur.com/PkhyO09.png" height="400">
 
 Edit Task page<br/>
-<img src="https://i.imgur.com/6RIpL5N.png">
+<img src="https://i.imgur.com/6RIpL5N.png" height="400">
 
 Task Edit page<br/>
-<img src="https://i.imgur.com/s9uhW4L.png">
+<img src="https://i.imgur.com/s9uhW4L.png" height="400">
 
 ===Inital Entity Relantionship Diagram===
-<img src="https://i.imgur.com/UyTFdJM.png">
+<img src="https://i.imgur.com/UyTFdJM.png" height="500">
