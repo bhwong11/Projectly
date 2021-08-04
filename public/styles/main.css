@@ -224,6 +224,8 @@ nav .nav-username {
   padding: 15px;
   border-radius: 5px;
   margin-left: 21px;
+  opacity: 0;
+  display: none;
 }
 .board-form___newboard label {
   color: #5EAAA8;
