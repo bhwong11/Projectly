@@ -24,6 +24,7 @@
     }
     button:hover {
         cursor: pointer;
+        background-color: $primary;
     }
     button:focus {
         background-color: $primary;
@@ -56,4 +57,8 @@
             background-color: var(--primary);
         }
     }
+}
+
+.board-container___partial:hover {
+    transform: translateY(-5px) translateX(-5px);
 }
