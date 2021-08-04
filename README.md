@@ -49,7 +49,7 @@ Board Creation page<br/>
 <img src="https://i.imgur.com/vpvl7Qp.png">
 
 Specefic Board page<br/>
-<img src="https://i.imgur.com/MPBmTvb.png">
+<img src="https://i.imgur.com/MPBmTvb.png" style="height:400px">
 
 Specefic Task page<br/>
 <img src="https://i.imgur.com/PkhyO09.png">
