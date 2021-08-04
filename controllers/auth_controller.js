@@ -5,6 +5,14 @@ const bcrypt = require('bcryptjs');
 const {User} = require('../models');
 
 /* SECTION: Middleware */
+function fieldCheck(req, res, next) {
+    for(key in req.body){
+        if(!req.body[key]){
+            return res.render("auth/login", {err: "Error logging in"});
+        }
+    }
+    return next();
+}
 
 /* SECTION: routes */
 router.get('/register',(req,res,next)=>{
@@ -41,10 +49,10 @@ router.post('/register',async (req,res,next)=>{
 })
 
 router.get('/login',(req,res,next)=>{
-   return res.render('auth/login');
+   return res.render('auth/login', {err: null});
 });
 
-router.post('/login', async(req,res,next)=>{
+router.post('/login', fieldCheck, async(req,res,next)=>{
     try{
         //check if user exist
         const foundUser = await User.findOne({username: req.body.username});
@@ -56,7 +64,8 @@ router.post('/login', async(req,res,next)=>{
         //check password
         const matchedPassword = await bcrypt.compare(req.body.password,foundUser.password)
         if(!matchedPassword){
-            return res.redirect("/register")
+            //return res.redirect("/register")
+            return res.render("auth/login", {err: "invalid user info"});
         }
 
         req.session.currentUser = {
