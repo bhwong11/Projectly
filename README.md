@@ -3,11 +3,20 @@
 A project management tool that is not at all inspired by to trello.
 
 ===Description===<br />
-Projectly is a project management tool that allows users to create boards to organize tasks into groups. Users will be able to make rename boards and delete boards as well.<br/>
-Users will also be able to create lists of tasks with name, content, and due date. Users will be able to edit tasks and remove tasks.
+Projectly is a project management tool that allows users to create boards to organize tasks into groups. Users will be able to view all boards, view specefic boards, rename boards, and delete boards as well.<br/>
+Users will also be able to create lists of tasks with name, content, and due date. Users will be able to view tasks, edit tasks, and remove tasks.<br/>
 
-![alt text](https://projectly-assets-bucket.s3.us-west-2.amazonaws.com/Screen+Shot+2021-08-04+at+9.24.51+AM.png)
+All Boards view example:<br/>
+
 <img src="https://projectly-assets-bucket.s3.us-west-2.amazonaws.com/Screen+Shot+2021-08-04+at+9.24.51+AM.png" class="d-block w-100" alt="app screenshot">
+
+Specefic Board view example:<br/>
+<img src="https://projectly-assets-bucket.s3.us-west-2.amazonaws.com/Screen+Shot+2021-08-04+at+9.25.14+AM.png" class="d-block w-100" alt="app screenshot">
+
+Task View Example:
+<img src="https://projectly-assets-bucket.s3.us-west-2.amazonaws.com/Screen+Shot+2021-08-04+at+9.25.34+AM.png" class="d-block w-100" alt="app screenshot">
+
+Specefic Board View Example:<br/>
 
 ===Tools used===<br />
 NEM STACK, RESTful routing, and CRUD functionality<br />
