@@ -328,6 +328,9 @@ nav .nav-username {
   justify-content: center;
   align-items: center;
 }
+.form-container___login h3 {
+  display: none;
+}
 .form-container___login form {
   border-radius: 10px;
   padding: 3vh 7vw;
@@ -367,9 +370,32 @@ nav .nav-username {
   text-decoration: none;
 }
 
-@media (min-width: 600px) {
-  form-container___login form {
-    background-color: red;
+@media (max-width: 600px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #A3D2CA;
+  }
+
+  .image-container___login {
+    display: none;
+  }
+
+  .form-container___login {
+    flex-direction: column;
+    margin-top: 10px;
+    padding: 5px;
+  }
+  .form-container___login form {
+    margin: 0 5vw;
+  }
+  .form-container___login h3 {
+    color: black;
+  }
+
+  #form-title___login {
+    display: block;
   }
 }
 body {
@@ -379,25 +405,33 @@ body {
   flex-direction: row;
 }
 
-.image-container {
+.image-container___register {
   height: 100vh;
   overflow: hidden;
   background-color: #A3D2CA;
   width: 50vw;
 }
-.image-container img {
-  height: 100vh;
-  width: 50vw;
-  object-fit: contain;
+
+.carousel {
+  margin-top: 23vh;
+  margin-bottom: 10vh;
+  padding: 1vh 1vw;
 }
 
-.form-container {
+.carousel-inner {
+  border-radius: 10px;
+}
+
+.form-container___register {
   width: 50vw;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.form-container form {
+.form-container___register h3 {
+  display: none;
+}
+.form-container___register form {
   border-radius: 10px;
   padding: 3vh 7vw;
   margin: 5vh 5vw;
@@ -405,20 +439,20 @@ body {
   display: flex;
   flex-direction: column;
 }
-.form-container form label {
+.form-container___register form label {
   color: #5EAAA8;
   font-size: 1.5rem;
 }
-.form-container form input {
+.form-container___register form input {
   padding: 5px;
   margin-bottom: 7px;
   border: 1px solid black;
   border-radius: 5px;
 }
-.form-container form input:focus {
+.form-container___register form input:focus {
   outline: none;
 }
-.form-container form button {
+.form-container___register form button {
   padding: 5px;
   margin-top: 2vh;
   border: 1px solid black;
@@ -426,16 +460,39 @@ body {
   background-color: #F05945;
   color: #F7F3E9;
 }
-.form-container form a {
+.form-container___register form a {
   margin-top: 3px;
   font-size: 0.9rem;
   color: #5EAAA8;
   text-decoration: none;
 }
 
-@media (min-width: 600px) {
-  form-container___login form {
-    background-color: red;
+@media (max-width: 600px) {
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #A3D2CA;
+  }
+
+  .image-container___register {
+    display: none;
+  }
+
+  .form-container___register {
+    flex-direction: column;
+    margin-top: 10px;
+    padding: 5px;
+  }
+  .form-container___register form {
+    margin: 0 5vw;
+  }
+  .form-container___register h3 {
+    color: black;
+  }
+
+  #form-title___register {
+    display: block;
   }
 }
 
