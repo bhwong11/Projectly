@@ -224,6 +224,8 @@ nav .nav-username {
   padding: 15px;
   border-radius: 5px;
   margin-left: 21px;
+  opacity: 0;
+  display: none;
 }
 .board-form___newboard label {
   color: #5EAAA8;
@@ -310,10 +312,14 @@ nav .nav-username {
   background-color: #A3D2CA;
   width: 50vw;
 }
-.image-container___login img {
-  height: 100vh;
-  width: 50vw;
-  object-fit: contain;
+
+.carousel {
+  margin-top: 23vh;
+  padding: 1vh 1vw;
+}
+
+.carousel-inner {
+  border-radius: 10px;
 }
 
 .form-container___login {
@@ -331,7 +337,7 @@ nav .nav-username {
   flex-direction: column;
 }
 .form-container___login form label {
-  color: var(--primary);
+  color: #5EAAA8;
   font-size: 1.5rem;
 }
 .form-container___login form input {
@@ -357,8 +363,14 @@ nav .nav-username {
 .form-container___login form a {
   margin-top: 3px;
   font-size: 0.9rem;
-  color: var(--primary);
+  color: #5EAAA8;
   text-decoration: none;
+}
+
+@media (min-width: 600px) {
+  form-container___login form {
+    background-color: red;
+  }
 }
 
 /*# sourceMappingURL=main.css.map */

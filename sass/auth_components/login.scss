@@ -21,12 +21,16 @@ $orange: #F05945;
     overflow: hidden;
     background-color: $secondary;
     width: 50vw;
+}
 
-    img {
-        height: 100vh;
-        width: 50vw;
-        object-fit: contain;
-    }
+.carousel {
+    margin-top: 23vh;
+    padding: 1vh 1vw;
+    
+}
+
+.carousel-inner {
+    border-radius: 10px;
 }
 
 .form-container___login {
@@ -44,7 +48,7 @@ $orange: #F05945;
         flex-direction: column;
 
         label {
-            color: var(--primary);
+            color: $primary;
             font-size: 1.5rem;
         }
         input {
@@ -70,8 +74,17 @@ $orange: #F05945;
         a {
             margin-top: 3px;
             font-size: 0.9rem;
-            color: var(--primary);
+            color: $primary;
             text-decoration: none;
+        }
+    }
+}
+
+$layout-breakpoint: 600px;
+@media (min-width: $layout-breakpoint) {
+    form-container___login{
+        form {
+            background-color: red;
         }
     }
 }
