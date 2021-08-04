@@ -17,7 +17,7 @@ const PORT = 4000;
 //NOTE: we can now view the session with req.session
 app.use(
     session({
-      store: MongoStore.create({ mongoUrl: process.env.MONGO_URI }),
+      store: MongoStore.create({ mongoUrl: process.env.MONGO_URI || 'mongodb://localhost:27017/projectly' }),
       secret: process.env.SECRET,
       resave: false,
       saveUninitialized: false,
