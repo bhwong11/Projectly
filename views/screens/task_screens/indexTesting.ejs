@@ -1,6 +1,10 @@
-<%-include('../../partials/header.ejs')%>
+
 <body>
     <h1>All Task!</h1>
+    <form action="/tasks" method="GET">
+    <input type="search" name="q" value="<%=search%>">
+    <button>submit</button>
+    </form>
     <%for(let task of tasks){%>
         <h3><%=task.name%></h3>
         <p><%=task.content%></p>
