@@ -61,4 +61,4 @@ Task Edit page<br/>
 <img src="https://i.imgur.com/s9uhW4L.png" height="400">
 
 ===Inital Entity Relantionship Diagram===
-<img src="https://i.imgur.com/UyTFdJM.png" height="500">
+<img src="https://i.imgur.com/UyTFdJM.png" height="400">
