@@ -26,6 +26,9 @@ Templating Language: EJS<br />
 Styling: Sass, Bootstrap<br />
 Dom Manpilation: JQuery<br />
 
+===User Story===<br />
+User first comes to the site with an option to log in or register. After verification of user, you are greeted with your workspace page containing a list of your boards that can be clicked to show a display of the task on the board, an option to create a new board, and a navigation bar with the user’s name displayed as “user’s name workspace” in the middle of the navigation bar and a logout button. Upon clicking a board, user gets redirected to the boards page, containing all of the current tasks, a button to make a new task, and the previous navbar. Each task contains a header, the body content which the user fills in to describe the task, buttons for viewing, and a timer displaying how long the user has to complete the task, and a due date (also determined by the user).
+
 ===Core MVP Features===<br />
 *Users are able to register for accounts and log in and out<br />
 *Users can create boards to group tasks in<br />
@@ -60,5 +63,8 @@ Edit Task page<br/>
 Task Edit page<br/>
 <img src="https://i.imgur.com/s9uhW4L.png" height="400">
 
-===Inital Entity Relantionship Diagram===
+===User Flow===<br/>
+<img src="https://i.imgur.com/vwUj9pL.png" height="400">
+
+===Inital Entity Relantionship Diagram===<br/>
 <img src="https://i.imgur.com/UyTFdJM.png" height="400">
