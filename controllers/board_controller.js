@@ -11,13 +11,12 @@ const { Board, Task } = require("../models/index");
 const formFieldRedirect = (req,res,next)=>{
     for(let key in req.body){
         if(!req.body[key]){
-            req.session.error = `Please enter a ${key}`
-            console.log(req.session.url)
-            if(req.session.url==='/boards/new'){
+            req.session.error = `Please enter board ${key}`
+            if(req.session.url==='/new'){
                 return res.redirect('/boards/new')
-            }else if(req.session.url==='/boards'){
+            }else if(req.session.url==='/'){
                 return res.redirect('/boards')
-            }else if(req.session.url===`/boards/${req.params.id}/edit`){
+            }else if(req.session.url===`/${req.params.id}/edit`){
                 return res.redirect(`/boards/${req.params.id}/edit`)
             }
             
@@ -34,7 +33,14 @@ router.get("/", async (req, res, next) => {
         //grab all the boards from the DB with the user ID of the current user
         const boards = await Board.find({userId: req.session.currentUser.id});
         //create the context containing the boards
-        const context = { boards }
+        const context = { 
+            boards,
+            error: req.session.error || null,
+         }
+        //set current url
+        req.session.url = req.path;
+        //reset error
+        req.session.error = null
         //send the boards to the view
         return res.render("../views/screens/userWorkspace", context);
     } catch(error) {
@@ -80,6 +86,9 @@ router.post("/", formFieldRedirect,async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
     try {
         const foundBoard = await Board.findById(req.params.id);
+        if(!foundBoard){
+            throw new Error('No Task Found')
+        }
         const foundTasks = await Task.find({ board: req.params.id });
 
         const context = {
@@ -92,6 +101,7 @@ router.get("/:id", async (req, res, next) => {
         return res.render("screens/boards_screens/index", context);
     } catch(error) {
         console.log(error);
+        error.message = `Could not find board id: ${req.params.id}`
         req.error = error;
         return next();
     }
@@ -101,6 +111,9 @@ router.get("/:id", async (req, res, next) => {
 router.get("/:id/edit", async (req, res, next) => {
     try {
         const foundBoard = await Board.findById(req.params.id);
+        if(!foundBoard){
+            throw new Error('No Task Found')
+        }
 
         const context = {
             board: foundBoard,
@@ -110,6 +123,7 @@ router.get("/:id/edit", async (req, res, next) => {
         req.session.url = req.path;
         return res.render("screens/boards_screens/editBoard", context);
     } catch(error) {
+        error.message = `Could not find board id: ${req.params.id}`
         console.log(error);
         req.error = error;
         return next();
