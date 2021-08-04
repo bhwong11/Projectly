@@ -37,14 +37,12 @@ router.get('/new',async (req,res,next)=>{
 /* Test NOTE: / Get: create new task */
 router.get('/',async (req,res,next)=>{
     try{
-        //throw new Error('Whoops!')
         const allTasks = await Task.find({}).populate('board')
         const allTasksUser = allTasks.filter((task)=>{
             return task.board.userId.toString()===req.session.currentUser.id})
         const context ={
             tasks: allTasksUser,
         }
-        //return res.send('all task')
         return res.render('screens/task_screens/indexTesting',context)
     }catch(error){
         console.log(error)
@@ -85,6 +83,9 @@ router.get('/bords/:id',async (req,res,next)=>{
 router.get('/:id/edit',async(req,res,next)=>{
     try{
         const foundTask = await Task.findById(req.params.id)
+        if(!foundTask){
+            throw new Error({errorName:'No Task Found'})
+        }
         const context = 
         {
             task:foundTask,
@@ -131,7 +132,9 @@ router.put('/:id',formFieldRedirect,async(req,res,next)=>{
 router.get('/:id',async (req,res,next)=>{
     try{
         const foundTask = await Task.findById(req.params.id).populate('board')
-
+        if(!foundTask){
+            throw new Error({errorName:'No Task Found'})
+        }
         const context = {
             task: foundTask,
         }
