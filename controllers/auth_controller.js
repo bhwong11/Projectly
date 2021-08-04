@@ -5,22 +5,6 @@ const bcrypt = require('bcryptjs');
 const {User} = require('../models');
 
 /* SECTION: Middleware */
-/**
- * 
- * @param {*} req 
- * @param {*} res 
- * @param {*} next 
- * @returns nothing, sets the req.session.error for use in the post route handling it
- */
-function checkInputs(req, res, next) {
-    for(key in req.body){
-        if(!req.body[key]){
-            req.session.error = `please enter field: ${key}`
-            return res.render("auth/login", {loginError: "login error"})
-        }
-    }
-    return next();
-}
 
 /* SECTION: routes */
 router.get('/register',(req,res,next)=>{
@@ -57,10 +41,10 @@ router.post('/register',async (req,res,next)=>{
 })
 
 router.get('/login',(req,res,next)=>{
-   return res.render('auth/login', {loginError: null});
-})
+   return res.render('auth/login');
+});
 
-router.post('/login', checkInputs, async(req,res,next)=>{
+router.post('/login', async(req,res,next)=>{
     try{
         //check if user exist
         const foundUser = await User.findOne({username: req.body.username});
@@ -72,7 +56,7 @@ router.post('/login', checkInputs, async(req,res,next)=>{
         //check password
         const matchedPassword = await bcrypt.compare(req.body.password,foundUser.password)
         if(!matchedPassword){
-            return res.send("invalid password");
+            return res.redirect("/register")
         }
 
         req.session.currentUser = {
