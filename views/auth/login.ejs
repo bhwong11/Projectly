@@ -29,9 +29,6 @@
     </div>
     <div class="form-container___login">
         <h3 id="form-title___login">Create project boards, add tasks, get organized!</h3>
-        <% if(loginError){ %>
-            <h3><%=loginError%></h3>
-        <% } %>
         <form method="POST" action="/login">
 
             <label for="username-field">User name</label>
