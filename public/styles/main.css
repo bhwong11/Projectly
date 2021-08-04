@@ -223,6 +223,7 @@ nav .nav-username {
   background-color: #F7F3E9;
   padding: 15px;
   border-radius: 5px;
+  margin-left: 21px;
 }
 .board-form___newboard label {
   color: #5EAAA8;
@@ -231,6 +232,7 @@ nav .nav-username {
 .board-form___newboard input {
   padding: 5px;
   margin: 0 0 10px 0;
+  width: 30vw;
 }
 .board-form___newboard button {
   background-color: #F05945;
