@@ -37,6 +37,7 @@ app.use(function (req, res, next) {
   next();
 });
 
+//if you need autho, redirect to the login page
 const authRequired = function (req, res, next) {
   if(req.session.currentUser){
     return next();
@@ -44,6 +45,7 @@ const authRequired = function (req, res, next) {
   return res.redirect("/login");
 }
 
+//if you are authorized already (and go to the login or register page), go to boards page
 const checkAuth = function (req, res, next) {
   if(req.path != "/logout"){
     if(req.path==='/login' || req.path==='/register'){

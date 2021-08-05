@@ -38,7 +38,7 @@ User first comes to the site with an option to log in or register. After verific
 
 Bryant Wong: Task Model, Task Controller, Task Views, 404 Error View, Auth Controller(inital creation), Error Redirection Middleware on each routes page, Styling on Tasks Views<br />
 
-Leo Cucinell:
+Leo Cucinell: Board Model, Board Controller, Board Views, Styling on Auth components and Board components, Error Handling on Authentication pages, Configuring database
 
 ===Wireframe===
 
