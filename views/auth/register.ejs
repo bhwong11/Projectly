@@ -24,6 +24,9 @@
     </div>
     <div class="form-container___register">
         <h3 id="form-title___register">Create project boards, add tasks, get organized!</h3>
+        <%if(err){%>
+            <p><%= err %></p>
+        <% } %>
         <form method="POST" action="/register">
 
             <label for="username-field">User name</label>

@@ -468,6 +468,7 @@ nav .nav-username {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 .form-container___register h3 {
   display: none;
