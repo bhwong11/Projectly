@@ -3,7 +3,7 @@
 <main class="main-section___editboard">
     <form class="edit-form___editboard" method="POST" action="/boards/<%= board._id %>?_method=PUT" >
         <label for="board-name">Board name:</label>
-        <input type="text" name="name" id="board-name" value="<%= board.name %> required">
+        <input type="text" name="name" id="board-name" value="<%= board.name %>" required>
 
         <button class="edit-board___button" type="submit">edit board</button>
     </form>
