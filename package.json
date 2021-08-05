@@ -4,7 +4,7 @@
   "description": "A project management tool that is not at all inspired by to trello.",
   "main": "server.js",
   "scripts": {
-    "start": "node index.js",
+    "start":"node server.js",
     "postinstall": "bower install",
     "watch-sass": "sass --watch sass/src:public/styles",
     "watch-nodemon": "nodemon",

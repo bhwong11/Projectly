@@ -1,27 +1,6 @@
 <%-include('../../partials/header.ejs')%>
 <%-include('../../partials/navbar.ejs')%>
-<!-- <style>
-    :root{
-        --primary: #5EAAA8;
-        --secondary: #A3D2CA;
-        --beige: #F7F3E9;
-        --orange: #F05945;
-    }
-    .button-container>*{
-        padding: 10px;
-    }
-    .task-show-container___show .button-container button{
-        height: 10vh;
-        border: 2px black solid;
-        transition: background-color 300ms ease-in;
-    }
-    .task-show-edit___show{
-        padding: 0 10px;
-    }
-    .task-show-container___show .button-container button:hover{
-        background-color: var(--primary);
-    }
-</style> -->
+<script defer type="text/javascript" src="/scripts/countdown.js"></script>
 <body>
     <div class = "task_screen task-card-indivual task-show-container___show">
         <h3 class="card-label">Task:</h3>
@@ -46,7 +25,7 @@
         </form>
     </div>
     </div>
-<script>
+<!-- <script>
     const taskTimer={
         dueDate:Date.parse($('.dueDateValue').text()),
         untilDueDate:Date.parse($('.dueDateValue').text())-new Date(),
@@ -76,7 +55,7 @@
 
     }
     taskTimer.startTimer();
-</script>
+</script> -->
     
 </body>
 </html>

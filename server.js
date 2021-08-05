@@ -12,7 +12,7 @@ const { auth, boards, tasks } = require("./controllers/index");
 const app = express();
 
 /* SECTION: Configure App  */
-const PORT = 4000;
+const PORT = process.env.PORT || 3000;
 
 //NOTE: we can now view the session with req.session
 app.use(
