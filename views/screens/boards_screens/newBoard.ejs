@@ -1,0 +1,16 @@
+<!--
+    This screen is a form to create a new board, it will only ask for the name of the board (rn...)
+        and pas that along in the req.body when posting to the /boards route
+-->
+<%- include("../../partials/header.ejs") %>
+<%- include("../../partials/navbar.ejs") %>
+<%- include("../../partials/error.ejs") %>
+<main class="main-section___newboard">
+    <form class="board-form___newboard" method="POST" action="/boards" >
+        <label for="board-name">Board name:</label>
+        <input type="text" name="name" id="board-name" required>
+
+        <button type="submit">create board</button>
+        <a href="/boards">Go back?</a>
+    </form>
+</main>
