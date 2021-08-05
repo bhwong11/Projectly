@@ -25,7 +25,7 @@
             <label for="task-content">task</label>
             <textarea name="content" id="task-content" cols="30" rows="10" placeholder="enter task information" required></textarea>
             <label for="task-dueDate">due date</label>
-            <input type="date" id="task-dueDate" name="dueDate">
+            <input type="date" id="task-dueDate" name="dueDate" required>
             <input type="hidden" name ="board" value = "<%=board.id%>" required>        
             <button>submit</button>
         </form>
