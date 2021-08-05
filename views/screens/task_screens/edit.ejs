@@ -21,8 +21,8 @@
     </textarea>
         <label for="task-dueDate">due date</label>
         <input 
-        type="date" id="task-dueDate" name="dueDate"
-        value = "<%=task.dueDate.toISOString().split('T')[0]%>"
+        type="datetime-local" id="task-dueDate" name="dueDate"
+        value = "<%=task.dueDate.toISOString().split('.')[0]%>"
         >
         <input type="hidden" name="board" value ="<%=task.board%>">
         <div class="button-task-container___edit">
