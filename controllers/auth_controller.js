@@ -8,7 +8,12 @@ const {User} = require('../models');
 function fieldCheck(req, res, next) {
     for(key in req.body){
         if(!req.body[key]){
-            return res.render("auth/login", {err: "Error logging in"});
+            //check which route sent the request; login or register
+            if(req.session.url === "/login"){
+                return res.render("auth/login", {err: "Error logging in"});
+            } else if(req.session.url === "/register"){
+                return res.render("auth/register", {err: "Error registering"});
+            } 
         }
     }
     return next();
@@ -16,17 +21,19 @@ function fieldCheck(req, res, next) {
 
 /* SECTION: routes */
 router.get('/register',(req,res,next)=>{
+    //set current url
+    req.session.url = req.path;
     //return res.send('register page')
-    res.render('auth/register');
+    res.render('auth/register', {err: null});
 })
 
-router.post('/register',async (req,res,next)=>{
+router.post('/register', fieldCheck, async (req,res,next)=>{
     try{
         //if user exist
         const foundUser = await User.exists({$or:[{email:req.body.email},{username:req.body.username}]})
         if(foundUser){
-            console.log('User already exist')
-            return res.send('user already exist');
+            console.log('User already exist');
+            return res.render("auth/register", {err: "User already exists"});
         }
 
         //if user does not exist
@@ -49,6 +56,9 @@ router.post('/register',async (req,res,next)=>{
 })
 
 router.get('/login',(req,res,next)=>{
+    //set current url
+    req.session.url = req.path;
+    //return the page
    return res.render('auth/login', {err: null});
 });
 
