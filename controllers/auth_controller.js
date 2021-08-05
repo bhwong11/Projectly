@@ -23,7 +23,6 @@ function fieldCheck(req, res, next) {
 router.get('/register',(req,res,next)=>{
     //set current url
     req.session.url = req.path;
-    //return res.send('register page')
     res.render('auth/register', {err: null});
 })
 
@@ -46,8 +45,6 @@ router.post('/register', fieldCheck, async (req,res,next)=>{
 
         //return to login
         return res.redirect('/login')
-        //test route below
-        //res.send(createdUser)
 
     }catch(error){
         console.log(error.message)

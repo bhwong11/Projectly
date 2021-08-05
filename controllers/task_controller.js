@@ -74,6 +74,22 @@ router.post('/',formFieldRedirect,async (req,res,next)=>{
     }
 });
 
+/* NOTE: / Boards page test*/
+router.get('/bords/:id',async (req,res,next)=>{
+    try{
+    const board = await Board.findById(req.params.id)
+    const tasks = await Task.find({board:board.id}).populate('board')
+    const context = {
+        tasks,
+    }
+    req.session.url = req.path;
+    return res.render('screens/task_screens/boardsTesting',context)
+    }catch(error){
+        res.send(error.message)
+    }
+
+})
+
 
 /* NOTE: / GET Presentational: Edit page for specefic task*/
 router.get('/:id/edit',async(req,res,next)=>{

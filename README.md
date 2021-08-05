@@ -36,7 +36,7 @@ User first comes to the site with an option to log in or register. After verific
 
 ===Responsibliities of each Developer===<br />
 
-Bryant Wong: Task Model, Task Controller, Task Views, 404 Error View, Auth Controller(inital creation), Error Redirection Middleware on each routes page, Styling on Tasks Views<br />
+Bryant Wong: Task Model, Task Controller, Task Views, 404 Error View, Auth Controller(inital creation), Error Redirection Middleware on non-auth routes page, Styling on Tasks Views<br />
 
 Leo Cucinell:
 
