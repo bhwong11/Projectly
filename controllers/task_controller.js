@@ -53,7 +53,7 @@ router.get('/',async (req,res,next)=>{
             search: req.query.q || '',
         }
         req.session.url = req.path;
-        return res.render('screens/task_screens/indexTesting',context)
+        return res.render('screens/task_screens/index',context)
     }catch(error){
         console.log(error)
         req.error = error

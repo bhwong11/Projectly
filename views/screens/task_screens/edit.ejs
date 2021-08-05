@@ -1,9 +1,25 @@
 <%-include('../../partials/header.ejs')%>
 <%-include('../../partials/navbar.ejs')%>
 <style>
-
+    :root{
+        --primary: #5EAAA8;
+        --secondary: #A3D2CA;
+        --beige: #F7F3E9;
+        --orange: #F05945;
+    }
     .task-new-container{
         margin-top: 50px;
+    }
+    .button-task-container___edit{
+        display: flex;
+        justify-content: space-evenly;
+    }
+    .button-task-container___edit button{
+        border: 2px black solid;
+        transition: background-color 300ms ease-in;
+    }
+    .button-task-container___edit button:hover{
+        background-color: var(--primary);
     }
 </style>
 
@@ -31,8 +47,10 @@
         value = "<%=task.dueDate.toISOString().split('T')[0]%>"
         >
         <input type="hidden" name="board" value ="<%=task.board%>">
-
+        <div class="button-task-container___edit">
+        <button><a href="/tasks/<%=task.id%>"></a>go back to task</a></button>
         <button>submit</button>
+    </div>
     </form>
 </div>
     
