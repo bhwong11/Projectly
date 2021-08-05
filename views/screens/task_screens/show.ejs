@@ -1,6 +1,6 @@
 <%-include('../../partials/header.ejs')%>
 <%-include('../../partials/navbar.ejs')%>
-<style>
+<!-- <style>
     :root{
         --primary: #5EAAA8;
         --secondary: #A3D2CA;
@@ -10,7 +10,7 @@
     .button-container>*{
         padding: 10px;
     }
-    .task-show-container .button-container button{
+    .task-show-container___show .button-container button{
         height: 10vh;
         border: 2px black solid;
         transition: background-color 300ms ease-in;
@@ -18,12 +18,12 @@
     .task-show-edit___show{
         padding: 0 10px;
     }
-    .task-show-container .button-container button:hover{
+    .task-show-container___show .button-container button:hover{
         background-color: var(--primary);
     }
-</style>
+</style> -->
 <body>
-    <div class = "task_screen task-card-indivual task-show-container">
+    <div class = "task_screen task-card-indivual task-show-container___show">
         <h3 class="card-label">Task:</h3>
     <h3><%=task.name%></h3>
         <h3 class="card-label">task information:</h3>
