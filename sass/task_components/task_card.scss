@@ -44,8 +44,18 @@
         }
     }
 }
+.task-new-container___new{
+    margin-top: 50px;
+    form button{
+        border: 2px black solid;
+        transition: background-color 300ms ease-in;
+    }
+    form button:hover{
+        background-color: $primary;
+    }
+}
 
-.task-show-container{
+.task-show-container___show{
     display: grid;
     .card-label{
         color: $primary;
@@ -53,16 +63,38 @@
     .button-container{
         display: flex;
         justify-content: space-evenly;
+        &>*{
+            padding: 10px;
+        }
         button{
             margin-top: 2vh;
-            border-radius: 10px;
             padding: 1vh;
+            border: 2px black solid;
+            border-radius: 10px;
+            height: 10vh;
             background-color: $orange;
             color: $beige;
+            transition: background-color 300ms ease-in;
+            &:hover{
+                background-color: $primary;
+            }
         }
+    }
+    .task-show-edit___show{
+        padding: 0 10px;
     }
     
 }
-
+.button-task-container___edit{
+    display: flex;
+    justify-content: space-evenly;
+    button{
+        border: 2px black solid;
+        transition: background-color 300ms ease-in;
+        &:hover{
+            background-color: $primary;
+        }
+    }
+}
 
 

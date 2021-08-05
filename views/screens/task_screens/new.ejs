@@ -1,13 +1,9 @@
 <%-include('../../partials/header.ejs')%>
 <%-include('../../partials/navbar.ejs')%>
-<style>
-    .task-new-container{
-        margin-top: 50px;
-    }
-</style>
+
 <body>
     <%-include('../../partials/error.ejs')%>
-    <div class = "task_screen task-card-indivual task-new-container">
+    <div class = "task_screen task-card-indivual task-new-container___new">
     <form action="/tasks" method="POST">
         <h1>New Task</h1>
         <label for="task-name">enter name</label>

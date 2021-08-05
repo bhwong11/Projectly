@@ -12,6 +12,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-bottom: 10vh;
         width: 100vw;
     }
     .task-indivual___index{
@@ -29,6 +30,9 @@
     }
     a{
         text-decoration: none;
+    }
+    .all-tasks-href___index{
+        text-decoration: underline;
     }
     h1{
         color: var(--primary);
@@ -48,6 +52,9 @@
     p{
         color: var(--primary);
     }
+    .submit-button___index{
+        padding: 0 10px;
+    }
 </style>
 <body>
     <div class="all-task-container___index">
@@ -55,9 +62,9 @@
     <h1>Search All Tasks</h1>
     <form action="/tasks" method="GET">
     <input type="search" name="q" value="<%=search%>">
-    <input type="submit" value="search">
+    <input class="submit-button___index" type="submit" value="search">
     <div class="all-tasks-button">
-        <a href="/tasks">all tasks</a>
+        <a href="/tasks" class="all-tasks-href___index">all tasks</a>
     </div>
     </form>
 </div>

@@ -72,22 +72,57 @@ nav .nav-username {
   color: #F7F3E9;
 }
 
-.task-show-container {
+.task-new-container___new {
+  margin-top: 50px;
+}
+.task-new-container___new form button {
+  border: 2px black solid;
+  transition: background-color 300ms ease-in;
+}
+.task-new-container___new form button:hover {
+  background-color: #5EAAA8;
+}
+
+.task-show-container___show {
   display: grid;
 }
-.task-show-container .card-label {
+.task-show-container___show .card-label {
   color: #5EAAA8;
 }
-.task-show-container .button-container {
+.task-show-container___show .button-container {
   display: flex;
   justify-content: space-evenly;
 }
-.task-show-container .button-container button {
+.task-show-container___show .button-container > * {
+  padding: 10px;
+}
+.task-show-container___show .button-container button {
   margin-top: 2vh;
-  border-radius: 10px;
   padding: 1vh;
+  border: 2px black solid;
+  border-radius: 10px;
+  height: 10vh;
   background-color: #F05945;
   color: #F7F3E9;
+  transition: background-color 300ms ease-in;
+}
+.task-show-container___show .button-container button:hover {
+  background-color: #5EAAA8;
+}
+.task-show-container___show .task-show-edit___show {
+  padding: 0 10px;
+}
+
+.button-task-container___edit {
+  display: flex;
+  justify-content: space-evenly;
+}
+.button-task-container___edit button {
+  border: 2px black solid;
+  transition: background-color 300ms ease-in;
+}
+.button-task-container___edit button:hover {
+  background-color: #5EAAA8;
 }
 
 .main-section___workspace {
@@ -409,7 +444,7 @@ nav .nav-username {
   font-size: 16px;
   display: flex;
   flex-direction: row;
-} */
+}
 
 .image-container___register {
   height: 100vh;
@@ -500,6 +535,15 @@ nav .nav-username {
   #form-title___register {
     display: block;
   }
+}
+.error-message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  height: 5vh;
+  color: #F7F3E9;
+  background-color: #f48374;
 }
 
 /*# sourceMappingURL=main.css.map */

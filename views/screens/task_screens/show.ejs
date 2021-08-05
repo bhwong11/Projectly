@@ -1,27 +1,29 @@
 <%-include('../../partials/header.ejs')%>
 <%-include('../../partials/navbar.ejs')%>
-<style>
+<!-- <style>
     :root{
         --primary: #5EAAA8;
         --secondary: #A3D2CA;
         --beige: #F7F3E9;
         --orange: #F05945;
     }
-    .button-container{
-        width: 120%;
+    .button-container>*{
+        padding: 10px;
     }
-    button{
+    .task-show-container___show .button-container button{
+        height: 10vh;
         border: 2px black solid;
+        transition: background-color 300ms ease-in;
     }
-    button:hover{
-        border: 2px white solid;
-        background-color: var(--beige);
-        background-color: white;
-        color: var(--orange);
+    .task-show-edit___show{
+        padding: 0 10px;
     }
-</style>
+    .task-show-container___show .button-container button:hover{
+        background-color: var(--primary);
+    }
+</style> -->
 <body>
-    <div class = "task_screen task-card-indivual task-show-container">
+    <div class = "task_screen task-card-indivual task-show-container___show">
         <h3 class="card-label">Task:</h3>
     <h3><%=task.name%></h3>
         <h3 class="card-label">task information:</h3>
@@ -37,10 +39,10 @@
         <h3 class="card-label">board:</h3>
         <p><%=task.board.name%></p>
         <div class="button-container">
-        <a href="/boards/<%=task.board.id%>"><button>back to board</button></a>
-        <a href="/tasks/<%=task.id%>/edit"><button>Edit</button></a>
+        <a href="/boards/<%=task.board.id%>"><button class ="task-show-button___index">back to board</button></a>
+        <a href="/tasks/<%=task.id%>/edit"><button class ="task-show-button___index task-show-edit___show">Edit</button></a>
         <form action="/tasks/<%=task.id%>?_method=DELETE" method="POST">
-            <button>Delete</button>
+            <button class ="task-show-button___index">Delete</button>
         </form>
     </div>
     </div>
