@@ -5,7 +5,6 @@
   "main": "server.js",
   "scripts": {
     "start":"node server.js",
-    "postinstall": "bower install",
     "watch-sass": "sass --watch sass/src:public/styles",
     "watch-nodemon": "nodemon",
     "dev": "concurrently -n sass,server -c 'bgMagenta.bold,bgGreen.bold' 'npm:watch-sass' 'npm:watch-nodemon'"
