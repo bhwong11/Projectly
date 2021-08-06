@@ -33,3 +33,30 @@
         border-radius: 3px;
     }
 }
+
+.board-form___newboard-new {
+    display: flex;
+    flex-direction: column;
+    width: 50vw;
+    background-color: $beige;
+    padding: 15px;
+    border-radius: 5px;
+    margin-left: 21px;
+
+    label {
+        color: $primary;
+        font-size: 1.2rem;
+    }
+    input {
+        padding: 5px;
+        margin: 0 0 10px 0;
+        width: 30vw;
+    }
+    button {
+        background-color: $orange;
+        color: $beige;
+        padding: 5px 7px;
+        border: 1px solid;
+        border-radius: 3px;
+    }
+}

@@ -5,6 +5,9 @@ const {Task, Board}= require('../models');
 /* SECTION: routes */
 /* Test NOTE: / Get: create new task */
 const formFieldRedirect = (req,res,next)=>{
+    console.log('🎯',req.body)
+    console.log(req.body.board)
+    console.log(!req.body.board)
     for(let key in req.body){
         if(!req.body[key]){
             req.session.error = `Please enter task ${key}`
@@ -14,6 +17,9 @@ const formFieldRedirect = (req,res,next)=>{
                 return res.redirect(`/boards/${req.body.board}`)
             }else if(req.session.url===`/${req.params.id}/edit`){
                 return res.redirect(`/tasks/${req.params.id}/edit`)
+            }else if(key==='board'){
+                console.log(req.session.url)
+                return res.redirect(`/boards${req.session.url}`)
             }
             
         }
