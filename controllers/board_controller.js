@@ -31,8 +31,9 @@ const formFieldRedirect = (req,res,next)=>{
 router.get("/", async (req, res, next) => {
     try{
         //grab all the boards from the DB with the user ID of the current user
-        const boards = await Board.find({userId: req.session.currentUser.id});
-        //create the context containing the boards
+        const user = await User.find({_id:req.session.currentUser.id})
+        const boards = await Board.find({_id: {$in:user[0].boards}});
+        //create the context 🇸🇪containing the boards
         const context = { 
             boards,
             error: req.session.error || null,
@@ -71,6 +72,7 @@ router.post("/", formFieldRedirect,async (req, res, next) => {
 
         //create a new board from the board object
         const createdBoard = await Board.create(board);
+        const editedUser = await User.findByIdAndUpdate(req.session.currentUser.id,{$push:{boards:createdBoard.id}}).populate('boards');
 
         //return to boards page
         return res.redirect("/boards");
@@ -103,7 +105,7 @@ router.post("/newuser",async (req, res, next) => {
         const user = await User.findById(req.body.user)
         const editedUser = await User.findByIdAndUpdate(req.body.user,{$push:{boards:req.body.board}}).populate('boards');
         //res.send(req.body.board)
-        res.send(editedUser)
+        //res.send(editedUser)
 
         //return to boards page
         return res.redirect("/boards");
