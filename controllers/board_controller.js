@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 /* SECTION: internal modules */
-const { Board, Task } = require("../models/index");
+const { Board, Task, User } = require("../models/index");
 
 
 /* SECTION: Middleware */
@@ -71,6 +71,39 @@ router.post("/", formFieldRedirect,async (req, res, next) => {
 
         //create a new board from the board object
         const createdBoard = await Board.create(board);
+
+        //return to boards page
+        return res.redirect("/boards");
+
+    } catch(error) {
+        console.log(error);
+        req.error = error;
+        return next();
+    }
+});
+
+/* NOTE: /boards/newuser GET Presentational: adding user to board */
+router.get("/newuser", async (req, res, next) => {
+    const allUsers = await User.find().populate('boards');
+    const allBoards = await Board.find({userId:req.session.currentUser.id})
+    const context = {
+        users: allUsers,
+        boards:allBoards,
+        error:req.session.error || null,
+    }
+    req.session.error = null,
+    req.session.url = req.path;
+    res.render("screens/boards_screens/newUser.ejs",context)
+});
+/* NOTE: /boards POST Functional: Posting a new board to our database */
+router.post("/newuser",async (req, res, next) => {
+    try {
+
+        //create a new board from the board object
+        const user = await User.findById(req.body.user)
+        const editedUser = await User.findByIdAndUpdate(req.body.user,{$push:{boards:req.body.board}}).populate('boards');
+        //res.send(req.body.board)
+        res.send(editedUser)
 
         //return to boards page
         return res.redirect("/boards");

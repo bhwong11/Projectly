@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please add a password"]
     }, 
+    boards:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref: "Board"
+    }],
 }, { timestamps: true });
 
 /* SECTION: Create model */
