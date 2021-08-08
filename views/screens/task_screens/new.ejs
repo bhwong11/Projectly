@@ -4,7 +4,7 @@
 <body>
     <%-include('../../partials/error.ejs')%>
     <div class = "task_screen task-card-indivual task-new-container___new">
-    <form action="/tasks" method="POST">
+    <form id = "form-id" action="/tasks" method="POST">
         <h1>New Task</h1>
         <label for="task-name">enter name</label>
         <input type="text" id="task-name" name = "name" placeholder="task name" required>
@@ -24,6 +24,41 @@
         <button>submit</button>
     </form>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+function formSubmit(event) {
+  var url = "/tasks";
+  var request = new XMLHttpRequest();
+  request.open('POST', url, true);
+  request.onload = function() { // request successful
+  // we can use server response to our request now
+    console.log(request.responseText);
+  };
+
+  request.onerror = function() {
+      console.log('request failed')
+    // request failed
+  };
+  const formData = "name=test1&content=stuff&board=6104ba30f41af8e12fc89f86&dueDate=2021/9/12"
+  
+  request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  request.send(formData); // create FormData from form that triggered event
+  event.preventDefault();
+}
+
+// and you can attach form submit event like this for example
+function attachFormSubmitEvent(formId){
+  document.getElementById(formId).addEventListener("submit", formSubmit);
+}
+attachFormSubmitEvent('form-id');
+
+// const button = document.querySelector('button');
+// button.addEventListener('click',function(e){
+//     console.log('dafdsfa')
+//     e.preventDefault();
+// })
+
+</script>
     
 </body>
 </html>

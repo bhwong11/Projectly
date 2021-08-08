@@ -4,7 +4,7 @@
   "description": "A project management tool that is not at all inspired by to trello.",
   "main": "server.js",
   "scripts": {
-    "start":"node server.js",
+    "start": "node server.js",
     "watch-sass": "sass --watch sass/src:public/styles",
     "watch-nodemon": "nodemon",
     "dev": "concurrently -n sass,server -c 'bgMagenta.bold,bgGreen.bold' 'npm:watch-sass' 'npm:watch-nodemon'"
@@ -31,8 +31,10 @@
     "express": "^4.17.1",
     "express-session": "^1.17.2",
     "express-sessions": "^1.0.6",
+    "express-xml-bodyparser": "^0.3.0",
     "method-override": "^3.0.0",
-    "mongoose": "^5.13.5"
+    "mongoose": "^5.13.5",
+    "multer": "^1.4.2"
   },
   "devDependencies": {
     "concurrently": "^6.2.0"

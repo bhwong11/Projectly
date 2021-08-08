@@ -4,6 +4,8 @@ const methodOverride = require("method-override");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 
+
+
 /* SECTION: Internal modules */
 const { auth, boards, tasks } = require("./controllers/index");
 
@@ -29,6 +31,7 @@ app.use(
 
 /* SECTION: Middleware */
 app.set("view engine", "ejs");
+//app.use(xmlparser());
 app.use(express.static('public'));
 app.use(express.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
@@ -62,7 +65,7 @@ app.get("/", (req, res, next) => {
 });
 
 app.use("/boards", authRequired, boards);
-app.use("/tasks",authRequired,tasks)
+app.use("/tasks",tasks)
 app.use("/",checkAuth,  auth);
 
 app.get("/*", (req, res, next) => {

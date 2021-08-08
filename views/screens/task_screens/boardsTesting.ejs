@@ -99,9 +99,19 @@ $( function() {
             hiddenField.value = 'to-do'
             //append form to page
             form.appendChild(hiddenField);
+            const button = document.createElement('button');
+            button.innerText= 'submit';
+            form.appendChild(button);
             document.body.appendChild(form);
+            form.id = 'form-id'
             console.log(form)
             //submit form
+            $('#form-id').on('click',function(e){
+                //e.preventDefault();
+                console.log('submit')
+                alert('submit')
+            })
+            form.addEventListener('submit',submitForm)
             form.submit();
         }
 
@@ -110,6 +120,7 @@ $( function() {
 
     $( ".doing" ).droppable({
       drop: function( event, ui ) {
+        event.preventDefault && event.preventDefault();
         console.log($( this ).attr('class'))
         if($( this ).attr('class').split(' ')[1]==='doing'){
             console.log('doing')
@@ -134,6 +145,7 @@ $( function() {
     });
     $( ".done" ).droppable({
         drop: function( event, ui ) {
+        event.preventDefault && event.preventDefault();
         console.log($( this ).attr('class'))
         if($( this ).attr('class').split(' ')[1]==='done'){
             console.log('done')

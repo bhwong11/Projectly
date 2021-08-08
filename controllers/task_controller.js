@@ -41,8 +41,13 @@ router.get('/new',async (req,res,next)=>{
 router.get('/',async (req,res,next)=>{
     try{
         const allTasks = await Task.find({}).populate('board')
+        let allTasksUse = allTasks.filter((task)=>{
+            return task.board.userId.toString()===req.session.currentUser.id
+        });
         let allTasksUser = allTasks.filter((task)=>{
-            return task.board.userId.toString()===req.session.currentUser.id})
+            return task.board.userId.toString()===req.session.currentUser.id
+        });
+        
         if(req.query.q){
             allTasksUser = allTasksUser.filter((task)=>{
                 return task.name.includes(req.query.q)
@@ -63,9 +68,12 @@ router.get('/',async (req,res,next)=>{
 
 
 /* NOTE: / POST Functional: create new task */
-router.post('/',formFieldRedirect,async (req,res,next)=>{
+router.post('/',async (req,res,next)=>{
+    console.log('hit route1234')
+    console.log('🇸🇮',req.body)
     try{
     const newTask = await Task.create(req.body)
+    //return 'good'
     return res.redirect(`/boards/${newTask.board}`)
     }catch(error){
         console.log(error)
