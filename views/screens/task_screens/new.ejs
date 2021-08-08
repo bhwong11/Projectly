@@ -27,8 +27,8 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
 function formSubmit(event) {
-  var url = "/tasks";
-  var request = new XMLHttpRequest();
+  const url = "/tasks";
+  const request = new XMLHttpRequest();
   request.open('POST', url, true);
   request.onload = function() { // request successful
   // we can use server response to our request now

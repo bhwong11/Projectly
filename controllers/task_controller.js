@@ -69,8 +69,8 @@ router.get('/',async (req,res,next)=>{
 
 /* NOTE: / POST Functional: create new task */
 router.post('/',async (req,res,next)=>{
-    console.log('hit route1234')
-    console.log('🇸🇮',req.body)
+    // console.log('hit route1234')
+    // console.log('🇸🇮',req.body)
     try{
     const newTask = await Task.create(req.body)
     //return 'good'
@@ -125,6 +125,8 @@ router.get('/:id/edit',async(req,res,next)=>{
 /* NOTE: / PUT Functional: Edit Specefic task*/
 
 router.put('/:id',formFieldRedirect,async(req,res,next)=>{
+    console.log('hit route1234')
+    console.log('🇸🇮',req.body)
     try{
         const updatedTask = await Task.findByIdAndUpdate(
         req.params.id,

@@ -21,7 +21,6 @@
 
 <body>
     <div class="column-container">
-    
     <div class = "column to-do">
         <%for(let task of tasks){%>
             <%if(task.category==='to-do'){%>
@@ -62,6 +61,82 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script>
+
+
+$('.column-container').html('');
+
+$('.column-container').append(`<div class = "column to-do">
+    <%for(let task of tasks){%>
+            <%if(task.category==='to-do'){%>
+            <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item">
+                <%=task.name%>
+                <p class='hidden___bords'><%=task.id%></p>
+                <!-- make task id display hidden -->
+            </div>
+            <%}%>
+            <%}%>
+    </div>
+    <div class = "column doing">
+        <%for(let task of tasks){%>
+            <%if(task.category==='doing'){%>
+            <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item">
+                <%=task.name%>
+                <p class='hidden___bords'><%=task.id%></p>
+                <!-- make task id display hidden -->
+            </div>
+            <%}%>
+            <%}%>
+    </div>
+    <div class = "column done">
+        <%for(let task of tasks){%>
+            <%if(task.category==='done'){%>
+            <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item">
+                <%=task.name%>
+                <p class='hidden___bords'><%=task.id%></p>
+                <!-- make task id display hidden -->
+            </div>
+            <%}%>
+            <%}%>
+    </div>`)
+const rerender = function rerender(){
+    $('.column-container').html('');
+
+$('.column-container').append(`<div class = "column to-do">
+    <%for(let task of tasks){%>
+            <%if(task.category==='to-do'){%>
+            <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item">
+                <%=task.name%>
+                <p class='hidden___bords'><%=task.id%></p>
+                <!-- make task id display hidden -->
+            </div>
+            <%}%>
+            <%}%>
+    </div>
+    <div class = "column doing">
+        <%for(let task of tasks){%>
+            <%if(task.category==='doing'){%>
+            <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item">
+                <%=task.name%>
+                <p class='hidden___bords'><%=task.id%></p>
+                <!-- make task id display hidden -->
+            </div>
+            <%}%>
+            <%}%>
+    </div>
+    <div class = "column done">
+        <%for(let task of tasks){%>
+            <%if(task.category==='done'){%>
+            <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item">
+                <%=task.name%>
+                <p class='hidden___bords'><%=task.id%></p>
+                <!-- make task id display hidden -->
+            </div>
+            <%}%>
+            <%}%>
+    </div>`)
+}
+
+const addEventListeners = function addEventListeners(){
 $( function() {
     let toDoCount = document.querySelector('.to-do').childElementCount
     let doingCount = document.querySelector('.doing').childElementCount
@@ -89,7 +164,8 @@ $( function() {
             //create form
             const form = document.createElement('form');
             //set action and method -need to find a way to be unquie on every task
-
+            form.setAttribute("id", "to-do-form")
+            console.log('🇸🇮',form)
             form.method = 'POST';
             form.action = `/tasks/${$(`${draggedItemId} p`).text()}?_method=PUT&type=change`;
             //make type change field
@@ -99,20 +175,48 @@ $( function() {
             hiddenField.value = 'to-do'
             //append form to page
             form.appendChild(hiddenField);
-            const button = document.createElement('button');
-            button.innerText= 'submit';
-            form.appendChild(button);
             document.body.appendChild(form);
-            form.id = 'form-id'
-            console.log(form)
-            //submit form
-            $('#form-id').on('click',function(e){
-                //e.preventDefault();
-                console.log('submit')
-                alert('submit')
+            const button = document.createElement('button');
+            button.innerText = 'submit';
+            button.style.display = 'none';
+            form.append(button)
+
+
+            function formSubmit(event) {
+            const url = `/tasks/${$(`${draggedItemId} p`).text()}?_method=PUT&type=change`;
+            const request = new XMLHttpRequest();
+            request.open('POST', url, true);
+            request.onload = function() { // request successful
+            // we can use server response to our request now
+            console.log(request.responseText);
+            //rerender body
+            // const body = document.querySelector('body')
+            // body.innerHTML = request.responseText;
+                };
+
+            request.onerror = function() {
+                 console.log('request failed')
+                // request failed
+                };
+            const formData = "category=to-do"
+  
+            request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            request.send(formData); // create FormData from form that triggered event
+            event.preventDefault();
+            }
+
+            // and you can attach form submit event like this for example
+            function attachFormSubmitEvent(formId){
+            document.getElementById(formId).addEventListener("submit", formSubmit);
+            }
+            attachFormSubmitEvent('to-do-form');
+            button.click();
+            fetch(window.location.pathname).then((response)=>{
+                response.text().then(function(text) {
+                    console.log('🇰🇷',text)
+                    });
             })
-            form.addEventListener('submit',submitForm)
-            form.submit();
+            //rerender();
         }
 
       }
@@ -169,7 +273,8 @@ $( function() {
       }
     });
 }
-  } );
+  } )};
+addEventListeners();
     console.log($('.to-do-item')[0])
 </script>
     
