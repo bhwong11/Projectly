@@ -190,8 +190,9 @@ $( function() {
             // we can use server response to our request now
             console.log(request.responseText);
             //rerender body
-            // const body = document.querySelector('body')
-            // body.innerHTML = request.responseText;
+            const body = document.querySelector('body')
+            body.innerHTML = request.responseText;
+            addEventListeners()
                 };
 
             request.onerror = function() {
