@@ -1,9 +1,13 @@
 <%- include("../../partials/header.ejs") %>
 <%- include("../../partials/navbar.ejs") %>
 <main class="main-section___editboard">
+    <%- include("../../partials/error.ejs") %>
     <form class="edit-form___editboard" method="POST" action="/boards/<%= board._id %>?_method=PUT" >
         <label for="board-name">Board name:</label>
         <input type="text" name="name" id="board-name" value="<%= board.name %>" required>
+
+        <label for="board-users">Board users (seperate by comma):</label>
+        <input type="text" name="users" id="board-users" value="<%= board.userId.map((user)=>user.email) %>" required>
 
         <button class="edit-board___button" type="submit">edit board</button>
     </form>

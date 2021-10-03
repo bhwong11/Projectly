@@ -125,8 +125,8 @@ router.get('/:id/edit',async(req,res,next)=>{
 /* NOTE: / PUT Functional: Edit Specefic task*/
 
 router.put('/:id',formFieldRedirect,async(req,res,next)=>{
-    console.log('hit route1234')
-    console.log('🇸🇮',req.body)
+    //console.log('hit route1234')
+    //console.log('🇸🇮',req.body)
     try{
         const updatedTask = await Task.findByIdAndUpdate(
         req.params.id,

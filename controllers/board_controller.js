@@ -4,7 +4,7 @@ const router = express.Router();
 
 
 /* SECTION: internal modules */
-const { Board, Task } = require("../models/index");
+const { Board, Task, User } = require("../models/index");
 
 
 /* SECTION: Middleware */
@@ -31,7 +31,8 @@ const formFieldRedirect = (req,res,next)=>{
 router.get("/", async (req, res, next) => {
     try{
         //grab all the boards from the DB with the user ID of the current user
-        const boards = await Board.find({userId: req.session.currentUser.id});
+        //const boards = await Board.find({userId: req.session.currentUser.id});
+        const boards = await Board.find({ 'userId': { $in: req.session.currentUser.id } });
         //create the context containing the boards
         const context = { 
             boards,
@@ -110,10 +111,11 @@ router.get("/:id", async (req, res, next) => {
 /* NOTE: /boards/:id/edit GET Functional: A form to edit a board name */
 router.get("/:id/edit", async (req, res, next) => {
     try {
-        const foundBoard = await Board.findById(req.params.id);
+        const foundBoard = await Board.findById(req.params.id).populate('userId');
         if(!foundBoard){
             throw new Error('No Task Found')
         }
+        console.log(foundBoard)
 
         const context = {
             board: foundBoard,
@@ -133,6 +135,16 @@ router.get("/:id/edit", async (req, res, next) => {
 /* NOTE: /boards/:id PUT Functional: Edits the board content in our database */
 router.put("/:id",formFieldRedirect, async (req, res, next) => {
     try{
+        users = req.body.users.split(',')
+        req.body.userId = []
+        for(let email of users){
+            const user = await User.findOne({email:email})
+            if(!user){
+                req.session.error = 'No User with that email was found'
+                res.redirect(`/boards/${req.params.id}/edit`)
+            }
+            req.body.userId.push(user._id)
+        }
         const updatedBoard = await Board.findByIdAndUpdate(
             req.params.id, 
             {
@@ -142,6 +154,7 @@ router.put("/:id",formFieldRedirect, async (req, res, next) => {
                 new: true,
             }
         );
+        console.log('UPDATED BOARD',updatedBoard)
         return res.redirect(`/boards/${updatedBoard.id}`)
     } catch(error) {
         console.log(error);

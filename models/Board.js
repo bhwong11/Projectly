@@ -7,10 +7,10 @@ const boardSchema = new mongoose.Schema({
         type: String,
         required: [true, "Please enter a board name"]
     },
-    userId: {
+    userId: [{
         type: mongoose.Types.ObjectId,
         ref: "User"
-    }
+    }]
 }, {timestamps: true});
 
 /* SECTION: Make a model */
