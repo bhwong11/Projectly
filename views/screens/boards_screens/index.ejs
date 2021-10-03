@@ -4,14 +4,15 @@
     .column-container{
         display: flex;
         justify-content: space-evenly;
-        margin-top: 50px;
     }
     .column{
         background-color: aqua;
-        min-width: 100px;
+        min-width: 25vw;
+        min-height: 40vh;
+        padding:10px;
         margin: 10px;
     }
-    .hidden___bords{
+    .hidden_task_id{
         display: none;
     }
     .to-do-item{
@@ -28,22 +29,24 @@
 
     <div class="column-container">
     <div class = "column to-do">
+        To Do
         <%for(let task of tasks){%>
             <%if(task.category==='to-do'){%>
-            <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item">
-                <%=task.name%>
-                <p class='hidden___bords'><%=task.id%></p>
+            <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item task-card___index">
+                <h3><a href="/tasks/<%=task.id%>"><%=task.name%></a></h3>
+                <p class='hidden_task_id'><%=task.id%></p>
                 <!-- make task id display hidden -->
             </div>
             <%}%>
             <%}%>
     </div>
     <div class = "column doing">
+        Doing
         <%for(let task of tasks){%>
             <%if(task.category==='doing'){%>
-            <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item">
-                <%=task.name%>
-                <p class='hidden___bords'><%=task.id%></p>
+            <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item task-card___index">
+                <h3><a href="/tasks/<%=task.id%>"><%=task.name%></a></h3>
+                <p class='hidden_task_id'><%=task.id%></p>
                 <!-- make task id display hidden -->
             </div>
             <%}%>
@@ -51,11 +54,12 @@
 
     </div>
     <div class = "column done">
+        Done
         <%for(let task of tasks){%>
             <%if(task.category==='done'){%>
-            <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item">
-                <%=task.name%>
-                <p class='hidden___bords'><%=task.id%></p>
+            <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item task-card___index">
+                <h3><a href="/tasks/<%=task.id%>"><%=task.name%></a></h3>
+                <p class='hidden_task_id'><%=task.id%></p>
                 <!-- make task id display hidden -->
             </div>
             <%}%>
@@ -112,7 +116,8 @@ $( function() {
         console.log($( this ).attr('class'))
         if($( this ).attr('class').split(' ')[1]==='to-do'){
             function formSubmit(event) {
-            const url = `/tasks/${$(`${draggedItemId} p`).text()}?_method=PUT&type=change`;
+            //url of submitted task
+            const url = `/tasks/${$(`${draggedItemId} .hidden_task_id`).text()}?_method=PUT&type=change`;
             const request = new XMLHttpRequest();
             request.open('POST', url, true);
             request.onload = function() { // request successful
@@ -156,7 +161,7 @@ $( function() {
         console.log($( this ).attr('class'))
         if($( this ).attr('class').split(' ')[1]==='doing'){
             function formSubmit(event) {
-            const url = `/tasks/${$(`${draggedItemId} p`).text()}?_method=PUT&type=change`;
+            const url = `/tasks/${$(`${draggedItemId} .hidden_task_id`).text()}?_method=PUT&type=change`;
             const request = new XMLHttpRequest();
             request.open('POST', url, true);
             request.onload = function() { // request successful
@@ -183,7 +188,6 @@ $( function() {
             formSubmit()
             fetch(window.location.pathname).then((response)=>{
                 response.text().then(function(text) {
-                    console.log('🇰🇷',text)
                     //re-render info
                     const body = document.querySelector('body')
                     body.innerHTML = text;
@@ -198,7 +202,7 @@ $( function() {
         console.log($( this ).attr('class'))
         if($( this ).attr('class').split(' ')[1]==='done'){
             function formSubmit(event) {
-            const url = `/tasks/${$(`${draggedItemId} p`).text()}?_method=PUT&type=change`;
+            const url = `/tasks/${$(`${draggedItemId} .hidden_task_id`).text()}?_method=PUT&type=change`;
             const request = new XMLHttpRequest();
             request.open('POST', url, true);
             request.onload = function() { // request successful
