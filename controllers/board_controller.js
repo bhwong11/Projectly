@@ -137,6 +137,10 @@ router.put("/:id",formFieldRedirect, async (req, res, next) => {
     try{
         users = req.body.users.split(',')
         req.body.userId = []
+        if(users.length<1){
+            req.session.error = 'There must be at least one user on this board'
+            res.redirect(`/boards/${req.params.id}/edit`)
+        }
         for(let email of users){
             const user = await User.findOne({email:email})
             if(!user){
