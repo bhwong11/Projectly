@@ -97,4 +97,32 @@
     }
 }
 
+.column-container{
+    display: flex;
+    justify-content: space-between;
+    .doing{
+        margin:0px 5px;
+    }
+    .column{
+        background-color: $secondary;
+        min-width: 27vw;
+        min-height: 50vh;
+        padding:10px;
+        border-radius: 5px;
+        .column-title{
+            color:$beige;
+        }
+        .to-do-item{
+            background-color: beige;
+            h4 a{
+                color:$primary;
+                overflow-wrap: break-word;
+            }
+        }
+        .hidden_task_id{
+            display: none;
+        }
+    }
+}
+
 

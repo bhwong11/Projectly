@@ -125,6 +125,34 @@ nav .nav-username {
   background-color: #5EAAA8;
 }
 
+.column-container {
+  display: flex;
+  justify-content: space-between;
+}
+.column-container .doing {
+  margin: 0px 5px;
+}
+.column-container .column {
+  background-color: #A3D2CA;
+  min-width: 27vw;
+  min-height: 50vh;
+  padding: 10px;
+  border-radius: 5px;
+}
+.column-container .column .column-title {
+  color: #F7F3E9;
+}
+.column-container .column .to-do-item {
+  background-color: beige;
+}
+.column-container .column .to-do-item h4 a {
+  color: #5EAAA8;
+  overflow-wrap: break-word;
+}
+.column-container .column .hidden_task_id {
+  display: none;
+}
+
 .main-section___workspace {
   margin: 90px 10vw 0 10vw;
   width: 75vw;
@@ -277,6 +305,32 @@ nav .nav-username {
   width: 30vw;
 }
 .board-form___newboard button {
+  background-color: #F05945;
+  color: #F7F3E9;
+  padding: 5px 7px;
+  border: 1px solid;
+  border-radius: 3px;
+}
+
+.board-form___newboard_new {
+  display: flex;
+  flex-direction: column;
+  width: 50vw;
+  background-color: #F7F3E9;
+  padding: 15px;
+  border-radius: 5px;
+  margin-left: 21px;
+}
+.board-form___newboard_new label {
+  color: #5EAAA8;
+  font-size: 1.2rem;
+}
+.board-form___newboard_new input {
+  padding: 5px;
+  margin: 0 0 10px 0;
+  width: 30vw;
+}
+.board-form___newboard_new button {
   background-color: #F05945;
   color: #F7F3E9;
   padding: 5px 7px;

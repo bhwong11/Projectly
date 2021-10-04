@@ -1,13 +1,13 @@
 <%- include("../../partials/header.ejs") %>
 <%- include("../../partials/navbar.ejs") %>
 <style>
-    .column-container{
+    /*.column-container{
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
     }
     .column{
         background-color: aqua;
-        min-width: 25vw;
+        min-width: 27vw;
         min-height: 40vh;
         padding:10px;
         margin: 10px;
@@ -17,7 +17,8 @@
     }
     .to-do-item{
         background-color: beige;
-    }
+        color:aqua;
+    }*/
 </style>
 <body class="board-tasks___index">
     <div class="content-wrapper___index">
@@ -29,11 +30,11 @@
 
     <div class="column-container">
     <div class = "column to-do">
-        To Do
+        <h5 class="column-title">To Do</h5>
         <%for(let task of tasks){%>
             <%if(task.category==='to-do'){%>
             <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item task-card___index">
-                <h3><a href="/tasks/<%=task.id%>"><%=task.name%></a></h3>
+                <h4><a href="/tasks/<%=task.id%>"><%=task.name%></a></h4>
                 <p class='hidden_task_id'><%=task.id%></p>
                 <!-- make task id display hidden -->
             </div>
@@ -41,11 +42,11 @@
             <%}%>
     </div>
     <div class = "column doing">
-        Doing
+        <h5 class="column-title">Doing</h5>
         <%for(let task of tasks){%>
             <%if(task.category==='doing'){%>
             <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item task-card___index">
-                <h3><a href="/tasks/<%=task.id%>"><%=task.name%></a></h3>
+                <h4><a href="/tasks/<%=task.id%>"><%=task.name%></a></h4>
                 <p class='hidden_task_id'><%=task.id%></p>
                 <!-- make task id display hidden -->
             </div>
@@ -54,11 +55,11 @@
 
     </div>
     <div class = "column done">
-        Done
+        <h5 class="column-title">Done</h5>
         <%for(let task of tasks){%>
             <%if(task.category==='done'){%>
             <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item task-card___index">
-                <h3><a href="/tasks/<%=task.id%>"><%=task.name%></a></h3>
+                <h4><a href="/tasks/<%=task.id%>"><%=task.name%></a></h4>
                 <p class='hidden_task_id'><%=task.id%></p>
                 <!-- make task id display hidden -->
             </div>
@@ -68,13 +69,13 @@
     </div>
     </div>
     
-    <%for(let task of tasks){%>
+    <!--<%for(let task of tasks){%>
         <div class = "task-card___index">
             <a href="/tasks/<%=task.id%>">
             <h3><%=task.name%></h3>
             </a>
         </div>
-    <%}%>
+    <%}%>-->
     <%- include("../../partials/error.ejs") %>
     <div class = "form-container___index">
         <form action="/tasks" method="POST">
