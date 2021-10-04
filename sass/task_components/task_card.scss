@@ -1,0 +1,128 @@
+@use "../varibles" as *;
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+.task-card-indivual{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10vh 10vw;
+    padding: 3vh 7vw;
+    background-color: $beige;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 8px 5px 6px rgba(0, 0, 0, 0.5);
+    form{
+        display: grid;
+
+        *{
+            padding: 1vh;
+        }
+        h1{
+            color:$primary;
+        }
+        label{
+            font-size: 1.5rem;
+            color: $primary;
+        }
+        input{
+            border-radius: 5px;
+        }
+        textarea{
+            border-radius: 5px;
+        }
+        select{
+            border-radius: 5px;
+        }
+        button{
+            margin-top: 2vh;
+            border-radius: 10px;
+            background-color: $orange;
+            color: $beige;
+        }
+    }
+}
+.task-new-container___new{
+    margin-top: 50px;
+    form button{
+        border: 2px black solid;
+        transition: background-color 300ms ease-in;
+    }
+    form button:hover{
+        background-color: $primary;
+    }
+}
+
+.task-show-container___show{
+    display: grid;
+    .card-label{
+        color: $primary;
+    }
+    .button-container{
+        display: flex;
+        justify-content: space-evenly;
+        &>*{
+            padding: 10px;
+        }
+        button{
+            margin-top: 2vh;
+            padding: 1vh;
+            border: 2px black solid;
+            border-radius: 10px;
+            height: 10vh;
+            background-color: $orange;
+            color: $beige;
+            transition: background-color 300ms ease-in;
+            &:hover{
+                background-color: $primary;
+            }
+        }
+    }
+    .task-show-edit___show{
+        padding: 0 10px;
+    }
+    
+}
+.button-task-container___edit{
+    display: flex;
+    justify-content: space-evenly;
+    button{
+        border: 2px black solid;
+        transition: background-color 300ms ease-in;
+        &:hover{
+            background-color: $primary;
+        }
+    }
+}
+
+.column-container{
+    display: flex;
+    justify-content: space-between;
+    .doing{
+        margin:0px 5px;
+    }
+    .column{
+        background-color: $secondary;
+        min-width: 27vw;
+        min-height: 50vh;
+        padding:10px;
+        border-radius: 5px;
+        .column-title{
+            color:$beige;
+        }
+        .to-do-item{
+            background-color: beige;
+            h4 a{
+                color:$primary;
+                overflow-wrap: break-word;
+            }
+        }
+        .hidden_task_id{
+            display: none;
+        }
+    }
+}
+
+

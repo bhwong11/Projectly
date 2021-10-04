@@ -1,0 +1,247 @@
+<%- include("../../partials/header.ejs") %>
+<%- include("../../partials/navbar.ejs") %>
+<style>
+    /*.column-container{
+        display: flex;
+        justify-content: space-between;
+    }
+    .column{
+        background-color: aqua;
+        min-width: 27vw;
+        min-height: 40vh;
+        padding:10px;
+        margin: 10px;
+    }
+    .hidden_task_id{
+        display: none;
+    }
+    .to-do-item{
+        background-color: beige;
+        color:aqua;
+    }*/
+</style>
+<body class="board-tasks___index">
+    <div class="content-wrapper___index">
+    <div class="title-container___index">
+        <h1><%=board.name%></h1>
+        <a id="edit-button___index" href="/boards/<%=board.id%>/edit">edit board name?</a>
+        <a id="back-button___index" href="/boards">Back to boards?</a>
+    </div>
+
+    <div class="column-container">
+    <div class = "column to-do">
+        <h5 class="column-title">To Do</h5>
+        <%for(let task of tasks){%>
+            <%if(task.category==='to-do'){%>
+            <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item task-card___index">
+                <h4><a href="/tasks/<%=task.id%>"><%=task.name%></a></h4>
+                <p class='hidden_task_id'><%=task.id%></p>
+                <!-- make task id display hidden -->
+            </div>
+            <%}%>
+            <%}%>
+    </div>
+    <div class = "column doing">
+        <h5 class="column-title">Doing</h5>
+        <%for(let task of tasks){%>
+            <%if(task.category==='doing'){%>
+            <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item task-card___index">
+                <h4><a href="/tasks/<%=task.id%>"><%=task.name%></a></h4>
+                <p class='hidden_task_id'><%=task.id%></p>
+                <!-- make task id display hidden -->
+            </div>
+            <%}%>
+            <%}%>
+
+    </div>
+    <div class = "column done">
+        <h5 class="column-title">Done</h5>
+        <%for(let task of tasks){%>
+            <%if(task.category==='done'){%>
+            <div id="task-item-<%=tasks.indexOf(task)%>" class = "to-do-item task-card___index">
+                <h4><a href="/tasks/<%=task.id%>"><%=task.name%></a></h4>
+                <p class='hidden_task_id'><%=task.id%></p>
+                <!-- make task id display hidden -->
+            </div>
+            <%}%>
+            <%}%>
+
+    </div>
+    </div>
+    
+    <!--<%for(let task of tasks){%>
+        <div class = "task-card___index">
+            <a href="/tasks/<%=task.id%>">
+            <h3><%=task.name%></h3>
+            </a>
+        </div>
+    <%}%>-->
+    <%- include("../../partials/error.ejs") %>
+    <div class = "form-container___index">
+        <form action="/tasks" method="POST">
+            <h1>New Task!</h1>
+            <label for="task-name">enter name</label>
+            <input type="text" id="task-name" name = "name" placeholder="task name" required>
+            <label for="task-content">task</label>
+            <textarea name="content" id="task-content" cols="30" rows="10" placeholder="enter task information" required></textarea>
+            <label for="task-dueDate">due date</label>
+            <input type="datetime-local" id="task-dueDate" name="dueDate" required>
+            <input type="hidden" name ="board" value = "<%=board.id%>" required>        
+            <button>submit</button>
+        </form>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+
+const addEventListeners = function addEventListeners(){
+$( function() {
+    let toDoCount = document.querySelector('.to-do').childElementCount
+    let doingCount = document.querySelector('.doing').childElementCount
+    let doneCount = document.querySelector('.done').childElementCount
+    $( "#draggable" ).draggable();
+    //find number of task by .column[0].children.length+.column[1].children.length+.column[2].children.length
+    let draggedItemId = null
+    for(let i=0;i<(toDoCount+doingCount+doneCount);i++){
+    $( `#task-item-${i}` ).draggable({
+  drag: function( event, ui ) {
+      draggedItemId = `#task-item-${i}`
+  }
+});
+    
+    
+    $( ".to-do" ).droppable({
+      drop: function( event, ui ) {
+        console.log($( this ).attr('class'))
+        if($( this ).attr('class').split(' ')[1]==='to-do'){
+            function formSubmit(event) {
+            //url of submitted task
+            const url = `/tasks/${$(`${draggedItemId} .hidden_task_id`).text()}?_method=PUT&type=change`;
+            const request = new XMLHttpRequest();
+            request.open('POST', url, true);
+            request.onload = function() { // request successful
+            // we can use server response to our request now
+            console.log(request.responseText);
+            //rerender body
+            // const body = document.querySelector('body')
+            // body.innerHTML = request.responseText;
+            addEventListeners()
+                };
+
+            request.onerror = function() {
+                 console.log('request failed')
+                // request failed
+                };
+            const formData = "category=to-do"
+  
+            request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            request.send(formData); // create FormData from form that triggered event
+            //event.preventDefault();
+            }
+
+            // submit info
+            formSubmit()
+            fetch(window.location.pathname).then((response)=>{
+                response.text().then(function(text) {
+                    console.log('🇰🇷',text)
+                    //re-render info
+                    const body = document.querySelector('body')
+                    body.innerHTML = text;
+                    });
+            })
+        }
+
+      }
+    });
+
+    $( ".doing" ).droppable({
+      drop: function( event, ui ) {
+        event.preventDefault && event.preventDefault();
+        console.log($( this ).attr('class'))
+        if($( this ).attr('class').split(' ')[1]==='doing'){
+            function formSubmit(event) {
+            const url = `/tasks/${$(`${draggedItemId} .hidden_task_id`).text()}?_method=PUT&type=change`;
+            const request = new XMLHttpRequest();
+            request.open('POST', url, true);
+            request.onload = function() { // request successful
+            // we can use server response to our request now
+            console.log(request.responseText);
+            //rerender body
+            // const body = document.querySelector('body')
+            // body.innerHTML = request.responseText;
+            addEventListeners()
+                };
+
+            request.onerror = function() {
+                 console.log('request failed')
+                // request failed
+                };
+            const formData = "category=doing"
+  
+            request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            request.send(formData); // create FormData from form that triggered event
+            //event.preventDefault();
+            }
+
+            // submit info
+            formSubmit()
+            fetch(window.location.pathname).then((response)=>{
+                response.text().then(function(text) {
+                    //re-render info
+                    const body = document.querySelector('body')
+                    body.innerHTML = text;
+                    });
+            })
+        }
+      }
+    });
+    $( ".done" ).droppable({
+        drop: function( event, ui ) {
+        event.preventDefault && event.preventDefault();
+        console.log($( this ).attr('class'))
+        if($( this ).attr('class').split(' ')[1]==='done'){
+            function formSubmit(event) {
+            const url = `/tasks/${$(`${draggedItemId} .hidden_task_id`).text()}?_method=PUT&type=change`;
+            const request = new XMLHttpRequest();
+            request.open('POST', url, true);
+            request.onload = function() { // request successful
+            // we can use server response to our request now
+            console.log(request.responseText);
+            //rerender body
+            // const body = document.querySelector('body')
+            // body.innerHTML = request.responseText;
+            addEventListeners()
+                };
+
+            request.onerror = function() {
+                 console.log('request failed')
+                // request failed
+                };
+            const formData = "category=done"
+  
+            request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            request.send(formData); // create FormData from form that triggered event
+            //event.preventDefault();
+            }
+
+            // submit info
+            formSubmit()
+            fetch(window.location.pathname).then((response)=>{
+                response.text().then(function(text) {
+                    console.log('🇰🇷',text)
+                    //re-render info
+                    const body = document.querySelector('body')
+                    body.innerHTML = text;
+                    });
+            })
+        }
+      }
+    });
+}
+  } )};
+addEventListeners();
+    console.log($('.to-do-item')[0])
+</script>
+</body>

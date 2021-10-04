@@ -1,0 +1,86 @@
+<%-include('../../partials/header.ejs')%>
+<%-include('../../partials/navbar.ejs')%>
+<style>
+
+    :root{
+        --primary: #5EAAA8;
+        --secondary: #A3D2CA;
+        --beige: #F7F3E9;
+        --orange: #F05945;
+    }
+    .all-task-container___index{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10vh;
+        width: 100vw;
+    }
+    .task-indivual___index{
+        display: flex;
+        flex-direction: column;
+        width: 75vw;
+        padding: 20px 20px;
+        margin: 2vh 0 0 0;
+        background-color:var(--beige);
+        box-shadow:8px 5px 6px rgb(0 0 0 / 50%);
+        
+    }
+    .hidden{
+        display: none;
+    }
+    a{
+        text-decoration: none;
+    }
+    .all-tasks-href___index{
+        text-decoration: underline;
+    }
+    h1{
+        color: var(--primary);
+        margin-top: 10vh;
+    }
+    .all-task-container___index h3{
+        color: var(--primary);
+        text-decoration: underline;
+        text-decoration-color: #0E6EFD;
+    }
+    .header-task___index{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 75vw;
+    }
+    p{
+        color: var(--primary);
+    }
+    .submit-button___index{
+        padding: 0 10px;
+    }
+</style>
+<body>
+    <div class="all-task-container___index">
+    <div class="header-task___index">
+    <h1>Search All Tasks</h1>
+    <form action="/tasks" method="GET">
+    <input type="search" name="q" value="<%=search%>">
+    <input class="submit-button___index" type="submit" value="search">
+    <div class="all-tasks-button">
+        <a href="/tasks" class="all-tasks-href___index">all tasks</a>
+    </div>
+    </form>
+</div>
+
+    <%for(let task of tasks){%>
+        <a href="/tasks/<%=task.id%>"><div class="task-indivual___index">
+            <h3 class="task-name___index"><%=task.name%></h3>
+            <p>board: <%=task.board.name%></p>
+        </div></a>
+        <a class = 'hidden' href="/tasks/bords/<%=task.board.id%>">link to board</a>
+            <%}%>
+        
+    </div>
+        
+        
+
+    
+</body>
+</html>

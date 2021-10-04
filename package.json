@@ -1,0 +1,42 @@
+{
+  "name": "projectly",
+  "version": "1.0.0",
+  "description": "A project management tool that is not at all inspired by to trello.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "watch-sass": "sass --watch sass/src:public/styles",
+    "watch-nodemon": "nodemon",
+    "dev": "concurrently -n sass,server -c 'bgMagenta.bold,bgGreen.bold' 'npm:watch-sass' 'npm:watch-nodemon'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leocucinell/Projectly.git"
+  },
+  "keywords": [
+    "super",
+    "cool"
+  ],
+  "author": "Leo & Bryant",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leocucinell/Projectly/issues"
+  },
+  "homepage": "https://github.com/leocucinell/Projectly#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-mongo": "^4.4.1",
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "express-sessions": "^1.0.6",
+    "express-xml-bodyparser": "^0.3.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.13.5",
+    "multer": "^1.4.2"
+  },
+  "devDependencies": {
+    "concurrently": "^6.2.0"
+  }
+}

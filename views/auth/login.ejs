@@ -1,0 +1,50 @@
+<%- include("../partials/header.ejs") %>
+
+<body class="main-body___login">
+    <div class="all-container___login">
+
+    <div class="image-container___login">
+
+        <div class="carousel slide" data-bs-ride="carousel">
+            <h2>Check out the app before you join!</h2>
+            <p>Create project boards, add tasks, get organized!</p>
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <img src="https://projectly-assets-bucket.s3.us-west-2.amazonaws.com/Screen+Shot+2021-08-04+at+9.24.51+AM.png" class="d-block w-100" alt="app screenshot">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="https://projectly-assets-bucket.s3.us-west-2.amazonaws.com/Screen+Shot+2021-08-04+at+9.25.14+AM.png" class="d-block w-100" alt="app screenshot">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="https://projectly-assets-bucket.s3.us-west-2.amazonaws.com/Screen+Shot+2021-08-04+at+9.25.34+AM.png" class="d-block w-100" alt="app screenshot">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div class="form-container___login">
+        <h3 id="form-title___login">Create project boards, add tasks, get organized!</h3>
+        <%if(err){%>
+            <p><%= err %></p>
+        <% } %>
+        <form method="POST" action="/login">
+
+            <label for="username-field">User name</label>
+            <input type="text" name="username" id="username-field" placeholder="Johnny Appleseed">
+
+            <label for="password-field">Password</label>
+            <input type="password" name="password" id="password-field">
+
+            <button type="submit">Login</button> 
+            <a href="/register">Make an account?</a>
+
+        </form>
+    </div>
+</div>
+</body>
+</html>

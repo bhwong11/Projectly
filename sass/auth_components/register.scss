@@ -1,0 +1,107 @@
+@use "../varibles" as *;
+
+.main-body___register {
+    max-height: 90vh;
+    font-size: 16px;
+    display: flex;
+    flex-direction: row;
+}
+
+.image-container___register {
+    height: 100vh;
+    overflow: hidden;
+    background-color: $secondary;
+    width: 50vw;
+}
+
+.carousel {
+    margin-top: 23vh;
+    margin-bottom: 10vh;
+    padding: 1vh 1vw;
+    
+}
+
+.carousel-inner {
+    border-radius: 10px;
+}
+
+.form-container___register {
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    h3{
+        display: none;
+    }
+
+    form {
+        border-radius: 10px;
+        padding: 3vh 7vw;
+        margin: 5vh 5vw;
+        background-color: $beige;
+        display: flex;
+        flex-direction: column;
+
+        label {
+            color: $primary;
+            font-size: 1.5rem;
+        }
+        input {
+            padding: 5px;
+            margin-bottom: 7px;
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+        input:focus {
+            outline: none;
+        }
+        button {
+            padding: 5px;
+            margin-top: 2vh;
+            border: 1px solid black;
+            border-radius: 5px;
+            background-color: $orange;
+            color: $beige;
+        }
+        a {
+            margin-top: 3px;
+            font-size: 0.9rem;
+            color: $primary;
+            text-decoration: none;
+        }
+    }
+}
+
+@media (max-width: 600px){
+
+    .main-body___register {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: $secondary;
+    }
+
+    .image-container___register {
+        display: none;
+    }
+
+    .form-container___register {
+        flex-direction: column;
+        margin-top: 10px;
+        padding: 5px;
+
+        form {
+            margin: 0 5vw;
+        }
+
+        h3 {
+            color: black;
+        }
+    }
+
+    #form-title___register {
+        display: block;
+    }
+}

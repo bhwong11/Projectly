@@ -1,0 +1,29 @@
+@use "../varibles" as *;
+    nav{
+        display: flex;
+        padding: 1vh 0;
+        background-color: $secondary;
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        .nav-item{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            a{
+                text-decoration: none;
+                .logout-button{
+                    padding: 5px;
+                    background-color: $orange;
+                    color: $beige;
+                    border-radius: 10px;
+                }
+            }
+        }
+        .nav-username{
+            width: 80vw;
+            color: $beige;
+        }
+    }
+    

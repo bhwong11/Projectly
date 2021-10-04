@@ -1,0 +1,34 @@
+<%- include("../partials/header.ejs") %>
+<body>
+    <!-- Navbar -->
+    <%- include("../partials/navbar.ejs") %>
+
+    <main class="main-section___workspace">
+        <% if(boards){ %>
+            <% for(let ii = 0; ii < boards.length; ii++) { %>
+                <% const board = boards[ii] %>
+                <%- include("../partials/board.ejs", {name: board.name, id: board._id}) %>
+            <% } %>
+        <% } else { %>
+            <h5>Create a board to get started!</h5>
+        <% } %>
+    
+        <div class="new-board___workspace">
+            <hr>
+            <h3>Make a new board?</h3>
+            <!-- <form class="new-button___workspace" action="/boards/new" method="GET">
+                <button type="submit">new board</button>
+            </form> -->
+            <button id="new-board___btn">new board</button>
+        </div>
+            <%- include("../partials/error.ejs") %>
+          <form style="opacity: 0; display: none" class="board-form___newboard" method="POST" action="/boards" >
+            <label for="board-name">Board name:</label>
+            <input type="text" name="name" id="board-name" required>
+    
+            <button type="submit">create board</button>
+        </form>
+    </main>
+    
+</body>
+</html>
